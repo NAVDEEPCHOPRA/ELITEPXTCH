@@ -3,15 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEV=NAVDEEP</title>
+    <title>DEV:NXVDPPP</title>
     <link rel="stylesheet" href="style.css"> <!-- Linking CSS -->
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            transition: all 0.5s ease-in-out;
+            background: linear-gradient(135deg, #ff7f50, #282c34);
             background-color: #282c34;
-            color: #ffffff;
+            color: #2c1c1c;
             text-align: center;
             padding: 50px;
+            animation: backgroundAnimation 10s infinite alternate;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background: linear-gradient(135deg, #1e90ff, #282c34);
+            }
+            50% {
+                background: linear-gradient(135deg, #282c34, #1e90ff);
+            }
+            100% {
+                background: linear-gradient(135deg, #1e90ff, #282c34);
+            }
         }
         h1 {
             color: #1e90ff; /* Changed to a blue color */
@@ -36,6 +53,7 @@
             cursor: pointer;
             border-radius: 12px;
             transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         .button:hover {
             background-color: #0b78e3;
@@ -53,25 +71,49 @@
             color: #0b78e3;
         }
         .red-text {
-            color: red;
+            color: rgb(67, 66, 66);
         }
     </style>
 </head>
 <body>
-    <h1>NAVDEEP</h1>
+    <h1>WELCOME</h1>
     <p>SYSTEM🚀</p>
-    <button class="button" onclick="showInstagramProfile()">Next</button>
+    <button class="button" onclick="showInstagramProfile()">INSTAGRAM</button>
+    <button class="button" onclick="showgmail()">GMAIL</button>
 
     <script>
         function showInstagramProfile() {
             document.body.innerHTML = `
                 <h1 class="red-text">NXVDPPP</h1>
-                <p>Instagram Profile</p>
+                <p>Instagram</p>
                 <a href="https://www.instagram.com/nxvdppp/" class="instagram-link" target="_blank">@nxvdppp</a>
                 <br>
                 <button class="button" onclick="window.location.href='index.html'">Back</button>
             `;
         }
+        
+
+        function showYouTubeProfile() {
+            document.body.innerHTML = `
+                <h1 class="red-text">AVENGERS NERD</h1>
+                <p>YouTube</p>
+                <a href="https://www.youtube.com/@avengersnerd2310/shorts" class="instagram-link" target="_blank">@avengersnerd2310</a>
+                <br>
+                <button class="button" onclick="window.location.href='index.html'">Back</button>
+            `;
+        }
+        function showgmail() {
+            document.body.innerHTML = `
+            <h1 class="red-text">GMAIL</h1>
+            <p>GMAIL</p>
+            <a href="mailto:navdeepchopra33@gmail.com" class="GMAIL-link">@GMAIL</a>
+            <br>
+            <button class="button" onclick="window.location.href='index.html'">Back</button>
+            `;
+        }
     </script>
+    <button class="button" onclick="showYouTubeProfile()">YouTube</button>
 </body>
+<link rel="stylesheet" href="style.css">
+
 </html>
