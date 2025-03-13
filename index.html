@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DEV:NXVDPPP</title>
@@ -123,11 +124,13 @@
 <body>
     <h1>WELCOME</h1>
     <p>SYSTEM🚀</p>
-    <button class="button" onclick="showInstagramProfile()">INSTAGRAM</button>
-    <button class="button" onclick="showgmail()">GMAIL</button>
-    <button class="button" onclick="showCalculator()">CALCULATOR</button>
-    <button class="button" onclick="showAdminLogin()">ADMIN</button>
-    <button class="button" onclick="showYouTubeProfile()">YouTube</button> <!-- YouTube button is back -->
+    <div class="button-container">
+        <button class="button" onclick="showInstagramProfile()">INSTAGRAM</button>
+        <button class="button" onclick="showGmail()">GMAIL</button>
+        <button class="button" onclick="showCalculator()">CALCULATOR</button>
+        <button class="button" onclick="showAdminLogin()">ADMIN</button>
+        <button class="button" onclick="showYouTubeProfile()">YouTube</button>
+    </div>
 
     <!-- Admin Login Modal -->
     <div id="adminModal" class="modal">
@@ -139,25 +142,48 @@
     </div>
 
     <script>
+        let userCount = 0;
+        let gameButtonAdded = false;
+
         function showAdminLogin() {
-            document.getElementById("adminModal").style.display = "block";
+            const modal = document.getElementById("adminModal");
+            modal.style.display = "block";
+            modal.style.animation = "fadeIn 0.5s";
         }
 
         function validateAdmin() {
             const username = document.getElementById("adminUsername").value;
             const password = document.getElementById("adminPassword").value;
 
-            // Correct credentials
             if (username === "NAVDEEP" && password === "BOSS") {
                 document.body.innerHTML = `
                     <h1>Admin Panel</h1>
                     <p>Welcome, Admin! You have successfully logged in.</p>
                     <button class="button" onclick="window.location.href='index.html'">Logout</button>
+                    <button class="button" onclick="kickAllUsers()">Kick All Users</button>
+                    <button class="button" onclick="addGameButton()">Add Game Button</button>
+                    <button class="button" onclick="removeGameButton()">Remove Game Button</button>
+                    <div id="console" style="margin-top: 20px; padding: 10px; border: 1px solid #ddd; height: 200px; overflow-y: scroll; background: black; color: red;"></div>
+                    <p>Current Users: <span id="userCount">${userCount}</span></p>
                 `;
+                logToConsole('Admin logged in');
+                updateUserCount();
+                addRandomFunButton(); // Add Random Fun button for admin
+                addSecretGameButton(); // Add Secret Game button for admin
             } else {
-                document.getElementById("errorMsg").innerText = "Invalid credentials! Try again.";
+                const errorMsg = document.getElementById("errorMsg");
+                errorMsg.innerText = "Invalid credentials! Try again.";
+                errorMsg.style.animation = "shake 0.5s";
             }
         }
+
+        window.onload = function() {
+            logUserIP();
+            setInterval(updateUserCount, 5000); // Update user count every 5 seconds
+            if (localStorage.getItem('gameButtonAdded') === 'true') {
+                addGameButton();
+            }
+        };
 
         function showInstagramProfile() {
             document.body.innerHTML = `
@@ -167,6 +193,7 @@
                 <br>
                 <button class="button" onclick="window.location.href='index.html'">Back</button>
             `;
+            logToConsole('Instagram profile viewed');
         }
 
         function showYouTubeProfile() {
@@ -177,33 +204,36 @@
                 <br>
                 <button class="button" onclick="window.location.href='index.html'">Back</button>
             `;
+            logToConsole('YouTube profile viewed');
         }
 
-        function showgmail() {
+        function showGmail() {
             document.body.innerHTML = `
-            <h1 class="red-text">GMAIL</h1>
-            <p>GMAIL</p>
-            <a href="mailto:navdeepchopra33@gmail.com" class="GMAIL-link">@GMAIL</a>
-            <br>
-            <button class="button" onclick="window.location.href='index.html'">Back</button>
+                <h1 class="red-text">GMAIL</h1>
+                <p>GMAIL</p>
+                <a href="mailto:navdeepchopra33@gmail.com" class="GMAIL-link">@GMAIL</a>
+                <br>
+                <button class="button" onclick="window.location.href='index.html'">Back</button>
             `;
+            logToConsole('Gmail viewed');
         }
 
         function showCalculator() {
             document.body.innerHTML = `
-            <h1>Calculator</h1>
-            <input type="number" id="num1" placeholder="Enter first number">
-            <input type="number" id="num2" placeholder="Enter second number">
-            <select id="operation">
-                <option value="+">Addition</option>
-                <option value="-">Subtraction</option>
-                <option value="*">Multiplication</option>
-                <option value="/">Division</option>
-            </select>
-            <button onclick="calculate()">Calculate</button>
-            <p id="result"></p>
-            <button class="button" onclick="window.location.href='index.html'">Back</button>
+                <h1>Calculator</h1>
+                <input type="number" id="num1" placeholder="Enter first number">
+                <input type="number" id="num2" placeholder="Enter second number">
+                <select id="operation">
+                    <option value="+">Addition</option>
+                    <option value="-">Subtraction</option>
+                    <option value="*">Multiplication</option>
+                    <option value="/">Division</option>
+                </select>
+                <button onclick="calculate()">Calculate</button>
+                <p id="result"></p>
+                <button class="button" onclick="window.location.href='index.html'">Back</button>
             `;
+            logToConsole('Calculator viewed');
         }
 
         function calculate() {
@@ -225,7 +255,217 @@
             }
 
             document.getElementById('result').innerText = `Result: ${result}`;
+            logToConsole('Calculator used: ' + num1 + ' ' + operation + ' ' + num2 + ' = ' + result);
         }
+
+        function kickAllUsers() {
+            alert('All users have been kicked!');
+            logToConsole('All users have been kicked!');
+            userCount = 0;
+            updateUserCount();
+        }
+
+        function logToConsole(message) {
+            const consoleDiv = document.getElementById('console');
+            const timestamp = new Date().toLocaleTimeString();
+            consoleDiv.innerHTML += `<p>[${timestamp}] ${message}</p>`;
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        function logUserIP() {
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    logToConsole('User IP: ' + data.ip);
+                    userCount++;
+                    updateUserCount();
+                })
+                .catch(error => {
+                    logToConsole('Error fetching IP: ' + error);
+                });
+        }
+
+        function updateUserCount() {
+            document.getElementById('userCount').innerText = userCount;
+        }
+
+        function showRandomFun() {
+            fetch('https://official-joke-api.appspot.com/random_joke')
+                .then(response => response.json())
+                .then(data => {
+                    const funContent = `
+                        <div id="funContent" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); z-index: 1000;">
+                            <h2>Random Fun!</h2>
+                            <p>${data.setup}</p>
+                            <p><strong>${data.punchline}</strong></p>
+                        </div>
+                    `;
+                    document.body.insertAdjacentHTML('beforeend', funContent);
+                    playRandomFunSound();
+                    setTimeout(() => {
+                        const funElement = document.getElementById('funContent');
+                        if (funElement) {
+                            funElement.remove();
+                        }
+                    }, 10000);
+                })
+                .catch(error => {
+                    logToConsole('Error fetching joke: ' + error);
+                });
+        }
+
+        function addRandomFunButton() {
+            document.body.insertAdjacentHTML('beforeend', '<button class="button" style="position: fixed; bottom: 20px; right: 20px;" onclick="showRandomFun()">Random Fun</button>');
+        }
+
+        function playRandomFunSound() {
+            const sounds = [
+                'https://www.soundjay.com/button/sounds/button-3.mp3',
+                'https://www.soundjay.com/button/sounds/button-4.mp3',
+                'https://www.soundjay.com/button/sounds/button-5.mp3'
+            ];
+            const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
+            const audio = new Audio(randomSound);
+            audio.play();
+        }
+
+        function addSecretGameButton() {
+            document.body.insertAdjacentHTML('beforeend', '<button class="button" style="position: fixed; bottom: 60px; right: 20px;" onclick="showSecretGame()">Secret Game</button>');
+        }
+
+        function showSecretGame() {
+            document.body.innerHTML = `
+                <h1>Flappy Bird Clone</h1>
+                <canvas id="gameCanvas" width="320" height="480" style="border:1px solid #000000;"></canvas>
+                <button class="button" onclick="window.location.href='index.html'">Back</button>
+            `;
+            startGame();
+        }
+
+        function startGame() {
+            const canvas = document.getElementById('gameCanvas');
+            const ctx = canvas.getContext('2d');
+
+            let bird = { x: 50, y: 150, width: 20, height: 20, gravity: 1.5, lift: -15, velocity: 0 };
+            let pipes = [];
+            let frame = 0;
+            let score = 0;
+            let gameStarted = false;
+
+            document.addEventListener('keydown', (e) => {
+                if (e.code === 'Space') {
+                    bird.velocity = bird.lift;
+                    if (!gameStarted) {
+                        gameStarted = true;
+                        gameLoop();
+                    }
+                }
+            });
+
+            function drawBird() {
+                ctx.fillStyle = 'yellow';
+                ctx.fillRect(bird.x, bird.y, bird.width, bird.height);
+            }
+
+            function drawPipes() {
+                ctx.fillStyle = 'green';
+                pipes.forEach(pipe => {
+                    ctx.fillRect(pipe.x, 0, pipe.width, pipe.top);
+                    ctx.fillRect(pipe.x, canvas.height - pipe.bottom, pipe.width, pipe.bottom);
+                });
+            }
+
+            function updatePipes() {
+                if (frame % 90 === 0) {
+                    let pipeHeight = Math.floor(Math.random() * (canvas.height / 2));
+                    pipes.push({ x: canvas.width, width: 20, top: pipeHeight, bottom: canvas.height - pipeHeight - 100 });
+                }
+                pipes.forEach(pipe => {
+                    pipe.x -= 2;
+                    if (pipe.x + pipe.width < 0) {
+                        pipes.shift();
+                        score++;
+                    }
+                });
+            }
+
+            function checkCollision() {
+                if (bird.y + bird.height > canvas.height || bird.y < 0) {
+                    return true;
+                }
+                for (let pipe of pipes) {
+                    if (bird.x < pipe.x + pipe.width && bird.x + bird.width > pipe.x &&
+                        (bird.y < pipe.top || bird.y + bird.height > canvas.height - pipe.bottom)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            function updateBird() {
+                bird.velocity += bird.gravity;
+                bird.y += bird.velocity;
+                bird.velocity *= 0.9;
+            }
+
+            function drawScore() {
+                ctx.fillStyle = 'black';
+                ctx.font = '20px Arial';
+                ctx.fillText('Score: ' + score, 10, 20);
+            }
+
+            function gameLoop() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawBird();
+                drawPipes();
+                drawScore();
+                updateBird();
+                updatePipes();
+                if (checkCollision()) {
+                    alert('Game Over! Score: ' + score);
+                    document.location.reload();
+                }
+                frame++;
+                if (gameStarted) {
+                    requestAnimationFrame(gameLoop);
+                }
+            }
+        }
+
+        function addGameButton() {
+            if (!gameButtonAdded) {
+                document.body.insertAdjacentHTML('beforeend', '<button class="button" id="publicGameButton" style="position: fixed; bottom: 100px; right: 20px;" onclick="showSecretGame()">Play Game</button>');
+                gameButtonAdded = true;
+                localStorage.setItem('gameButtonAdded', 'true');
+                logToConsole('Game button added for public');
+            }
+        }
+
+        function removeGameButton() {
+            const gameButton = document.getElementById('publicGameButton');
+            if (gameButton) {
+                gameButton.remove();
+            }
+            gameButtonAdded = false;
+            localStorage.setItem('gameButtonAdded', 'false');
+            logToConsole('Game button removed for public');
+        }
+
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                50% { transform: translateX(5px); }
+                75% { transform: translateX(-5px); }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
