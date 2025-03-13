@@ -12,7 +12,6 @@
             margin: 0;
             transition: all 0.5s ease-in-out;
             background: linear-gradient(135deg, #ff7f50, #282c34);
-            background-color: #282c34;
             color: #2c1c1c;
             text-align: center;
             padding: 50px;
@@ -30,48 +29,94 @@
                 background: linear-gradient(135deg, #1e90ff, #282c34);
             }
         }
+
         h1 {
-            color: #1e90ff; /* Changed to a blue color */
+            color: #8b8b8b; /* No color change */
             font-size: 4em;
             margin-bottom: 20px;
             text-shadow: 2px 2px #000000;
         }
-        p {
-            font-size: 1.5em;
-            color: #aaaaaa;
-        }
+
         .button {
             background-color: #1e90ff;
             border: none;
             color: white;
             padding: 15px 32px;
             text-align: center;
-            text-decoration: none;
-            display: inline-block;
             font-size: 1em;
             margin-top: 20px;
             cursor: pointer;
             border-radius: 12px;
             transition: background-color 0.3s, transform 0.3s;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: buttonAnimation 2s infinite;
         }
+
         .button:hover {
             background-color: #0b78e3;
             transform: scale(1.1);
         }
-        .instagram-link {
-            color: #1e90ff;
-            font-size: 1.2em;
-            text-decoration: none;
-            margin-top: 20px;
-            display: inline-block;
-            transition: color 0.3s;
+
+        @keyframes buttonAnimation {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
-        .instagram-link:hover {
-            color: #0b78e3;
-        }
+
         .red-text {
             color: rgb(67, 66, 66);
+        }
+
+        /* Admin Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            color: black;
+            z-index: 1000;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .modal input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .modal button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .modal button:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -80,8 +125,40 @@
     <p>SYSTEM🚀</p>
     <button class="button" onclick="showInstagramProfile()">INSTAGRAM</button>
     <button class="button" onclick="showgmail()">GMAIL</button>
+    <button class="button" onclick="showCalculator()">CALCULATOR</button>
+    <button class="button" onclick="showAdminLogin()">ADMIN</button>
+    <button class="button" onclick="showYouTubeProfile()">YouTube</button> <!-- YouTube button is back -->
+
+    <!-- Admin Login Modal -->
+    <div id="adminModal" class="modal">
+        <h2>Admin Login</h2>
+        <input type="text" id="adminUsername" placeholder="Username">
+        <input type="password" id="adminPassword" placeholder="Password">
+        <button onclick="validateAdmin()">Login</button>
+        <p id="errorMsg" class="error"></p>
+    </div>
 
     <script>
+        function showAdminLogin() {
+            document.getElementById("adminModal").style.display = "block";
+        }
+
+        function validateAdmin() {
+            const username = document.getElementById("adminUsername").value;
+            const password = document.getElementById("adminPassword").value;
+
+            // Correct credentials
+            if (username === "NAVDEEP" && password === "BOSS") {
+                document.body.innerHTML = `
+                    <h1>Admin Panel</h1>
+                    <p>Welcome, Admin! You have successfully logged in.</p>
+                    <button class="button" onclick="window.location.href='index.html'">Logout</button>
+                `;
+            } else {
+                document.getElementById("errorMsg").innerText = "Invalid credentials! Try again.";
+            }
+        }
+
         function showInstagramProfile() {
             document.body.innerHTML = `
                 <h1 class="red-text">NXVDPPP</h1>
@@ -91,7 +168,6 @@
                 <button class="button" onclick="window.location.href='index.html'">Back</button>
             `;
         }
-        
 
         function showYouTubeProfile() {
             document.body.innerHTML = `
@@ -102,6 +178,7 @@
                 <button class="button" onclick="window.location.href='index.html'">Back</button>
             `;
         }
+
         function showgmail() {
             document.body.innerHTML = `
             <h1 class="red-text">GMAIL</h1>
@@ -111,9 +188,44 @@
             <button class="button" onclick="window.location.href='index.html'">Back</button>
             `;
         }
-    </script>
-    <button class="button" onclick="showYouTubeProfile()">YouTube</button>
-</body>
-<link rel="stylesheet" href="style.css">
 
+        function showCalculator() {
+            document.body.innerHTML = `
+            <h1>Calculator</h1>
+            <input type="number" id="num1" placeholder="Enter first number">
+            <input type="number" id="num2" placeholder="Enter second number">
+            <select id="operation">
+                <option value="+">Addition</option>
+                <option value="-">Subtraction</option>
+                <option value="*">Multiplication</option>
+                <option value="/">Division</option>
+            </select>
+            <button onclick="calculate()">Calculate</button>
+            <p id="result"></p>
+            <button class="button" onclick="window.location.href='index.html'">Back</button>
+            `;
+        }
+
+        function calculate() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const operation = document.getElementById('operation').value;
+            let result;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                result = 'Please enter valid numbers';
+            } else {
+                switch (operation) {
+                    case '+': result = num1 + num2; break;
+                    case '-': result = num1 - num2; break;
+                    case '*': result = num1 * num2; break;
+                    case '/': result = num2 !== 0 ? num1 / num2 : 'Cannot divide by zero'; break;
+                    default: result = 'Invalid operation';
+                }
+            }
+
+            document.getElementById('result').innerText = `Result: ${result}`;
+        }
+    </script>
+</body>
 </html>
