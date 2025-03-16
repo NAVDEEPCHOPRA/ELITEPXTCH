@@ -1,24 +1,119 @@
-body {
-    background: linear-gradient(to right, rgb(25, 24, 27), rgb(0, 0, 0));
-    color: rgb(179, 179, 179); /* Makes text readable on grey */
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-}
+    /* Body styling for overall page appearance */
+    body {
+        background: radial-gradient(circle, #1a1a1a, #333333); /* Subtle gradient for depth */
+        color: #e0e0e0; /* Light text for contrast */
+        font-family: Arial, sans-serif; /* Clean, readable font */
+        text-align: center; /* Center-align text */
+        margin: 0; /* Remove default margin */
+        padding: 50px; /* Add spacing around content */
+        line-height: 1.6; /* Improve readability */
+        transition: all 0.5s ease-in-out; /* Smooth transitions for changes */
+        animation: backgroundPulse 10s infinite alternate ease-in-out; /* Background animation */
+        box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); /* Inner shadow for depth */
+        border-top: 5px solid #ff0000; /* Top border with primary color */
+        border-bottom: 5px solid #333333; /* Bottom border for balance */
+    }
 
-h1 {
-    color: #a7a7a7;
-    padding: 20px;
-    background: linear-gradient(to right, red, blue);
-    border-radius: 10px;
-    display: inline-block;
-}
-body {
-    background: linear-gradient(to right, rgb(25, 24, 27), rgb(0, 0, 0));
-    color: white; /* Makes text readable on grey */
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-}
+    /* Responsive adjustments for smaller screens */
+    @media (max-width: 768px) {
+        body {
+            padding: 20px; /* Reduce padding for smaller screens */
+            font-size: 0.9em; /* Adjust font size for readability */
+        }
+    }
+
+    /* Additional hover effect for interactive feel */
+    body:hover {
+        background: radial-gradient(circle, #333333, #1a1a1a); /* Reverse gradient on hover */
+        box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.7); /* Enhance shadow on hover */
+    }
+
+    @keyframes backgroundPulse {
+        0% {
+            background: radial-gradient(circle, #2c2c2c, #1a1a1a);
+        }
+        50% {
+            background: radial-gradient(circle, #1a1a1a, #333333);
+        }
+        100% {
+            background: radial-gradient(circle, #2c2c2c, #1a1a1a);
+        }
+    }
+
+    h1 {
+        color: #cccccc;
+        padding: 20px;
+        background: linear-gradient(to right, #ff0000, #0000ff);
+        border-radius: 10px;
+        display: inline-block;
+        text-shadow: 2px 2px 5px #000000;
+        animation: textGlow 3s infinite alternate ease-in-out;
+        font-size: 3em;
+        margin-bottom: 20px;
+        border: 2px solid #333333;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+    body {
+        background: radial-gradient(circle, #1a1a1a, #333333);
+        color: #e0e0e0;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 50px;
+        line-height: 1.6;
+        transition: all 0.5s ease-in-out;
+        animation: backgroundPulse 10s infinite alternate ease-in-out;
+        box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+        border-top: 5px solid #ff0000;
+        border-bottom: 5px solid #333333;
+    }
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        padding: 10px;
+        background: rgba(26, 26, 26, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .instagram-link, .GMAIL-link {
+        color: #ff7300;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.2em;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .instagram-link:hover, .GMAIL-link:hover {
+        color: #ff0000;
+    }
+
+    #adminModal input:focus {
+        outline: none;
+        border-color: #009ffd;
+        box-shadow: 0 0 10px #009ffd;
+    }
+
+    #adminModal button:hover {
+        background: linear-gradient(135deg, #1e1e5a, #0055aa);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    #console {
+        font-family: monospace;
+        font-size: 0.9em;
+        background: #1a1a1a;
+        color: #00ff00;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-y: auto;
+        max-height: 150px;
+    }
+
+    #console p {
+        margin: 0;
+        padding: 2px 0;
+    }

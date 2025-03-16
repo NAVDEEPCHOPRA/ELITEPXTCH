@@ -1,123 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+    <!-- Meta Information -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DEV:NXVDPPP</title>
-    <link rel="stylesheet" href="style.css"> <!-- Linking CSS -->
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Inline Styles -->
     <style>
+        /* General Body Styling */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
-            transition: all 0.5s ease-in-out;
-            background: linear-gradient(135deg, #ff7f50, #282c34);
-            color: #2c1c1c;
-            text-align: center;
             padding: 50px;
-            animation: backgroundAnimation 10s infinite alternate;
+            text-align: center;
+            color: #e0e0e0;
+            background: radial-gradient(circle, #1a1a1a, #333333);
+            animation: backgroundPulse 10s infinite alternate ease-in-out;
+            transition: all 0.5s ease-in-out;
         }
 
-        @keyframes backgroundAnimation {
-            0% {
-                background: linear-gradient(135deg, #1e90ff, #282c34);
-            }
-            50% {
-                background: linear-gradient(135deg, #282c34, #1e90ff);
-            }
-            100% {
-                background: linear-gradient(135deg, #1e90ff, #282c34);
-            }
+        @keyframes backgroundPulse {
+            0% { background: radial-gradient(circle, #2c2c2c, #1a1a1a); }
+            50% { background: radial-gradient(circle, #1a1a1a, #2c2c2c); }
+            100% { background: radial-gradient(circle, #2c2c2c, #1a1a1a); }
         }
 
+        /* Typography */
         h1 {
-            color: #8b8b8b; /* No color change */
+            color: #cccccc;
             font-size: 4em;
             margin-bottom: 20px;
-            text-shadow: 2px 2px #000000;
+            text-shadow: 2px 2px 5px #000000;
+            animation: text3D 3s infinite alternate ease-in-out;
         }
 
-        .button {
-            background-color: #1e90ff;
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            font-size: 1em;
-            margin-top: 20px;
-            cursor: pointer;
-            border-radius: 12px;
-            transition: background-color 0.3s, transform 0.3s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            animation: buttonAnimation 2s infinite;
-        }
-
-        .button:hover {
-            background-color: #0b78e3;
-            transform: scale(1.1);
-        }
-
-        @keyframes buttonAnimation {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        @keyframes text3D {
+            0% { text-shadow: 2px 2px 5px #000000, 4px 4px 10px #ff0000, 6px 6px 15px #ff7300; }
+            50% { text-shadow: 2px 2px 5px #000000, 6px 6px 15px #ff7300, 8px 8px 20px #ff0000; }
+            100% { text-shadow: 2px 2px 5px #000000, 4px 4px 10px #ff0000, 6px 6px 15px #ff7300; }
         }
 
         .red-text {
-            color: rgb(67, 66, 66);
+            color: #b3b3b3;
+            animation: textFade 4s infinite alternate ease-in-out;
         }
 
-        /* Admin Login Modal */
+        @keyframes textFade {
+            0% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        /* Button Styling */
+        .button {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 15px 32px;
+            font-size: 1em;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            animation: buttonPulse 2s infinite alternate ease-in-out;
+        }
+
+        @keyframes buttonPulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        /* Modal Styling */
         .modal {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: white;
+            background: #222222;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
             text-align: center;
-            color: black;
+            color: #ffffff;
             z-index: 1000;
-            transition: all 0.3s ease-in-out;
+            animation: modalFadeIn 0.5s ease-in-out;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #ff0000, #ff7300);
+            transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
         }
 
         .modal input {
             width: 90%;
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 1px solid #444444;
+            border-radius: 10px;
             font-size: 16px;
+            background: #333333;
+            color: #ffffff;
             transition: all 0.3s ease-in-out;
+            animation: inputGlow 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes inputGlow {
+            0% {
+                box-shadow: 0 0 5px #444444;
+            }
+            100% {
+                box-shadow: 0 0 15px #009ffd;
+            }
         }
 
         .modal button {
             width: 100%;
             padding: 10px;
-            background-color: #007bff;
+            background: linear-gradient(135deg, #2a2a72, #009ffd);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             font-size: 18px;
             cursor: pointer;
             margin-top: 10px;
             transition: all 0.3s ease-in-out;
+            animation: buttonGlow 2s infinite alternate ease-in-out;
+        }
+
+        @keyframes buttonGlow {
+            0% {
+                box-shadow: 0 0 5px #2a2a72;
+            }
+            100% {
+                box-shadow: 0 0 15px #009ffd;
+            }
         }
 
         .modal button:hover {
-            background-color: #0056b3;
+            background: linear-gradient(135deg, #1e1e5a, #0077cc);
         }
 
         .error {
-            color: red;
+            color: #ff4d4d;
             margin-top: 10px;
+            animation: errorShake 0.5s ease-in-out;
+        }
+
+        @keyframes errorShake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+            75% {
+                transform: translateX(-5px);
+            }
         }
     </style>
 </head>
@@ -151,25 +211,33 @@
             modal.style.animation = "fadeIn 0.5s";
         }
 
+        let adminPanelHTML = '';
+
         function validateAdmin() {
             const username = document.getElementById("adminUsername").value;
             const password = document.getElementById("adminPassword").value;
 
             if (username === "NAVDEEP" && password === "BOSS") {
-                document.body.innerHTML = `
+                adminPanelHTML = `
                     <h1>Admin Panel</h1>
                     <p>Welcome, Admin! You have successfully logged in.</p>
-                    <button class="button" onclick="window.location.href='index.html'">Logout</button>
-                    <button class="button" onclick="kickAllUsers()">Kick All Users</button>
-                    <button class="button" onclick="addGameButton()">Add Game Button</button>
-                    <button class="button" onclick="removeGameButton()">Remove Game Button</button>
+                    <div class="button-container">
+                        <button class="button" onclick="logout()">Logout</button>
+                        <button class="button" onclick="kickAllUsers()">Kick All Users</button>
+                        <button class="button" onclick="addUser()">Add User</button>
+                        <button class="button" onclick="removeUser()">Remove User</button>
+                        <button class="button" onclick="addGameButton()">Add Game Button</button>
+                        <button class="button" onclick="removeGameButton()">Remove Game Button</button>
+                        <button class="button" onclick="showSettings()">Settings</button>
+                        <button class="button" onclick="viewLogs()">Logs & Reports</button>
+                        <button class="button" onclick="showCalculator()">Calculator</button>
+                    </div>
                     <div id="console" style="margin-top: 20px; padding: 10px; border: 1px solid #ddd; height: 200px; overflow-y: scroll; background: black; color: red;"></div>
                     <p>Current Users: <span id="userCount">${userCount}</span></p>
                 `;
+                document.body.innerHTML = adminPanelHTML;
                 logToConsole('Admin logged in');
                 updateUserCount();
-                addRandomFunButton(); // Add Random Fun button for admin
-                addSecretGameButton(); // Add Secret Game button for admin
             } else {
                 const errorMsg = document.getElementById("errorMsg");
                 errorMsg.innerText = "Invalid credentials! Try again.";
@@ -177,87 +245,110 @@
             }
         }
 
-        window.onload = function() {
-            logUserIP();
-            setInterval(updateUserCount, 5000); // Update user count every 5 seconds
-            if (localStorage.getItem('gameButtonAdded') === 'true') {
-                addGameButton();
+        function returnToAdminPanel() {
+            document.body.innerHTML = adminPanelHTML;
+            updateUserCount();
+        }
+
+        function logout() {
+            document.body.innerHTML = `
+                <h1>Logged Out</h1>
+                <p>You have successfully logged out.</p>
+                <button class="button" onclick="window.location.href='index.html'">Go to Home</button>
+            `;
+            logToConsole('Admin logged out');
+        }
+
+        function showSettings() {
+            document.body.innerHTML = `
+                <h1>Settings</h1>
+                <p>Change site configurations:</p>
+                <button class="button" onclick="changeTheme('dark')">Dark Theme</button>
+                <button class="button" onclick="changeTheme('light')">Light Theme</button>
+                <button class="button" onclick="changeTheme('blue')">Blue Theme</button>
+                <button class="button" onclick="changeTheme('green')">Green Theme</button>
+                <button class="button" onclick="resetTheme()">Reset Theme</button>
+                <button class="button" onclick="returnToAdminPanel()">Back</button>
+            `;
+            logToConsole('Settings accessed');
+        }
+
+        function changeTheme(theme) {
+            const buttons = document.querySelectorAll(".button");
+            switch (theme) {
+                case 'dark':
+                    document.body.style.background = "radial-gradient(circle, #1a1a1a, #333333)";
+                    document.body.style.color = "#e0e0e0";
+                    buttons.forEach(button => {
+                        button.style.background = "#1a1a1a";
+                        button.style.color = "#ffffff";
+                    });
+                    logToConsole('Dark theme applied');
+                    break;
+                case 'light':
+                    document.body.style.background = "#ffffff";
+                    document.body.style.color = "#000000";
+                    buttons.forEach(button => {
+                        button.style.background = "#f0f0f0";
+                        button.style.color = "#000000";
+                    });
+                    logToConsole('Light theme applied');
+                    break;
+                case 'blue':
+                    document.body.style.background = "linear-gradient(to bottom, #1e3c72, #2a5298)";
+                    document.body.style.color = "#ffffff";
+                    buttons.forEach(button => {
+                        button.style.background = "#2a5298";
+                        button.style.color = "#ffffff";
+                    });
+                    logToConsole('Blue theme applied');
+                    break;
+                case 'green':
+                    document.body.style.background = "linear-gradient(to bottom, #1e5631, #a4de02)";
+                    document.body.style.color = "#ffffff";
+                    buttons.forEach(button => {
+                        button.style.background = "#1e5631";
+                        button.style.color = "#ffffff";
+                    });
+                    logToConsole('Green theme applied');
+                    break;
+                default:
+                    logToConsole('Unknown theme');
             }
-        };
-
-        function showInstagramProfile() {
-            document.body.innerHTML = `
-                <h1 class="red-text">NXVDPPP</h1>
-                <p>Instagram</p>
-                <a href="https://www.instagram.com/nxvdppp/" class="instagram-link" target="_blank">@nxvdppp</a>
-                <br>
-                <button class="button" onclick="window.location.href='index.html'">Back</button>
-            `;
-            logToConsole('Instagram profile viewed');
         }
 
-        function showYouTubeProfile() {
-            document.body.innerHTML = `
-                <h1 class="red-text">AVENGERS NERD</h1>
-                <p>YouTube</p>
-                <a href="https://www.youtube.com/@avengersnerd2310/shorts" class="instagram-link" target="_blank">@avengersnerd2310</a>
-                <br>
-                <button class="button" onclick="window.location.href='index.html'">Back</button>
-            `;
-            logToConsole('YouTube profile viewed');
+        function resetTheme() {
+            document.body.style.background = "radial-gradient(circle, #1a1a1a, #333333)";
+            document.body.style.color = "#e0e0e0";
+            const buttons = document.querySelectorAll(".button");
+            buttons.forEach(button => {
+                button.style.background = "#1a1a1a";
+                button.style.color = "#ffffff";
+            });
+            logToConsole('Theme reset to default');
         }
 
-        function showGmail() {
+        function viewLogs() {
             document.body.innerHTML = `
-                <h1 class="red-text">GMAIL</h1>
-                <p>GMAIL</p>
-                <a href="mailto:navdeepchopra33@gmail.com" class="GMAIL-link">@GMAIL</a>
-                <br>
-                <button class="button" onclick="window.location.href='index.html'">Back</button>
+                <h1>Logs & Reports</h1>
+                <p>Past actions:</p>
+                <div id="logs" style="margin-top: 20px; padding: 10px; border: 1px solid #ddd; height: 200px; overflow-y: scroll; background: black; color: white;">
+                    <p>[10:00 AM] Admin logged in</p>
+                    <p>[10:05 AM] User added</p>
+                    <p>[10:10 AM] Post deleted</p>
+                </div>
+                <button class="button" onclick="returnToAdminPanel()">Back</button>
             `;
-            logToConsole('Gmail viewed');
+            logToConsole('Logs & Reports viewed');
         }
 
-        function showCalculator() {
-            document.body.innerHTML = `
-                <h1>Calculator</h1>
-                <input type="number" id="num1" placeholder="Enter first number">
-                <input type="number" id="num2" placeholder="Enter second number">
-                <select id="operation">
-                    <option value="+">Addition</option>
-                    <option value="-">Subtraction</option>
-                    <option value="*">Multiplication</option>
-                    <option value="/">Division</option>
-                </select>
-                <button onclick="calculate()">Calculate</button>
-                <p id="result"></p>
-                <button class="button" onclick="window.location.href='index.html'">Back</button>
-            `;
-            logToConsole('Calculator viewed');
-        }
-
-        function calculate() {
-            const num1 = parseFloat(document.getElementById('num1').value);
-            const num2 = parseFloat(document.getElementById('num2').value);
-            const operation = document.getElementById('operation').value;
-            let result;
-
-            if (isNaN(num1) || isNaN(num2)) {
-                result = 'Please enter valid numbers';
-            } else {
-                switch (operation) {
-                    case '+': result = num1 + num2; break;
-                    case '-': result = num1 - num2; break;
-                    case '*': result = num1 * num2; break;
-                    case '/': result = num2 !== 0 ? num1 / num2 : 'Cannot divide by zero'; break;
-                    default: result = 'Invalid operation';
-                }
+        function logToConsole(message) {
+            const consoleDiv = document.getElementById('console');
+            const timestamp = new Date().toLocaleTimeString();
+            if (consoleDiv) {
+                consoleDiv.innerHTML += `<p>[${timestamp}] ${message}</p>`;
+                consoleDiv.scrollTop = consoleDiv.scrollHeight;
             }
-
-            document.getElementById('result').innerText = `Result: ${result}`;
-            logToConsole('Calculator used: ' + num1 + ' ' + operation + ' ' + num2 + ' = ' + result);
-        }
-
         function kickAllUsers() {
             alert('All users have been kicked!');
             logToConsole('All users have been kicked!');
@@ -265,207 +356,110 @@
             updateUserCount();
         }
 
-        function logToConsole(message) {
-            const consoleDiv = document.getElementById('console');
-            const timestamp = new Date().toLocaleTimeString();
-            consoleDiv.innerHTML += `<p>[${timestamp}] ${message}</p>`;
-            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        function addUser() {
+            userCount++;
+            updateUserCount();
+            logToConsole('User added');
         }
 
-        function logUserIP() {
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    logToConsole('User IP: ' + data.ip);
-                    userCount++;
-                    updateUserCount();
-                })
-                .catch(error => {
-                    logToConsole('Error fetching IP: ' + error);
-                });
+        function removeUser() {
+            if (userCount > 0) {
+                userCount--;
+                updateUserCount();
+                logToConsole('User removed');
+            } else {
+                logToConsole('No users to remove');
+            }
+        }
+            updateUserCount();
         }
 
         function updateUserCount() {
-            document.getElementById('userCount').innerText = userCount;
-        }
-
-        function showRandomFun() {
-            fetch('https://official-joke-api.appspot.com/random_joke')
-                .then(response => response.json())
-                .then(data => {
-                    const funContent = `
-                        <div id="funContent" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); z-index: 1000;">
-                            <h2>Random Fun!</h2>
-                            <p>${data.setup}</p>
-                            <p><strong>${data.punchline}</strong></p>
-                        </div>
-                    `;
-                    document.body.insertAdjacentHTML('beforeend', funContent);
-                    playRandomFunSound();
-                    setTimeout(() => {
-                        const funElement = document.getElementById('funContent');
-                        if (funElement) {
-                            funElement.remove();
-                        }
-                    }, 10000);
-                })
-                .catch(error => {
-                    logToConsole('Error fetching joke: ' + error);
-                });
-        }
-
-        function addRandomFunButton() {
-            document.body.insertAdjacentHTML('beforeend', '<button class="button" style="position: fixed; bottom: 20px; right: 20px;" onclick="showRandomFun()">Random Fun</button>');
-        }
-
-        function playRandomFunSound() {
-            const sounds = [
-                'https://www.soundjay.com/button/sounds/button-3.mp3',
-                'https://www.soundjay.com/button/sounds/button-4.mp3',
-                'https://www.soundjay.com/button/sounds/button-5.mp3'
-            ];
-            const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
-            const audio = new Audio(randomSound);
-            audio.play();
-        }
-
-        function addSecretGameButton() {
-            document.body.insertAdjacentHTML('beforeend', '<button class="button" style="position: fixed; bottom: 60px; right: 20px;" onclick="showSecretGame()">Secret Game</button>');
-        }
-
-        function showSecretGame() {
-            document.body.innerHTML = `
-                <h1>Flappy Bird Clone</h1>
-                <canvas id="gameCanvas" width="320" height="480" style="border:1px solid #000000;"></canvas>
-                <button class="button" onclick="window.location.href='index.html'">Back</button>
-            `;
-            startGame();
-        }
-
-        function startGame() {
-            const canvas = document.getElementById('gameCanvas');
-            const ctx = canvas.getContext('2d');
-
-            let bird = { x: 50, y: 150, width: 20, height: 20, gravity: 1.5, lift: -15, velocity: 0 };
-            let pipes = [];
-            let frame = 0;
-            let score = 0;
-            let gameStarted = false;
-
-            document.addEventListener('keydown', (e) => {
-                if (e.code === 'Space') {
-                    bird.velocity = bird.lift;
-                    if (!gameStarted) {
-                        gameStarted = true;
-                        gameLoop();
-                    }
-                }
-            });
-
-            function drawBird() {
-                ctx.fillStyle = 'yellow';
-                ctx.fillRect(bird.x, bird.y, bird.width, bird.height);
-            }
-
-            function drawPipes() {
-                ctx.fillStyle = 'green';
-                pipes.forEach(pipe => {
-                    ctx.fillRect(pipe.x, 0, pipe.width, pipe.top);
-                    ctx.fillRect(pipe.x, canvas.height - pipe.bottom, pipe.width, pipe.bottom);
-                });
-            }
-
-            function updatePipes() {
-                if (frame % 90 === 0) {
-                    let pipeHeight = Math.floor(Math.random() * (canvas.height / 2));
-                    pipes.push({ x: canvas.width, width: 20, top: pipeHeight, bottom: canvas.height - pipeHeight - 100 });
-                }
-                pipes.forEach(pipe => {
-                    pipe.x -= 2;
-                    if (pipe.x + pipe.width < 0) {
-                        pipes.shift();
-                        score++;
-                    }
-                });
-            }
-
-            function checkCollision() {
-                if (bird.y + bird.height > canvas.height || bird.y < 0) {
-                    return true;
-                }
-                for (let pipe of pipes) {
-                    if (bird.x < pipe.x + pipe.width && bird.x + bird.width > pipe.x &&
-                        (bird.y < pipe.top || bird.y + bird.height > canvas.height - pipe.bottom)) {
-                        return true;
-                    }
-                }
-                return false;
-            }
-
-            function updateBird() {
-                bird.velocity += bird.gravity;
-                bird.y += bird.velocity;
-                bird.velocity *= 0.9;
-            }
-
-            function drawScore() {
-                ctx.fillStyle = 'black';
-                ctx.font = '20px Arial';
-                ctx.fillText('Score: ' + score, 10, 20);
-            }
-
-            function gameLoop() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                drawBird();
-                drawPipes();
-                drawScore();
-                updateBird();
-                updatePipes();
-                if (checkCollision()) {
-                    alert('Game Over! Score: ' + score);
-                    document.location.reload();
-                }
-                frame++;
-                if (gameStarted) {
-                    requestAnimationFrame(gameLoop);
-                }
+            const userCountElement = document.getElementById('userCount');
+            if (userCountElement) {
+                userCountElement.innerText = userCount;
             }
         }
 
         function addGameButton() {
             if (!gameButtonAdded) {
-                document.body.insertAdjacentHTML('beforeend', '<button class="button" id="publicGameButton" style="position: fixed; bottom: 100px; right: 20px;" onclick="showSecretGame()">Play Game</button>');
+                alert('Game button added!');
+                logToConsole('Game button added');
                 gameButtonAdded = true;
-                localStorage.setItem('gameButtonAdded', 'true');
-                logToConsole('Game button added for public');
+            } else {
+                alert('Game button already exists!');
             }
         }
 
         function removeGameButton() {
-            const gameButton = document.getElementById('publicGameButton');
-            if (gameButton) {
-                gameButton.remove();
+            if (gameButtonAdded) {
+                alert('Game button removed!');
+                logToConsole('Game button removed');
+                gameButtonAdded = false;
+            } else {
+                alert('No game button to remove!');
             }
-            gameButtonAdded = false;
-            localStorage.setItem('gameButtonAdded', 'false');
-            logToConsole('Game button removed for public');
         }
 
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes fadeIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
-            }
+        function showInstagramProfile() {
+            window.open('https://www.instagram.com', '_blank');
+        }
 
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                25% { transform: translateX(-5px); }
-                50% { transform: translateX(5px); }
-                75% { transform: translateX(-5px); }
+        function showGmail() {
+            window.open('https://mail.google.com', '_blank');
+        }
+
+        function showCalculator() {
+            document.body.innerHTML = `
+                <h1>Calculator</h1>
+                <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <input type="text" id="result" style="width: 300px; padding: 10px; font-size: 1.5em; text-align: right; margin-bottom: 20px; border: 2px solid #444; border-radius: 10px; background: #333; color: #fff; box-shadow: 0 0 10px #009ffd;">
+                    <div style="display: grid; grid-template-columns: repeat(4, 75px); gap: 10px;">
+                        <button class="button" onclick="appendValue('1')">1</button>
+                        <button class="button" onclick="appendValue('2')">2</button>
+                        <button class="button" onclick="appendValue('3')">3</button>
+                        <button class="button" onclick="appendValue('/')">/</button>
+                        <button class="button" onclick="appendValue('4')">4</button>
+                        <button class="button" onclick="appendValue('5')">5</button>
+                        <button class="button" onclick="appendValue('6')">6</button>
+                        <button class="button" onclick="appendValue('*')">*</button>
+                        <button class="button" onclick="appendValue('7')">7</button>
+                        <button class="button" onclick="appendValue('8')">8</button>
+                        <button class="button" onclick="appendValue('9')">9</button>
+                        <button class="button" onclick="appendValue('-')">-</button>
+                        <button class="button" onclick="appendValue('0')">0</button>
+                        <button class="button" onclick="appendValue('.')">.</button>
+                        <button class="button" onclick="calculateResult()">=</button>
+                        <button class="button" onclick="appendValue('+')">+</button>
+                        <button class="button" onclick="clearResult()" style="grid-column: span 4; background: #ff4d4d;">Clear</button>
+                    </div>
+                </div>
+                <button class="button" onclick="returnToAdminPanel()" style="margin-top: 20px;">Back</button>
+            `;
+        }
+
+        function appendValue(value) {
+            const resultField = document.getElementById("result");
+            resultField.value += value;
+        }
+
+        function clearResult() {
+            const resultField = document.getElementById("result");
+            resultField.value = "";
+        }
+
+        function calculateResult() {
+            const resultField = document.getElementById("result");
+            try {
+                resultField.value = eval(resultField.value);
+            } catch (error) {
+                resultField.value = "Error";
             }
-        `;
-        document.head.appendChild(style);
+        }
+
+        function showYouTubeProfile() {
+            window.open('https://www.youtube.com', '_blank');
+        }
     </script>
 </body>
 </html>
