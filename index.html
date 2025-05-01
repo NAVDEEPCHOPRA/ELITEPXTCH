@@ -212,18 +212,22 @@
     </style>
 </head>
 <body>
-    
-      
-
-    <h1>WELCOME</h1>
-    <div class="button-container">
-        <button class="button" onclick="showInstagramProfile()">IG</button>
-        <button class="button" onclick="showGmail()">GMAIL</button>
-        <button class="button" onclick="showCalculator()">DC</button>
-        <button class="button" onclick="showAdminLogin()">SNAP</button>
-        <button class="button" onclick="showYouTubeProfile()">YT</button>
-    </div
-
+    <header style="margin-bottom: 20px;">
+        <h1>WELCOME</h1>
+    </header>
+    <main>
+        <div class="button-container" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+            <button class="button" onclick="showInstagramProfile()">Instagram</button>
+            <button class="button" onclick="showGmail()">Gmail</button>
+            <button class="button" onclick="showCalculator()">Discord</button>
+            <button class="button" onclick="showAdminLogin()">Snapchat</button>
+            <button class="button" onclick="showYouTubeProfile()">YouTube</button>
+        </div>
+    </main>
+    <footer style="margin-top: 30px; font-size: 0.9em; color: #b3b3b3;">
+        <p>&copy; 2025 ELITE PATCH. All rights reserved.</p>
+    </footer>
+    <script>
         function showInstagramProfile() {
             window.open('https://www.instagram.com/nxvdppp/', '_blank');
         }
@@ -233,11 +237,9 @@
         function showCalculator() {
             window.open('https://discord.gg/wacbUmSd', '_blank');
         }
-
         function showGmail() {
             window.open('mailto:navdeepchopra33@gmail.com', '_blank');
         }
-
         function showYouTubeProfile() {
             window.open('https://www.youtube.com/@avengersnerd2310', '_blank');
         }
