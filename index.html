@@ -17,7 +17,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
-            padding: 50px;
+            padding: 20px;
             text-align: center;
             color: #e0e0e0;
             background: radial-gradient(circle, #1a1a1a, #333333);
@@ -34,7 +34,7 @@
         /* Typography */
         h1 {
             color: #cccccc;
-            font-size: 4em;
+            font-size: 2.5em;
             margin-bottom: 20px;
             text-shadow: 2px 2px 5px #000000;
             animation: text3D 3s infinite alternate ease-in-out;
@@ -60,9 +60,9 @@
         .button {
             background: #1a1a1a;
             color: #ffffff;
-            padding: 15px 32px;
+            padding: 10px 20px;
             font-size: 1em;
-            margin-top: 20px;
+            margin-top: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -84,7 +84,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: #222222;
-            padding: 30px;
+            padding: 20px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
             text-align: center;
@@ -180,286 +180,62 @@
                 transform: translateX(-5px);
             }
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .button {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+
+            .modal {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .modal input {
+                font-size: 14px;
+            }
+
+            .modal button {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div id="particle-container"></div>
-    <script src="script.js"></script>
     
       
 
     <h1>WELCOME</h1>
     <div class="button-container">
-        <button class="button" onclick="showInstagramProfile()">INSTAGRAM</button>
+        <button class="button" onclick="showInstagramProfile()">IG</button>
         <button class="button" onclick="showGmail()">GMAIL</button>
-        <button class="button" onclick="showCalculator()">CALCULATOR</button>
-        <button class="button" onclick="showAdminLogin()">ADMIN</button>
-        <button class="button" onclick="showYouTubeProfile()">YouTube</button>
-    </div>
-
-    <!-- Admin Login Modal -->
-    <div id="adminModal" class="modal">
-        <h2>Admin Login</h2>
-        <input type="text" id="adminUsername" placeholder="Username">
-        <input type="password" id="adminPassword" placeholder="Password">
-        <button onclick="validateAdmin()">Login</button>
-        <p id="errorMsg" class="error"></p>
-    </div>
-
-    <script>
-        let userCount = 0;
-        let gameButtonAdded = false;
-
-        function showAdminLogin() {
-            const modal = document.getElementById("adminModal");
-            modal.style.display = "block";
-            modal.style.animation = "fadeIn 0.5s";
-        }
-
-        let adminPanelHTML = '';
-
-        function validateAdmin() {
-            const username = document.getElementById("adminUsername").value;
-            const password = document.getElementById("adminPassword").value;
-
-            if (username === "NAVDEEP" && password === "BOSS") {
-                adminPanelHTML = `
-                    <h1>Admin Panel</h1>
-                    <p>Welcome, Admin! You have successfully logged in.</p>
-                    <div class="button-container">
-                        <button class="button" onclick="logout()">Logout</button>
-                        <button class="button" onclick="kickAllUsers()">Kick All Users</button>
-                        <button class="button" onclick="addUser()">Add User</button>
-                        <button class="button" onclick="removeUser()">Remove User</button>
-                        <button class="button" onclick="addGameButton()">Add Game Button</button>
-                        <button class="button" onclick="removeGameButton()">Remove Game Button</button>
-                        <button class="button" onclick="showSettings()">Settings</button>
-                        <button class="button" onclick="viewLogs()">Logs & Reports</button>
-                        <button class="button" onclick="showCalculator()">Calculator</button>
-                    </div>
-                    <div id="console" style="margin-top: 20px; padding: 10px; border: 1px solid #ddd; height: 200px; overflow-y: scroll; background: black; color: red;"></div>
-                    <p>Current Users: <span id="userCount">${userCount}</span></p>
-                `;
-                document.body.innerHTML = adminPanelHTML;
-                logToConsole('Admin logged in');
-                updateUserCount();
-            } else {
-                const errorMsg = document.getElementById("errorMsg");
-                errorMsg.innerText = "Invalid credentials! Try again.";
-                errorMsg.style.animation = "shake 0.5s";
-            }
-        }
-
-        function returnToAdminPanel() {
-            document.body.innerHTML = adminPanelHTML;
-            updateUserCount();
-        }
-
-        function logout() {
-            document.body.innerHTML = `
-                <h1>Logged Out</h1>
-                <p>You have successfully logged out.</p>
-                <button class="button" onclick="window.location.href='index.html'">Go to Home</button>
-            `;
-            logToConsole('Admin logged out');
-        }
-
-        function showSettings() {
-            document.body.innerHTML = `
-                <h1>Settings</h1>
-                <p>Change site configurations:</p>
-                <button class="button" onclick="changeTheme('dark')">Dark Theme</button>
-                <button class="button" onclick="changeTheme('light')">Light Theme</button>
-                <button class="button" onclick="changeTheme('blue')">Blue Theme</button>
-                <button class="button" onclick="changeTheme('green')">Green Theme</button>
-                <button class="button" onclick="resetTheme()">Reset Theme</button>
-                <button class="button" onclick="returnToAdminPanel()">Back</button>
-            `;
-            logToConsole('Settings accessed');
-        }
-
-        function changeTheme(theme) {
-            const buttons = document.querySelectorAll(".button");
-            switch (theme) {
-                case 'dark':
-                    document.body.style.background = "radial-gradient(circle, #1a1a1a, #333333)";
-                    document.body.style.color = "#e0e0e0";
-                    buttons.forEach(button => {
-                        button.style.background = "#1a1a1a";
-                        button.style.color = "#ffffff";
-                    });
-                    logToConsole('Dark theme applied');
-                    break;
-                case 'light':
-                    document.body.style.background = "#ffffff";
-                    document.body.style.color = "#000000";
-                    buttons.forEach(button => {
-                        button.style.background = "#f0f0f0";
-                        button.style.color = "#000000";
-                    });
-                    logToConsole('Light theme applied');
-                    break;
-                case 'blue':
-                    document.body.style.background = "linear-gradient(to bottom, #1e3c72, #2a5298)";
-                    document.body.style.color = "#ffffff";
-                    buttons.forEach(button => {
-                        button.style.background = "#2a5298";
-                        button.style.color = "#ffffff";
-                    });
-                    logToConsole('Blue theme applied');
-                    break;
-                case 'green':
-                    document.body.style.background = "linear-gradient(to bottom, #1e5631, #a4de02)";
-                    document.body.style.color = "#ffffff";
-                    buttons.forEach(button => {
-                        button.style.background = "#1e5631";
-                        button.style.color = "#ffffff";
-                    });
-                    logToConsole('Green theme applied');
-                    break;
-                default:
-                    logToConsole('Unknown theme');
-            }
-        }
-
-        function resetTheme() {
-            document.body.style.background = "radial-gradient(circle, #1a1a1a, #333333)";
-            document.body.style.color = "#e0e0e0";
-            const buttons = document.querySelectorAll(".button");
-            buttons.forEach(button => {
-                button.style.background = "#1a1a1a";
-                button.style.color = "#ffffff";
-            });
-            logToConsole('Theme reset to default');
-        }
-
-        function viewLogs() {
-            document.body.innerHTML = `
-                <h1>Logs & Reports</h1>
-                <p>Past actions:</p>
-                <div id="logs" style="margin-top: 20px; padding: 10px; border: 1px solid #ddd; height: 200px; overflow-y: scroll; background: black; color: white;">
-                    <p>[10:00 AM] Admin logged in</p>
-                    <p>[10:05 AM] User added</p>
-                    <p>[10:10 AM] Post deleted</p>
-                </div>
-                <button class="button" onclick="returnToAdminPanel()">Back</button>
-            `;
-            logToConsole('Logs & Reports viewed');
-        }
-
-        function logToConsole(message) {
-            const consoleDiv = document.getElementById('console');
-            const timestamp = new Date().toLocaleTimeString();
-            if (consoleDiv) {
-                consoleDiv.innerHTML += `<p>[${timestamp}] ${message}</p>`;
-                consoleDiv.scrollTop = consoleDiv.scrollHeight;
-            }
-        function kickAllUsers() {
-            alert('All users have been kicked!');
-            logToConsole('All users have been kicked!');
-            userCount = 0;
-            updateUserCount();
-        }
-
-        function addUser() {
-            userCount++;
-            updateUserCount();
-            logToConsole('User added');
-        }
-
-        function removeUser() {
-            if (userCount > 0) {
-                userCount--;
-                updateUserCount();
-                logToConsole('User removed');
-            } else {
-                logToConsole('No users to remove');
-            }
-        }
-            updateUserCount();
-        }
-
-        function updateUserCount() {
-            const userCountElement = document.getElementById('userCount');
-            if (userCountElement) {
-                userCountElement.innerText = userCount;
-            }
-        }
-
-        function addGameButton() {
-            if (!gameButtonAdded) {
-                alert('Game button added!');
-                logToConsole('Game button added');
-                gameButtonAdded = true;
-            } else {
-                alert('Game button already exists!');
-            }
-        }
-
-        function removeGameButton() {
-            if (gameButtonAdded) {
-                alert('Game button removed!');
-                logToConsole('Game button removed');
-                gameButtonAdded = false;
-            } else {
-                alert('No game button to remove!');
-            }
-        }
+        <button class="button" onclick="showCalculator()">DC</button>
+        <button class="button" onclick="showAdminLogin()">SNAP</button>
+        <button class="button" onclick="showYouTubeProfile()">YT</button>
+    </div
 
         function showInstagramProfile() {
             window.open('https://www.instagram.com/nxvdppp/', '_blank');
         }
+        function showAdminLogin() {
+            window.open('https://www.snapchat.com/add/nxvdppp?share_id=_IWYGAkNiu8&locale=en-US', '_blank');
+        }
+        function showCalculator() {
+            window.open('https://discord.gg/wacbUmSd', '_blank');
+        }
 
         function showGmail() {
             window.open('mailto:navdeepchopra33@gmail.com', '_blank');
-        }
-
-        function showCalculator() {
-            document.body.innerHTML = `
-                <h1>Calculator</h1>
-                <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-                    <input type="text" id="result" style="width: 300px; padding: 10px; font-size: 1.5em; text-align: right; margin-bottom: 20px; border: 2px solid #444; border-radius: 10px; background: #333; color: #fff; box-shadow: 0 0 10px #009ffd;">
-                    <div style="display: grid; grid-template-columns: repeat(4, 75px); gap: 10px;">
-                        <button class="button" onclick="appendValue('1')">1</button>
-                        <button class="button" onclick="appendValue('2')">2</button>
-                        <button class="button" onclick="appendValue('3')">3</button>
-                        <button class="button" onclick="appendValue('/')">/</button>
-                        <button class="button" onclick="appendValue('4')">4</button>
-                        <button class="button" onclick="appendValue('5')">5</button>
-                        <button class="button" onclick="appendValue('6')">6</button>
-                        <button class="button" onclick="appendValue('*')">*</button>
-                        <button class="button" onclick="appendValue('7')">7</button>
-                        <button class="button" onclick="appendValue('8')">8</button>
-                        <button class="button" onclick="appendValue('9')">9</button>
-                        <button class="button" onclick="appendValue('-')">-</button>
-                        <button class="button" onclick="appendValue('0')">0</button>
-                        <button class="button" onclick="appendValue('.')">.</button>
-                        <button class="button" onclick="calculateResult()">=</button>
-                        <button class="button" onclick="appendValue('+')">+</button>
-                        <button class="button" onclick="clearResult()" style="grid-column: span 4; background: #ff4d4d;">Clear</button>
-                    </div>
-                </div>
-                <button class="button" onclick="returnToAdminPanel()" style="margin-top: 20px;">Back</button>
-            `;
-        }
-
-        function appendValue(value) {
-            const resultField = document.getElementById("result");
-            resultField.value += value;
-        }
-
-        function clearResult() {
-            const resultField = document.getElementById("result");
-            resultField.value = "";
-        }
-
-        function calculateResult() {
-            const resultField = document.getElementById("result");
-            try {
-                resultField.value = eval(resultField.value);
-            } catch (error) {
-                resultField.value = "Error";
-            }
         }
 
         function showYouTubeProfile() {
