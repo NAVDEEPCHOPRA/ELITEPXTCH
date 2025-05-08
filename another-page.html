@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Social Links</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Social Links</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        footer {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <header style="margin-bottom: 20px;">
+        <h1>SOCIALS</h1>
+    </header>
+    <main>
+        <div class="button-container" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+            <button class="button" onclick="goToInstagram()">Instagram</button>
+            <button class="button" onclick="sendEmail()">Gmail</button>
+            <button class="button" onclick="goToDiscord()">Discord</button>
+            <button class="button" onclick="goToSnapchat()">Snapchat</button>
+            <button class="button" onclick="goToYouTube()">YouTube</button>
+        </div>
+    </main>
+    <footer style="margin-top: 30px; font-size: 0.9em; color: #b3b3b3;">
+        <p>&copy; 2025 ELITE PATCH. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function goToInstagram() {
+            window.open('https://www.instagram.com/nxvdppp/', '_blank');
+        }
+        function sendEmail() {
+            window.open('mailto:navdeepchopra33@gmail.com', '_blank');
+        }   
+        function goToDiscord() {
+            window.open('https://discord.gg/wacbUmSd', '_blank');
+        }
+        function goToSnapchat() {
+            window.open('https://www.snapchat.com/add/nxvdppp?share_id=_IWYGAkNiu8&locale=en-US', '_blank');
+        }
+        function goToYouTube() {
+            window.open('https://www.youtube.com/@avengersnerd2310', '_blank');
+        }
+
+        window.onload = function() {
+            const deviceType = /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "PC";
+            const footer = document.querySelector("footer");
+            footer.innerHTML += `<p>You're using a ${deviceType} device.</p>`;
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styling */
+        body {
+            font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 5%;
+            text-align: center;
+            color: #e0e0e0;
+            background: radial-gradient(circle, #1a1a1a, #333333);
+            animation: backgroundPulse 10s infinite alternate ease-in-out;
+            transition: all 0.5s ease-in-out;
+        }
+
+        @keyframes backgroundPulse {
+            0% { background: radial-gradient(circle, #2c2c2c, #1a1a1a); }
+            50% { background: radial-gradient(circle, #1a1a1a, #2c2c2c); }
+            100% { background: radial-gradient(circle, #2c2c2c, #1a1a1a); }
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: #cccccc;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px #000000;
+            animation: text3D 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes text3D {
+            0% { text-shadow: 2px 2px 5px #000000, 4px 4px 10px #ff0000, 6px 6px 15px #ff7300; }
+            50% { text-shadow: 2px 2px 5px #000000, 6px 6px 15px #ff7300, 8px 8px 20px #ff0000; }
+            100% { text-shadow: 2px 2px 5px #000000, 4px 4px 10px #ff0000, 6px 6px 15px #ff7300; }
+        }
+
+        .ai-box {
+            font-family: 'Lora', serif;
+            max-width: 20%;
+            margin: auto;
+            background: #222;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .ai-input {
+            padding: 10px;
+            width: 100%;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #111;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .ai-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 8px;
+            background: #009ffd;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            animation: buttonPulse 2s infinite alternate ease-in-out;
+        }
+
+        .ai-button:hover {
+            background: #0077cc;
+        }
+
+        @keyframes buttonPulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        #aiOutput {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1em;
+            color: #00ffcc;
+        }
+
+        footer {
+            font-family: 'Roboto', sans-serif;
+            margin-top: 30px;
+            font-size: 0.8em;
+            color: #b3b3b3;
+        }
+
+        /* PC-specific styles */
+        @media (min-width: 601px) {
+            .ai-box {
+                max-width: 30%;
+                padding: 30px;
+            }
+
+            .ai-input {
+                font-size: 1.2rem;
+            }
+
+            .ai-button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+
+            #aiOutput {
+                font-size: 1.2em;
+            }
+        }
+
+        /* Mobile-specific styles */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .ai-box {
+                max-width: 90%;
+                padding: 15px;
+            }
+
+            .ai-input {
+                width: 80%;
+                font-size: 0.9rem;
+            }
+
+            .ai-button {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+
+            #aiOutput {
+                font-size: 0.9em;
+            }
+
+            footer {
+                font-size: 0.7em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Ask Anything</h1>
+
+    <div class="ai-box">
+        <input id="userInput" class="ai-input" placeholder="e.g. what is machine learning?" />
+        <br>
+        <button class="ai-button" onclick="classifyInput()">Predict</button>
+        <p id="aiOutput"></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 ELITE PATCH. All rights reserved.</p>
+    </footer>
+
+    <script>
+        async function classifyInput() {
+            const outputElement = document.getElementById('aiOutput');
+            const input = document.getElementById('userInput').value.trim().toLowerCase();
+
+            if (!input) {
+                outputElement.innerText = "Please enter something to get started!";
+                return;
+            }
+
+            let response = "Hmm, I'm not sure about that. Let me come up with something for you!";
+
+            const responses = {
+                greetings: ["Hello! How can I brighten your day?", "Hi there! What can I do for you?", "Hey! Need some help?"],
+                farewell: ["Goodbye! Stay awesome!", "See you later! Take care!", "Bye! Have a fantastic day!"],
+                aiInfo: [
+                    "AI stands for Artificial Intelligence, a fascinating field where machines learn and think like humans!",
+                    "Artificial Intelligence is all about creating smart systems that can solve problems and learn from data.",
+                    "I'm an AI, here to assist you with your queries and make your day better!"
+                ],
+                compliments: ["Aww, thank you! You're amazing too! 😊", "You're too kind! Let's keep the good vibes going! 🌟"],
+                creator: ["Navdeep is the brilliant mind behind this platform! 👑", "Navdeep, the creator, is a genius who made this possible!"]
+            };
+
+            if (input.includes("hello") || input.includes("hi") || input.includes("hey")) {
+                response = responses.greetings[Math.floor(Math.random() * responses.greetings.length)];
+            } else if (input.includes("bye") || input.includes("see you") || input.includes("goodbye")) {
+                response = responses.farewell[Math.floor(Math.random() * responses.farewell.length)];
+            } else if (input.includes("what is ai") || input.includes("how does it work") || input.includes("who are you") || input.includes("whats ai")) {
+                response = responses.aiInfo[Math.floor(Math.random() * responses.aiInfo.length)];
+            } else if (input.includes("who is navdeep") || input === "navdeep") {
+                response = responses.creator[Math.floor(Math.random() * responses.creator.length)];
+            } else if (input.includes("you are cute") || input.includes("you are amazing") || input.includes("i like you")) {
+                response = responses.compliments[Math.floor(Math.random() * responses.compliments.length)];
+            } else if (input.includes("calculate") || input.includes("solve")) {
+                try {
+                    const mathExpression = input.replace(/calculate|solve|what is| /g, "");
+                    const result = eval(mathExpression);
+                    response = `The result is: ${result}`;
+                } catch (error) {
+                    response = "I couldn't calculate that. Please make sure your math expression is valid!";
+                }
+            } else if (input.includes("what") || input.includes("how") || input.includes("why") || input.includes("who")) {
+                try {
+                    const apiUrl = `https://api.duckduckgo.com/?q=${encodeURIComponent(input)}&format=json&no_redirect=1`;
+                    const res = await fetch(apiUrl);
+                    const data = await res.json();
+                    if (data.AbstractText) {
+                        response = data.AbstractText;
+                    } else {
+                        response = "I couldn't find a direct answer. Here's my take: " + generateCreativeResponse(input);
+                    }
+                } catch (error) {
+                    response = "Sorry, I couldn't fetch the answer. Here's my take: " + generateCreativeResponse(input);
+                }
+            } else {
+                response = generateCreativeResponse(input);
+            }
+
+            outputElement.innerText = response;
+        }
+
+        function generateCreativeResponse(input) {
+            const creativeResponses = [
+                "That's an interesting question! I think it might have something to do with the mysteries of the universe.",
+                "Hmm, let me think... Maybe it's something we can explore together!",
+                "I don't have a direct answer, but I believe curiosity is the key to discovery!",
+                "That's a tough one! Perhaps it's something only you can truly answer."
+            ];
+            return creativeResponses[Math.floor(Math.random() * creativeResponses.length)];
+        }
+
+        // Detect device type
+        window.onload = function() {
+            const deviceType = /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "PC";
+            const footer = document.querySelector("footer");
+            footer.innerHTML += `<p>You're using a ${deviceType === "Mobile" ? "Mobile" : "PC"} device.</p>`;
+        };
+    </script>
+</body>
+</html>

@@ -1,6 +1,8 @@
 /* General Enhancements */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Roboto', 'Lora', 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: radial-gradient(circle, #1a1a1a, #333333);
     color: #e0e0e0;
     text-align: center;
@@ -9,6 +11,137 @@ body {
     animation: backgroundPulse 10s infinite alternate ease-in-out;
     transition: all 0.5s ease-in-out;
     box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Enhanced Button Hover Effects */
+.button {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 14px 28px;
+    font-size: 1em;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    backdrop-filter: blur(2px);
+}
+
+.button:hover {
+    background: linear-gradient(135deg, #ff0000, #ff7300);
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(255, 115, 0, 0.5);
+}
+
+/* Mobile Friendly Scaling */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+        font-size: 0.9em;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    p {
+        font-size: 1em;
+    }
+}
+
+/* Header Styling */
+header {
+    background: rgba(26, 26, 26, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+header h1, header p, h1, article h2 {
+    text-shadow: 0 0 5px #ff0000, 0 0 10px #ff7300;
+}
+
+@keyframes glowEffect {
+    0% {
+        text-shadow: 0 0 5px #ff0000, 0 0 10px #ff7300;
+    }
+    100% {
+        text-shadow: 0 0 10px #ff7300, 0 0 15px #ff0000;
+    }
+}
+header h1 {
+    font-size: 2.5rem;
+    color: #ff7300;
+    margin: 0;
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff7300;
+    animation: glowEffect 2s infinite alternate;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    margin-top: 10px;
+    text-shadow: 0 0 5px #009ffd;
+    font-style: italic;
+}
+
+/* Keyframes for glowing effect */
+@keyframes glowEffect {
+    0% {
+        text-shadow: 0 0 10px #ff0000, 0 0 20px #ff7300;
+    }
+    100% {
+        text-shadow: 0 0 20px #ff7300, 0 0 30px #ff0000;
+    }
+}
+
+/* Footer Styling */
+footer {
+    background: rgba(26, 26, 26, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+}
+
+footer a {
+    color: #009ffd;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #ff7300;
+}
+
+/* Article Styling */
+article {
+    background: rgba(34, 34, 34, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    margin: 20px auto;
+    max-width: 800px;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+article h2 {
+    font-size: 2rem;
+    color: #ff7300;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+article p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
 }
 
 /* Welcome Title */
