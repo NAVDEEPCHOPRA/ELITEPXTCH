@@ -11,6 +11,11 @@ body {
     animation: backgroundPulse 10s infinite alternate ease-in-out;
     transition: all 0.5s ease-in-out;
     box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-variant-ligatures: common-ligatures;
+    letter-spacing: 0.5px;
 }
 
 /* Enhanced Button Hover Effects */
@@ -90,14 +95,7 @@ header p {
 }
 
 /* Keyframes for glowing effect */
-@keyframes glowEffect {
-    0% {
-        text-shadow: 0 0 10px #ff0000, 0 0 20px #ff7300;
-    }
-    100% {
-        text-shadow: 0 0 20px #ff7300, 0 0 30px #ff0000;
-    }
-}
+/* Removed duplicate definition */
 
 /* Footer Styling */
 footer {

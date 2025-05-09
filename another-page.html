@@ -5,40 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Social Links</title>
     <link rel="stylesheet" href="style.css">
-</head>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Social Links</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         h1 {
             font-family: 'Montserrat', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         footer {
             font-family: 'Roboto', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
     </style>
 </head>
 <body>
     <header style="margin-bottom: 20px;">
-        <h1>SOCIALS</h1>
+        <h1 style="font-smooth: always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">SOCIALS</h1>
     </header>
     <main>
         <div class="button-container" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
-            <button class="button" onclick="goToInstagram()">Instagram</button>
-            <button class="button" onclick="sendEmail()">Gmail</button>
-            <button class="button" onclick="goToDiscord()">Discord</button>
-            <button class="button" onclick="goToSnapchat()">Snapchat</button>
-            <button class="button" onclick="goToYouTube()">YouTube</button>
+            <button class="button" style="font-smooth: always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;" onclick="goToInstagram()">Instagram</button>
+            <button class="button" style="font-smooth: always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;" onclick="sendEmail()">Gmail</button>
+            <button class="button" style="font-smooth: always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;" onclick="goToDiscord()">Discord</button>
+            <button class="button" style="font-smooth: always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;" onclick="goToSnapchat()">Snapchat</button>
+            <button class="button" style="font-smooth: always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;" onclick="goToYouTube()">YouTube</button>
         </div>
     </main>
-    <footer style="margin-top: 30px; font-size: 0.9em; color: #b3b3b3;">
-        <p>&copy; 2025 ELITE PATCH. All rights reserved.</p>
+    <footer style="margin-top: 30px; font-size: 0.9em; color: #b3b3b3; font-smooth: always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">
+        <p>© 2025 ELITE PATCH. All rights reserved.</p>
+        
     </footer>
 
     <script>
@@ -47,7 +48,7 @@
         }
         function sendEmail() {
             window.open('mailto:navdeepchopra33@gmail.com', '_blank');
-        }   
+        }
         function goToDiscord() {
             window.open('https://discord.gg/wacbUmSd', '_blank');
         }
@@ -57,11 +58,26 @@
         function goToYouTube() {
             window.open('https://www.youtube.com/@avengersnerd2310', '_blank');
         }
-
         window.onload = function() {
             const deviceType = /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "PC";
             const footer = document.querySelector("footer");
-            footer.innerHTML += `<p>You're using a ${deviceType} device.</p>`;
+            footer.innerHTML += `<p>You're using a ${deviceType === "Mobile" ? "Mobile" : "PC"} device.</p>`;
+            footer.style.webkitFontSmoothing = "antialiased";
+            footer.style.mozOsxFontSmoothing = "grayscale";
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        footer.innerHTML += `<p>Your location: Latitude ${latitude.toFixed(2)}, Longitude ${longitude.toFixed(2)}</p>`;
+                    },
+                    (error) => {
+                        footer.innerHTML += `<p>Location access denied or unavailable.</p>`;
+                    }
+                );
+            } else {
+                footer.innerHTML += `<p>Geolocation is not supported by your browser.</p>`;
+            }
         };
     </script>
 </body>

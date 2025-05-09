@@ -17,6 +17,8 @@
             background: radial-gradient(circle, #1a1a1a, #333333);
             animation: backgroundPulse 10s infinite alternate ease-in-out;
             transition: all 0.5s ease-in-out;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         @keyframes backgroundPulse {
@@ -32,6 +34,7 @@
             margin-bottom: 20px;
             text-shadow: 2px 2px 5px #000000;
             animation: text3D 3s infinite alternate ease-in-out;
+            -webkit-font-smoothing: antialiased;
         }
 
         @keyframes text3D {
@@ -48,6 +51,7 @@
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            -webkit-font-smoothing: antialiased;
         }
 
         .ai-input {
@@ -59,6 +63,7 @@
             background: #111;
             color: #fff;
             margin-bottom: 15px;
+            -webkit-font-smoothing: antialiased;
         }
 
         .ai-button {
@@ -71,6 +76,7 @@
             cursor: pointer;
             transition: background 0.3s ease;
             animation: buttonPulse 2s infinite alternate ease-in-out;
+            -webkit-font-smoothing: antialiased;
         }
 
         .ai-button:hover {
@@ -87,6 +93,7 @@
             font-weight: bold;
             font-size: 1em;
             color: #00ffcc;
+            -webkit-font-smoothing: antialiased;
         }
 
         footer {
@@ -94,6 +101,7 @@
             margin-top: 30px;
             font-size: 0.8em;
             color: #b3b3b3;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* PC-specific styles */
@@ -222,6 +230,8 @@
             }
 
             outputElement.innerText = response;
+            outputElement.style.webkitFontSmoothing = "antialiased";
+            outputElement.style.mozOsxFontSmoothing = "grayscale";
         }
 
         function generateCreativeResponse(input) {
@@ -239,6 +249,8 @@
             const deviceType = /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "PC";
             const footer = document.querySelector("footer");
             footer.innerHTML += `<p>You're using a ${deviceType === "Mobile" ? "Mobile" : "PC"} device.</p>`;
+            footer.style.webkitFontSmoothing = "antialiased";
+            footer.style.mozOsxFontSmoothing = "grayscale";
         };
     </script>
 </body>
