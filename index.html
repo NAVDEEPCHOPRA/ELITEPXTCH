@@ -4,16 +4,456 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DEV:NXVDPPP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        * {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
+        :root {
+            --neon1:  #0ff1ce;
+            --neon2: #1a1a2e;
+            --neon3: #00ffd0;
+            --neon4: #00e0ff;
+            --neon5: #ff00ea;
+            --neon6: #fffb00;
+            --bg-gradient: linear-gradient(135deg, #181818 0%, #232347 100%);
+            --glass-bg: rgba(30, 30, 60, 0.65);
+            --glass-border: 1.5px solid #0ff1ce55;
+            --shadow: 0 8px 32px 0 #0ff1ce33;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            color: #fff;
+            font-family: 'Montserrat', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* EXTREME Animated cyber grid background */
+        body::before, body::after, body::backdrop {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+        body::before {
+            background: 
+                repeating-linear-gradient(120deg, #0ff1ce11 0 2px, transparent 2px 40px), 
+                repeating-linear-gradient(-60deg, #0ff1ce0a 0 1.5px, transparent 1.5px 32px),
+                repeating-linear-gradient(45deg, #ff00ea11 0 1.5px, transparent 1.5px 60px);
+            animation: bg-move 24s linear infinite, bg-rotate 48s linear infinite alternate;
+            will-change: background-position, transform;
+        }
+        body::after {
+            background: 
+                radial-gradient(circle at 80% 20%, #ff00ea22 0%, transparent 60%), 
+                radial-gradient(circle at 20% 80%, #00e0ff22 0%, transparent 60%),
+                radial-gradient(circle at 50% 50%, #fffb0033 0%, transparent 70%);
+            opacity: 0.7;
+            filter: blur(40px);
+            animation: after-move 16s ease-in-out infinite alternate, after-pulse 6s infinite alternate;
+            will-change: background-position, opacity;
+        }
+        @keyframes bg-move {
+            0% { background-position: 0 0, 0 0, 0 0; }
+            100% { background-position: 120px 240px, -80px 160px, 60px 120px; }
+        }
+        @keyframes bg-rotate {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(2deg);}
+        }
+        @keyframes after-move {
+            0% { background-position: 80% 20%, 20% 80%, 50% 50%; }
+            100% { background-position: 60% 40%, 40% 60%, 55% 55%; }
+        }
+        @keyframes after-pulse {
+            0% { opacity: 0.6; }
+            100% { opacity: 0.8; }
+        }
+        /* Futuristic header with animated scanlines, glow, and glitch */
+        header {
+            width: 100vw;
+            text-align: center;
+            margin: 60px 0 30px 0;
+            z-index: 2;
+            position: relative;
+        }
+        header h1 {
+            font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: var(--neon1);
+            margin: 0;
+            text-shadow: 0 0 18px var(--neon1), 0 0 32px var(--neon3), 0 2px 8px #0ff1ce44;
+            animation: neon-flicker 3.5s infinite alternate, header-glow 6s ease-in-out infinite alternate, glitch 2.2s infinite linear alternate;
+            position: relative;
+            z-index: 2;
+            will-change: filter, text-shadow, opacity;
+        }
+        @keyframes neon-flicker {
+            0%, 100% { opacity: 1; text-shadow: 0 0 18px var(--neon1), 0 0 32px var(--neon3);}
+            45% { opacity: 0.85; text-shadow: 0 0 8px var(--neon1);}
+            50% { opacity: 0.7; text-shadow: 0 0 2px var(--neon1);}
+            55% { opacity: 0.85; text-shadow: 0 0 8px var(--neon1);}
+        }
+        @keyframes header-glow {
+            0% { filter: drop-shadow(0 0 12px var(--neon5)); }
+            100% { filter: drop-shadow(0 0 32px var(--neon6)); }
+        }
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 var(--neon5), -2px 0 var(--neon6);}
+            20% { text-shadow: -2px 2px var(--neon6), 2px -2px var(--neon5);}
+            40% { text-shadow: 2px 2px var(--neon1), -2px -2px var(--neon3);}
+            60% { text-shadow: -2px 0 var(--neon5), 2px 0 var(--neon6);}
+            80% { text-shadow: 0 2px var(--neon3), 0 -2px var(--neon4);}
+            100% { text-shadow: 2px 0 var(--neon5), -2px 0 var(--neon6);}
+        }
+        header::after {
+            content: "";
+            display: block;
+            width: 100vw;
+            height: 2px;
+            margin: 18px auto 0 auto;
+            background: linear-gradient(90deg, transparent 0%, var(--neon1) 50%, transparent 100%);
+            opacity: 0.6;
+            animation: scanline 4s linear infinite, scanline-glow 2.5s infinite alternate;
+        }
+        @keyframes scanline {
+            0% { opacity: 0.6; }
+            50% { opacity: 0.15; }
+            100% { opacity: 0.6; }
+        }
+        @keyframes scanline-glow {
+            0% { filter: blur(0px);}
+            100% { filter: blur(2px);}
+        }
+        /* Animated floating particles + new comet trails */
+        .particles {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+            filter: blur(1.5px);
+            animation: float 18s linear infinite;
+            will-change: transform;
+        }
+        .particle1 { width: 18px; height: 18px; background: var(--neon1); left: 10vw; top: 80vh; animation-delay: 0s;}
+        .particle2 { width: 12px; height: 12px; background: var(--neon5); left: 80vw; top: 10vh; animation-delay: 2s;}
+        .particle3 { width: 24px; height: 24px; background: var(--neon6); left: 50vw; top: 50vh; animation-delay: 4s;}
+        .particle4 { width: 10px; height: 10px; background: var(--neon3); left: 30vw; top: 70vh; animation-delay: 6s;}
+        .particle5 { width: 16px; height: 16px; background: var(--neon4); left: 70vw; top: 30vh; animation-delay: 8s;}
+        @keyframes float {
+            0% { transform: translateY(0) scale(1);}
+            50% { transform: translateY(-40px) scale(1.1);}
+            100% { transform: translateY(0) scale(1);}
+        }
+        /* Comet trails */
+        .comet {
+            position: absolute;
+            width: 90px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon5) 0%, transparent 100%);
+            border-radius: 2px;
+            opacity: 0.5;
+            filter: blur(1.5px);
+            animation: comet-move 12s linear infinite;
+            z-index: 2;
+            will-change: left, opacity;
+        }
+        .comet1 { top: 10vh; left: -90px; animation-delay: 0s;}
+        .comet2 { top: 60vh; left: -90px; animation-delay: 2s;}
+        .comet3 { top: 30vh; left: -90px; animation-delay: 4s;}
+        @keyframes comet-move {
+            0% { left: -90px; opacity: 0;}
+            10% { opacity: 1;}
+            90% { opacity: 1;}
+            100% { left: 110vw; opacity: 0;}
+        }
+        /* Neon pulse ring around button container */
+        .pulse-ring {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px; height: 320px;
+            border-radius: 50%;
+            border: 3px solid var(--neon1);
+            box-shadow: 0 0 32px 8px var(--neon1), 0 0 64px 16px var(--neon5);
+            opacity: 0.16;
+            pointer-events: none;
+            z-index: 0;
+            animation: pulse-ring 4s infinite alternate;
+            will-change: transform;
+        }
+        @keyframes pulse-ring {
+            0% { transform: translate(-50%, -50%) scale(1);}
+            100% { transform: translate(-50%, -50%) scale(1.04);}
+        }
+        main {
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+            background: var(--glass-bg);
+            border-radius: 22px;
+            padding: 48px 32px;
+            box-shadow: var(--shadow);
+            border: var(--glass-border);
+            backdrop-filter: blur(8px) saturate(120%);
+            -webkit-backdrop-filter: blur(8px) saturate(120%);
+            margin-top: 10px;
+            position: relative;
+            overflow: visible;
+        }
+        /* Animated cyber glow behind buttons */
+        .cyber-glow {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, var(--neon1) 0%, transparent 70%);
+            opacity: 0.09;
+            z-index: 0;
+            pointer-events: none;
+            filter: blur(10px);
+            animation: glow-pulse 8s ease-in-out infinite alternate;
+            will-change: opacity, filter;
+        }
+        @keyframes glow-pulse {
+            0% { opacity: 0.09; filter: blur(10px);}
+            100% { opacity: 0.13; filter: blur(18px);}
+        }
+        /* Animated circuit lines */
+        .cyber-lines {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .cyber-lines svg {
+            width: 100%; height: 100%;
+            opacity: 0.13;
+            animation: lines-move 16s linear infinite alternate;
+            will-change: filter;
+        }
+        @keyframes lines-move {
+            0% { filter: hue-rotate(0deg);}
+            100% { filter: hue-rotate(60deg);}
+        }
+        /* Button with extreme neon and ripple effect */
+        .button {
+            width: 220px;
+            padding: 14px 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, var(--neon1) 0%, var(--neon2) 100%);
+            color: #fff;
+            cursor: pointer;
+            transition: 
+                background 0.25s, 
+                transform 0.18s, 
+                box-shadow 0.18s, 
+                letter-spacing 0.18s;
+            box-shadow: 0 4px 24px var(--neon1), 0 2px 8px #0ff1ce33;
+            letter-spacing: 1.5px;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+        .button::before {
+            content: "";
+            position: absolute;
+            top: -60%;
+            left: -30%;
+            width: 160%;
+            height: 220%;
+            background: linear-gradient(120deg, transparent 60%, var(--neon4) 100%);
+            opacity: 0.12;
+            transform: rotate(8deg);
+            pointer-events: none;
+        }
+        .button::after {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; width: 100%; height: 100%;
+            border-radius: 12px;
+            box-shadow: 0 0 16px 4px var(--neon5), 0 0 6px 1px var(--neon6);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .button:hover, .button:focus {
+            background: linear-gradient(90deg, var(--neon2) 0%, var(--neon1) 100%);
+            transform: scale(1.06) rotate(-1deg);
+            box-shadow: 0 0 16px var(--neon3), 0 4px 24px var(--neon1), 0 0 32px 4px var(--neon5);
+            letter-spacing: 2px;
+        }
+        .button:hover::after, .button:focus::after {
+            opacity: 0.3;
+            animation: button-glow 2.2s infinite alternate;
+        }
+        @keyframes button-glow {
+            0% { box-shadow: 0 0 16px 4px var(--neon5), 0 0 6px 1px var(--neon6);}
+            100% { box-shadow: 0 0 32px 8px var(--neon6), 0 0 12px 2px var(--neon5);}
+        }
+        .button:active {
+            transform: scale(0.98);
+        }
+        .button span {
+            font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+            font-size: 1.1em;
+            letter-spacing: 2px;
+        }
+        /* Ripple effect on click */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            background: rgba(0,255,255,0.3);
+            pointer-events: none;
+            z-index: 10;
+        }
+        @keyframes ripple {
+            to {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+        /* Footer neon scan animation */
+        footer {
+            width: 100vw;
+            text-align: center;
+            margin: 60px 0 0 0;
+            color: #b3eaff;
+            font-size: 1.08em;
+            padding: 22px 0 12px 0;
+            background: rgba(20, 30, 40, 0.13);
+            border-top: 1.5px solid #0ff1ce33;
+            box-shadow: 0 0 12px #0ff1ce11;
+            letter-spacing: 1.2px;
+            backdrop-filter: blur(4px);
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+        footer::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, transparent 0%, var(--neon1) 50%, transparent 100%);
+            opacity: 0.5;
+            animation: footer-scan 5s linear infinite;
+        }
+        @keyframes footer-scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        /* Responsive */
+        @media (max-width: 700px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .button {
+                width: 90vw;
+                font-size: 1.05rem;
+            }
+            .button-container {
+                padding: 18px 4vw;
+            }
+            .cyber-glow {
+                width: 120px; height: 120px; top: -20px;
+            }
+            .pulse-ring {
+                width: 120px; height: 120px;
+            }
         }
     </style>
+    <!-- EXTREME LEVEL ANIMATION: Add comets and pulse ring dynamically -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // Only run animations if user prefers reduced motion is NOT set
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReducedMotion) {
+                document.body.classList.add('reduced-motion');
+                // Optionally, you can further reduce or disable animations here
+                return;
+            }
+            // Add comet trails
+            const particles = document.querySelector('.particles');
+            if (particles) {
+                for (let i = 1; i <= 3; i++) {
+                    const comet = document.createElement('div');
+                    comet.className = `comet comet${i}`;
+                    particles.appendChild(comet);
+                }
+            }
+            // Add pulse ring to button container
+            const btnContainer = document.querySelector('.button-container');
+            if (btnContainer) {
+                const ring = document.createElement('div');
+                ring.className = 'pulse-ring';
+                btnContainer.appendChild(ring);
+            }
+            // Neon ripple effect for buttons
+            document.querySelectorAll('.button').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    ripple.className = 'ripple';
+                    const rect = btn.getBoundingClientRect();
+                    ripple.style.left = (e.clientX - rect.left) + 'px';
+                    ripple.style.top = (e.clientY - rect.top) + 'px';
+                    ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
+                    btn.appendChild(ripple);
+                    ripple.addEventListener('animationend', () => ripple.remove());
+                });
+            });
+        });
+    </script>
 </head>
+<!-- Animated floating particles -->
+<div class="particles">
+    <div class="particle particle1"></div>
+    <div class="particle particle2"></div>
+    <div class="particle particle3"></div>
+    <div class="particle particle4"></div>
+    <div class="particle particle5"></div>
+</div>
+<!-- Cyber glow and animated circuit lines behind buttons -->
+<div class="cyber-glow"></div>
+<div class="cyber-lines">
+    <svg viewBox="0 0 400 200" fill="none">
+        <polyline points="20,180 80,120 120,160 200,80 320,160 380,100" stroke="#0ff1ce" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="60,40 120,100 200,20 280,100 340,40" stroke="#ff00ea" stroke-width="2" stroke-dasharray="8 6"/>
+        <polyline points="100,180 200,100 300,180" stroke="#fffb00" stroke-width="2" stroke-dasharray="4 8"/>
+    </svg>
+</div>
 <body>
     <header style="margin-bottom: 20px;">
         <h1 style="font-smooth: always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">WELCOME</h1>

@@ -3,140 +3,423 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="ELITE AI - Your AI assistant for all your needs." />
+    <meta name="description" content="ELITE AI - Next-Gen AI assistant for productivity, creativity, and more." />
     <meta name="author" content="ELITE AI Team" />
-    <meta name="keywords" content="AI, Artificial Intelligence, Assistant, Productivity, ELITE AI" />
+    <meta name="keywords" content="AI, Artificial Intelligence, Assistant, Productivity, ELITE AI, GPT-4, Next-Gen, Automation" />
     <meta name="robots" content="index, follow" />
-    <title>ELITE AI</title>
+    <title>ELITE AI – Next Level Intelligence</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <!-- TailwindCSS v3 CDN with JIT and plugins -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Font Awesome 6.5.1 (latest) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Fonts: Inter & Orbitron (latest) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet" />
+    <!-- Animate.css for advanced animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #1e293b, #0f172a);
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Orbitron', Arial, sans-serif;
+            background: radial-gradient(ellipse at 60% 40%, #18181b 0%, #0f172a 100%);
             color: #e2e8f0;
+            overflow-x: hidden;
         }
-
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background: repeating-linear-gradient(135deg, #818cf8 0 2px, transparent 2px 40px), repeating-linear-gradient(225deg, #38bdf8 0 2px, transparent 2px 40px);
+            opacity: 0.12;
+            pointer-events: none;
+            animation: bg-stripes-move 12s linear infinite alternate;
+        }
+        @keyframes bg-stripes-move {
+            0% { background-position: 0 0, 0 0; }
+            100% { background-position: 80px 80px, -80px -80px; }
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: radial-gradient(circle at 80% 10%, #818cf8 0%, transparent 60%), radial-gradient(circle at 10% 90%, #2dd4bf 0%, transparent 70%);
+            opacity: 0.22;
+            pointer-events: none;
+            animation: after-glow-move 10s ease-in-out infinite alternate;
+        }
+        @keyframes after-glow-move {
+            0% { filter: blur(0px); }
+            100% { filter: blur(24px); }
+        }
         .glass {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
-            border-radius: 1.5rem;
+            background: rgba(30, 41, 59, 0.92);
+            backdrop-filter: blur(40px) saturate(1.8);
+            -webkit-backdrop-filter: blur(40px) saturate(1.8);
+            border: 2px solid rgba(129, 140, 248, 0.18);
+            box-shadow: 0 24px 80px 0 rgba(99, 102, 241, 0.22), 0 4px 16px 0 rgba(0,0,0,0.16);
+            border-radius: 2.5rem;
+            animation: glass-float 4s cubic-bezier(.4,2,.6,1) infinite alternate;
         }
-
+        @keyframes glass-float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-10px) scale(1.01); }
+        }
         .gradient-border {
-            background: linear-gradient(to right, #6366f1, #38bdf8, #2dd4bf, #5eead4);
-            padding: 4px;
-            border-radius: 1.75rem;
+            background: linear-gradient(90deg, #6366f1, #38bdf8, #2dd4bf, #5eead4, #818cf8, #c084fc, #f472b6);
+            padding: 6px;
+            border-radius: 2.5rem;
+            box-shadow: 0 0 48px 8px #818cf8cc, 0 0 0 3px #0ea5e9;
+            animation: border-glow 2.5s linear infinite alternate, border-rotate 8s linear infinite;
         }
-
+        @keyframes border-glow {
+            0% { box-shadow: 0 0 48px 8px #818cf8cc, 0 0 0 3px #0ea5e9; }
+            100% { box-shadow: 0 0 64px 16px #38bdf8ee, 0 0 0 6px #818cf8; }
+        }
+        @keyframes border-rotate {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
         .gradient-text {
-            background: linear-gradient(90deg, #60a5fa, #818cf8, #a78bfa, #c084fc);
+            font-family: 'Orbitron', 'Inter', sans-serif;
+            background: linear-gradient(90deg, #60a5fa, #818cf8, #a78bfa, #c084fc, #38bdf8, #2dd4bf, #5eead4, #f472b6);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradient-animation 4s ease infinite alternate;
-            font-weight: 700;
+            animation: gradient-animation 4s ease-in-out infinite alternate, text-flicker 2.5s infinite alternate;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            text-shadow: 0 4px 32px #818cf8cc, 0 2px 4px #000a;
         }
-
         @keyframes gradient-animation {
             0% { background-position: 0% 50%; }
             100% { background-position: 100% 50%; }
         }
-
-        input:focus, button:focus {
-            outline: none;
+        @keyframes text-flicker {
+            0%, 100% { opacity: 1; filter: brightness(1.1); }
+            10% { opacity: 0.85; filter: brightness(1.3); }
+            20% { opacity: 1; filter: brightness(1.2); }
+            30% { opacity: 0.95; filter: brightness(1.4); }
+            40% { opacity: 1; filter: brightness(1.1); }
+            50% { opacity: 0.9; filter: brightness(1.3); }
+            60% { opacity: 1; filter: brightness(1.2); }
+            70% { opacity: 0.98; filter: brightness(1.4); }
+            80% { opacity: 1; filter: brightness(1.1); }
+            90% { opacity: 0.92; filter: brightness(1.3); }
         }
-
-        .glow-input:focus {
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.4);
-            border-color: #a5b4fc;
-            animation: pulse-glow 0.6s ease-in-out;
+        .neon-btn {
+            background: linear-gradient(90deg, #6366f1 0%, #38bdf8 100%);
+            color: #fff;
+            font-family: 'Orbitron', 'Inter', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            border: none;
+            border-radius: 9999px;
+            padding: 1em 3em;
+            box-shadow: 0 0 32px 8px #38bdf8cc, 0 4px 16px #0ea5e9;
+            transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            animation: neon-pulse 2.2s infinite alternate;
         }
-
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.5); }
-            100% { box-shadow: 0 0 0 4px rgba(99, 102, 241, 0); }
+        .neon-btn::before {
+            content: "";
+            position: absolute;
+            inset: -12px;
+            background: linear-gradient(120deg, #818cf8 0%, #2dd4bf 100%);
+            opacity: 0.22;
+            filter: blur(16px);
+            z-index: -1;
+            transition: opacity 0.2s;
+            animation: neon-glow 2.2s infinite alternate;
         }
-
-        button {
-            transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        @keyframes neon-pulse {
+            0% { box-shadow: 0 0 32px 8px #38bdf8cc, 0 4px 16px #0ea5e9; }
+            100% { box-shadow: 0 0 64px 16px #818cf8cc, 0 8px 32px #38bdf8; }
         }
-
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.5);
+        @keyframes neon-glow {
+            0% { opacity: 0.22; }
+            100% { opacity: 0.38; }
         }
-
-        button:active {
-            transform: translateY(0);
-            box-shadow: 0 3px 8px rgba(99, 102, 241, 0.4);
+        .neon-btn:hover, .neon-btn:focus {
+            transform: scale(1.08) translateY(-3px) rotate(-1deg);
+            box-shadow: 0 0 64px 16px #38bdf8ee, 0 8px 32px #818cf8;
+            animation: neon-pulse-fast 0.8s infinite alternate;
         }
-
-        footer {
-            border-top-color: #475569;
+        @keyframes neon-pulse-fast {
+            0% { box-shadow: 0 0 64px 16px #38bdf8ee, 0 8px 32px #818cf8; }
+            100% { box-shadow: 0 0 96px 32px #818cf8cc, 0 16px 48px #38bdf8; }
         }
-
-        footer a {
-            text-decoration: none;
-            font-weight: 500;
-            color: #cbd5e0;
-            transition: color 0.2s ease-in-out;
+        .neon-btn:active {
+            transform: scale(0.97);
+            box-shadow: 0 0 24px 4px #6366f1cc;
         }
-
-        footer a:hover {
-            color: #818cf8;
-            text-decoration: underline;
+        .futuristic-card {
+            background: rgba(30, 41, 59, 0.97);
+            border: 2px solid #818cf8;
+            border-radius: 2rem;
+            box-shadow: 0 16px 64px #38bdf888, 0 3px 16px #0ea5e9;
+            padding: 3rem 2.5rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            transition: transform 0.22s, box-shadow 0.22s;
+            position: relative;
+            overflow: hidden;
+            animation: card-float 6s cubic-bezier(.4,2,.6,1) infinite alternate;
         }
-
+        @keyframes card-float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-18px) scale(1.02); }
+        }
+        .futuristic-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, #818cf8 0%, #2dd4bf 100%);
+            opacity: 0.09;
+            z-index: 0;
+            pointer-events: none;
+            animation: card-glow 5s infinite alternate;
+        }
+        @keyframes card-glow {
+            0% { opacity: 0.09; }
+            100% { opacity: 0.18; }
+        }
+        .futuristic-card > * {
+            position: relative;
+            z-index: 1;
+        }
+        .futuristic-card:hover {
+            transform: scale(1.035) translateY(-6px) rotate(-1deg);
+            box-shadow: 0 24px 72px #38bdf8cc, 0 8px 32px #818cf8;
+            animation: card-hover 0.7s cubic-bezier(.4,2,.6,1);
+        }
+        @keyframes card-hover {
+            0% { transform: scale(1.02) translateY(-8px); }
+            100% { transform: scale(1.035) translateY(-6px) rotate(-1deg); }
+        }
+        .glass-nav {
+            background: rgba(30, 41, 59, 0.92);
+            backdrop-filter: blur(24px) saturate(1.4);
+            border-radius: 2rem;
+            box-shadow: 0 4px 32px #818cf844;
+            animation: nav-fade-in 1.2s cubic-bezier(.4,2,.6,1);
+        }
+        @keyframes nav-fade-in {
+            0% { opacity: 0; transform: translateY(-24px) scale(0.97);}
+            100% { opacity: 1; transform: translateY(0) scale(1);}
+        }
+        .nav-link {
+            font-family: 'Orbitron', 'Inter', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: #c7d2fe;
+            transition: color 0.18s, text-shadow 0.18s;
+            text-shadow: 0 2px 8px #818cf888;
+            animation: nav-link-glow 3s infinite alternate;
+        }
+        @keyframes nav-link-glow {
+            0% { text-shadow: 0 2px 8px #818cf888; }
+            100% { text-shadow: 0 4px 24px #38bdf8cc; }
+        }
+        .nav-link:hover {
+            color: #38bdf8;
+            text-shadow: 0 4px 24px #38bdf8cc;
+            animation: nav-link-hover 0.4s;
+        }
+        @keyframes nav-link-hover {
+            0% { color: #c7d2fe; }
+            100% { color: #38bdf8; }
+        }
+        .nav-signin {
+            background: linear-gradient(90deg, #6366f1 0%, #38bdf8 100%);
+            color: #fff;
+            font-weight: 900;
+            border-radius: 1.5rem;
+            padding: 0.7em 2em;
+            box-shadow: 0 4px 24px #38bdf8cc;
+            transition: background 0.18s, box-shadow 0.18s;
+            animation: nav-signin-glow 2.5s infinite alternate;
+        }
+        @keyframes nav-signin-glow {
+            0% { box-shadow: 0 4px 24px #38bdf8cc; }
+            100% { box-shadow: 0 8px 48px #6366f1cc; }
+        }
+        .nav-signin:hover {
+            background: linear-gradient(90deg, #38bdf8 0%, #6366f1 100%);
+            box-shadow: 0 8px 32px #6366f1cc;
+        }
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
-
         ::-webkit-scrollbar-track {
-            background: #1e293b;
+            background: #18181b;
         }
-
         ::-webkit-scrollbar-thumb {
-            background-color: #4b5563;
-            border-radius: 4px;
+            background-color: #6366f1;
+            border-radius: 6px;
+            animation: scrollbar-thumb-glow 2.5s infinite alternate;
         }
-
         ::-webkit-scrollbar-thumb:hover {
-            background-color: #6b7280;
+            background-color: #38bdf8;
         }
-
+        @keyframes scrollbar-thumb-glow {
+            0% { box-shadow: 0 0 8px #6366f1; }
+            100% { box-shadow: 0 0 24px #38bdf8; }
+        }
         * {
             scrollbar-width: thin;
-            scrollbar-color: #4b5563 #1e293b;
+            scrollbar-color: #6366f1 #18181b;
         }
-
-        .smooth-animation {
-            transition: all 0.3s ease-in-out;
-        }
-
-        .smooth-animation:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.5);
-        }
-
-        @keyframes smoothness {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
         .smoothness {
-            animation: smoothness 0.8s ease-out;
+            animation: smoothness 0.7s cubic-bezier(.4,2,.6,1);
+        }
+        @keyframes smoothness {
+            0% { opacity: 0; transform: translateY(24px) scale(0.97);}
+            100% { opacity: 1; transform: translateY(0) scale(1);}
+        }
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.16;
+            z-index: 0;
+            filter: blur(24px);
+            animation: float-orb 10s ease-in-out infinite alternate;
+        }
+        .floating-orb.orb1 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, #818cf8 0%, transparent 80%);
+            top: -100px; left: -160px;
+            animation-delay: 0s;
+            animation-name: float-orb, orb1-spin;
+        }
+        .floating-orb.orb2 {
+            width: 260px; height: 260px;
+            background: radial-gradient(circle, #38bdf8 0%, transparent 80%);
+            bottom: 60px; right: -100px;
+            animation-delay: 2.5s;
+            animation-name: float-orb, orb2-spin;
+        }
+        .floating-orb.orb3 {
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, #2dd4bf 0%, transparent 80%);
+            top: 65%; left: 65%;
+            animation-delay: 5s;
+            animation-name: float-orb, orb3-spin;
+        }
+        @keyframes float-orb {
+            0% { transform: translateY(0) scale(1);}
+            100% { transform: translateY(-60px) scale(1.12);}
+        }
+        @keyframes orb1-spin {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+        @keyframes orb2-spin {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(-360deg); }
+        }
+        @keyframes orb3-spin {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(180deg); }
+        }
+        .ai-glow {
+            text-shadow: 0 0 24px #38bdf8cc, 0 4px 16px #818cf8;
+            animation: ai-glow-anim 2s infinite alternate, ai-glow-color 6s infinite alternate;
+        }
+        .ai-glow-anim {
+            animation: ai-glow-anim 2s infinite alternate, ai-glow-color 6s infinite alternate;
+        }
+        @keyframes ai-glow-anim {
+            0% { text-shadow: 0 0 24px #38bdf8cc, 0 4px 16px #818cf8;}
+            100% { text-shadow: 0 0 48px #818cf8cc, 0 8px 32px #38bdf8;}
+        }
+        @keyframes ai-glow-color {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+        /* --- EXTREME PARTICLE ANIMATION --- */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 50%;
+            opacity: 0.18;
+            filter: blur(2px);
+            animation: particle-move 8s linear infinite;
+        }
+        @keyframes particle-move {
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0.18;}
+            50% { opacity: 0.32;}
+            100% { transform: translateY(-120vh) scale(1.2) rotate(360deg); opacity: 0;}
+        }
+        /* --- END PARTICLE --- */
+        @media (max-width: 900px) {
+            .futuristic-card {
+                padding: 1.5rem 1rem;
+                max-width: 98vw;
+            }
+            .gradient-text {
+                font-size: 2.5rem !important;
+            }
+        }
+        @media (max-width: 600px) {
+            .gradient-text {
+                font-size: 1.5rem !important;
+            }
         }
     </style>
     <script>
+        // Automatically adjust viewport ratio for mobile and other devices
+        function updateViewport() {
+            var ratio = window.devicePixelRatio || 1;
+            var width = window.innerWidth;
+            var meta = document.querySelector('meta[name="viewport"]');
+            if (width <= 768) {
+                // Mobile: set width=device-width and scale for high-DPI screens
+                meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
+            } else {
+                // Desktop/tablet: allow scaling, keep width=device-width
+                meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=3');
+            }
+        }
+        window.addEventListener('resize', updateViewport);
+        window.addEventListener('orientationchange', updateViewport);
+        window.addEventListener('DOMContentLoaded', updateViewport);
         window.onload = function() {
+            updateViewport();
             const deviceType = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 768 ? "Mobile" : "PC";
             const footer = document.querySelector("footer");
-            footer.innerHTML += `<p>You're using a ${deviceType} device.</p>`;
+            if (footer) {
+                footer.innerHTML += `<p style="font-family:'Orbitron',sans-serif;font-size:1rem;opacity:0.8;">You're using a <span style="color:#38bdf8;font-weight:700;">${deviceType}</span> device.</p>`;
+            }
+            // --- EXTREME PARTICLE ANIMATION ---
+            for (let i = 0; i < 36; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 18 + 8;
+                p.style.width = p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.top = Math.random() * 100 + 'vh';
+                const colors = [
+                    'rgba(129,140,248,0.7)',
+                    'rgba(56,189,248,0.7)',
+                    'rgba(45,212,191,0.7)',
+                    'rgba(236,72,153,0.7)',
+                    'rgba(192,132,252,0.7)'
+                ];
+                p.style.background = colors[Math.floor(Math.random() * colors.length)];
+                p.style.animationDuration = (6 + Math.random() * 6) + 's';
+                p.style.animationDelay = (Math.random() * 8) + 's';
+                document.body.appendChild(p);
+            }
+            // --- END PARTICLE ---
         };
     </script>
 </head>
