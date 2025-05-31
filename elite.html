@@ -1,518 +1,234 @@
-<!-- Optimized Version -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Elite Patch - Download elite game mods with a modern, interactive UI." />
+  <meta name="theme-color" content="#0a0a1a" />
+  <meta name="keywords" content="elite, patch, game mods, download, free fire, dr driving, panel, mediafire" />
+  <meta name="author" content="Elite Patch Team" />
   <title>Elite Patch - Game Mods</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #00eaff;
-      --secondary: #0f0c29;
-      --accent: #ff00cc;
-      --glass: rgba(20, 20, 40, 0.7);
-      --neon: 0 0 8px #00eaff, 0 0 16px #00eaff, 0 0 32px #00eaff;
-      --radius: 2.5vw;
-      --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      --glow: 0 0 32px 8px #00eaff88, 0 0 64px 16px #ff00cc55;
-    }
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      font-size: 16px;
+    html {
+      scroll-behavior: smooth;
+      background: #0a0a1a;
     }
     body {
+      margin: 0;
+      padding: 0;
       min-height: 100vh;
-      background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-      font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
+      background: linear-gradient(135deg, #0a0a1a 0%, #181c2a 100%);
+      font-family: 'Roboto', Arial, sans-serif;
       overflow-x: hidden;
-      user-select: none;
-      position: relative;
-      animation: bgShift 18s linear infinite alternate;
-      background-size: 400% 400%;
-      animation: bgShift 18s linear infinite alternate, bgColorPulse 10s ease-in-out infinite alternate;
-      will-change: background-position, filter;
-    }
-    @keyframes bgShift {
-      0% { background-position: 0 0; }
-      100% { background-position: 100vw 100vh; }
-    }
-    @keyframes bgColorPulse {
-      0% { filter: brightness(1) contrast(1); }
-      100% { filter: brightness(1.15) contrast(1.08) saturate(1.2); }
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      z-index: 0;
-      background: repeating-linear-gradient(90deg, rgba(0,234,255,0.07) 0 2px, transparent 2px 8vw),
-                  repeating-linear-gradient(0deg, rgba(0,234,255,0.07) 0 2px, transparent 2px 8vw),
-                  radial-gradient(circle at 80% 20%, #ff00cc33 0%, transparent 70%),
-                  radial-gradient(circle at 20% 80%, #00eaff33 0%, transparent 70%);
-      pointer-events: none;
-      animation: gridMove 10s linear infinite, bgPulse 6s ease-in-out infinite alternate;
-      will-change: background-position, opacity;
-    }
-    @keyframes gridMove {
-      0% { background-position: 0 0, 0 0, 0 0, 0 0; }
-      100% { background-position: 8vw 8vw, 8vw 8vw, 0 0, 0 0; }
-    }
-    @keyframes bgPulse {
-      0% { opacity: 0.7; }
-      100% { opacity: 1; }
-    }
-    body::after {
-      content: "";
-      position: fixed;
-      left: 0; right: 0; top: 0; bottom: 0;
-      pointer-events: none;
-      z-index: 1;
-      background: linear-gradient(120deg, rgba(0,234,255,0.12) 0%, rgba(255,0,204,0.09) 100%);
-      mix-blend-mode: lighten;
-      opacity: 0.7;
-      animation: auroraMove 12s ease-in-out infinite alternate;
-      will-change: background-position, opacity;
-    }
-    @keyframes auroraMove {
-      0% { background-position: 0% 50%; opacity: 0.5; }
-      50% { background-position: 100% 50%; opacity: 0.8; }
-      100% { background-position: 0% 50%; opacity: 0.5; }
+      color-scheme: dark;
     }
     .content-box {
-      background: var(--glass);
-      backdrop-filter: blur(24px) saturate(220%);
-      -webkit-backdrop-filter: blur(24px) saturate(220%);
-      padding: 4vw 3vw 3vw 3vw;
-      text-align: center;
-      width: 95vw;
-      max-width: 480px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow), 0 0 64px 8px #00eaff33, 0 0 128px 16px #ff00cc22;
-      border: 2.5px solid rgba(0,234,255,0.25);
       position: relative;
       z-index: 2;
-      overflow: hidden;
-      animation: neonPulse 2.5s infinite alternate, floatBox 6s ease-in-out infinite alternate, boxSpin 18s linear infinite;
-      will-change: box-shadow, transform;
+      max-width: 400px;
+      margin: 60px auto 0 auto;
+      background: rgba(18, 22, 40, 0.98);
+      border-radius: 18px;
+      box-shadow: 0 0 32px #00eaff44, 0 0 0 2px #00eaff22;
+      padding: 36px 32px 32px 32px;
+      text-align: center;
+      border: 1.5px solid #00eaff44;
+      backdrop-filter: blur(2px);
+      transition: box-shadow 0.2s;
     }
-    @keyframes boxSpin {
-      0% { transform: rotateY(0deg) scale(1); }
-      100% { transform: rotateY(360deg) scale(1.01); }
-    }
-    .content-box::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: var(--radius);
-      pointer-events: none;
-      box-shadow: 0 0 8vw 1vw #00eaff44;
-      opacity: 0.25;
-      z-index: -1;
-      animation: boxGlow 3s infinite alternate;
-      will-change: opacity;
-    }
-    @keyframes neonPulse {
-      0% { box-shadow: 0 0 0 0.4vw #00eaff33, 0 8px 32px 0 #00eaff22, var(--glow); }
-      100% { box-shadow: 0 0 0 0.8vw #ff00cc44, 0 16px 48px 0 #ff00cc33, var(--glow); }
-    }
-    @keyframes floatBox {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-12px) scale(1.01); }
-    }
-    @keyframes boxGlow {
-      0% { opacity: 0.18; }
-      100% { opacity: 0.32; }
+    .content-box:focus-within {
+      box-shadow: 0 0 40px #ff00cc88, 0 0 0 3px #00eaff88;
     }
     .header h1 {
-      font-family: 'Orbitron', 'Roboto', sans-serif;
-      font-size: 2.7rem;
-      margin-bottom: 10px;
-      color: var(--primary);
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 2.3rem;
       letter-spacing: 2px;
-      text-shadow: var(--neon), 0 0 32px #ff00cc88;
-      background: linear-gradient(90deg, #00eaff 30%, #ff00cc 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: textGlow 2.5s infinite alternate, h1Wave 4s cubic-bezier(.77,0,.18,1) infinite;
-      will-change: text-shadow, letter-spacing, transform;
-    }
-    @keyframes textGlow {
-      0% { text-shadow: var(--neon), 0 0 32px #ff00cc88; }
-      100% { text-shadow: 0 0 16px #ff00cc, 0 0 32px #00eaff; }
-    }
-    @keyframes h1Wave {
-      0%,100% { letter-spacing: 2px; transform: scale(1) skewX(0deg); }
-      20% { letter-spacing: 4px; transform: scale(1.05) skewX(2deg); }
-      50% { letter-spacing: 1px; transform: scale(1.08) skewX(-2deg); }
-      80% { letter-spacing: 3px; transform: scale(1.03) skewX(1deg); }
+      color: #fff;
+      margin-bottom: 6px;
+      text-shadow: 0 0 12px #00eaff88, 0 0 2px #fff;
+      user-select: none;
     }
     .header p {
+      color: #00eaffcc;
       font-size: 1.1rem;
-      color: #d1faff;
-      margin-bottom: 2vw;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 8px #00eaff33, 0 0 16px #ff00cc55;
-      animation: fadeInUp 1.2s cubic-bezier(.77,0,.18,1) 0.2s both, pGlow 3s infinite alternate;
-      will-change: color, text-shadow, opacity, transform;
-    }
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(30px);}
-      100% { opacity: 1; transform: translateY(0);}
-    }
-    @keyframes pGlow {
-      0% { color: #d1faff; text-shadow: 0 2px 8px #00eaff33, 0 0 16px #ff00cc55;}
-      100% { color: #fff; text-shadow: 0 2px 16px #ff00cc99, 0 0 32px #00eaff99;}
+      margin-bottom: 22px;
+      text-shadow: 0 0 8px #00eaff44;
+      user-select: none;
     }
     .search-container {
-      margin-bottom: 2vw;
-      position: relative;
-      animation: fadeInUp 1.2s cubic-bezier(.77,0,.18,1) 0.4s both;
-      will-change: opacity, transform;
+      margin-bottom: 22px;
     }
     #searchBar {
-      width: 100%;
-      padding: 1.2em 3em 1.2em 1em;
-      border: 2px solid #00eaffcc;
-      border-radius: 16px;
-      font-size: 1.1rem;
-      background: rgba(0, 0, 0, 0.35);
+      width: 90%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1.5px solid #00eaff88;
+      background: #181c2a;
       color: #fff;
+      font-size: 1rem;
       outline: none;
-      transition: border-color 0.3s, box-shadow 0.3s;
-      box-shadow: 0 2px 16px #00eaff44, 0 0 0 2px #ff00cc22;
-      font-family: 'Roboto', monospace;
-      animation: inputGlow 2.5s infinite alternate, searchBarPulse 4s infinite alternate;
-      will-change: box-shadow, filter;
-    }
-    @keyframes inputGlow {
-      0% { box-shadow: 0 2px 16px #00eaff44, 0 0 0 2px #ff00cc22; }
-      100% { box-shadow: 0 2px 24px #ff00cc44, 0 0 0 4px #00eaff22; }
-    }
-    @keyframes searchBarPulse {
-      0% { filter: brightness(1); }
-      100% { filter: brightness(1.15); }
+      margin-bottom: 10px;
+      transition: border 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 0 0 #00eaff44;
     }
     #searchBar:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 24px #ff00cc99, 0 0 0 4px #00eaff55;
-    }
-    .search-container::after {
-      content: "🔍";
-      position: absolute;
-      right: 1.2em;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 1.3rem;
-      color: #00eaffcc;
-      pointer-events: none;
-      filter: drop-shadow(0 0 6px #00eaff88);
-      animation: iconPulse 2s infinite alternate, iconSpin 8s linear infinite;
-      will-change: filter, transform;
-    }
-    @keyframes iconPulse {
-      0% { filter: drop-shadow(0 0 6px #00eaff88);}
-      100% { filter: drop-shadow(0 0 16px #ff00cc88);}
-    }
-    @keyframes iconSpin {
-      0% { transform: translateY(-50%) rotate(0deg); }
-      100% { transform: translateY(-50%) rotate(360deg); }
+      border: 1.5px solid #ff00cc88;
+      box-shadow: 0 0 8px #ff00cc44;
     }
     button {
-      padding: 1em 2em;
-      margin: 1em 0.5em;
-      border: none;
-      border-radius: 16px;
+      display: inline-block;
+      width: 90%;
+      margin: 10px 0;
+      padding: 13px 0;
+      font-family: 'Orbitron', Arial, sans-serif;
       font-size: 1.1rem;
-      font-family: 'Orbitron', 'Roboto', sans-serif;
       font-weight: 700;
-      cursor: pointer;
-      background: linear-gradient(90deg, #00eaff 0%, #ff00cc 100%);
       color: #fff;
-      box-shadow: 0 4px 24px #00eaff33, 0 1.5px 0 #fff2, 0 0 24px #ff00cc44;
-      transition: transform 0.18s, box-shadow 0.18s, background 0.3s;
-      letter-spacing: 1.5px;
-      text-shadow: 0 2px 8px #00eaff55, 0 0 16px #ff00cc55;
+      background: linear-gradient(90deg, #00eaff 0%, #ff00cc 100%);
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 0 16px #00eaff44, 0 0 2px #ff00cc44;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
       outline: none;
+      user-select: none;
       position: relative;
       overflow: hidden;
-      animation: buttonPop 1.2s cubic-bezier(.77,0,.18,1) both, buttonWave 3s infinite alternate;
-      will-change: filter, transform, box-shadow;
-    }
-    @keyframes buttonWave {
-      0% { filter: brightness(1); }
-      100% { filter: brightness(1.18) drop-shadow(0 0 16px #00eaff88); }
-    }
-    button::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, #fff3 0%, #00eaff44 100%);
-      opacity: 0.18;
-      pointer-events: none;
-      border-radius: 16px;
-      z-index: 0;
-      animation: buttonGlow 2s infinite alternate;
-      will-change: opacity;
-    }
-    @keyframes buttonGlow {
-      0% { opacity: 0.18; }
-      100% { opacity: 0.32; }
-    }
-    @keyframes buttonPop {
-      0% { opacity: 0; transform: scale(0.7);}
-      100% { opacity: 1; transform: scale(1);}
-    }
-    button:hover, button:focus-visible {
-      transform: scale(1.13) rotate(-2deg);
-      box-shadow: 0 8px 32px #00eaffbb, 0 2px 0 #fff4, 0 0 32px #ff00cc99;
-      background: linear-gradient(90deg, #ff00cc 0%, #00eaff 100%);
-      z-index: 2;
-      animation: buttonHoverPulse 0.4s;
-    }
-    @keyframes buttonHoverPulse {
-      0% { filter: brightness(1.2); }
-      100% { filter: brightness(1); }
     }
     button:active {
-      transform: scale(0.97);
-      box-shadow: 0 2px 8px #00eaff44;
+      transform: scale(0.98);
+      box-shadow: 0 0 8px #00eaff88;
     }
-    button::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 0;
-      height: 0;
-      background: radial-gradient(circle, #fff8 0%, transparent 80%);
-      opacity: 0.5;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      transition: width 0.3s, height 0.3s, opacity 0.3s;
-      z-index: 1;
+    button:focus-visible {
+      outline: 2px solid #ff00cc;
+      outline-offset: 2px;
     }
-    button:active::after {
-      width: 120%;
-      height: 120%;
-      opacity: 0.1;
-      transition: width 0.1s, height 0.1s, opacity 0.1s;
-    }
-    #youtubeButton, #PANEL {
-      background: linear-gradient(90deg, #ff004c 0%, #00eaff 100%);
-      color: #fff;
-      text-shadow: 0 2px 8px #ff004c55, 0 0 16px #00eaff88;
-      animation-delay: 0.2s;
-    }
-    #youtubeButton:hover, #PANEL:hover {
-      background: linear-gradient(90deg, #00eaff 0%, #ff004c 100%);
-    }
-    #otherButton {
-      background: linear-gradient(90deg, #009dff 0%, #00eaff 100%);
-      color: #fff;
-      text-shadow: 0 2px 8px #009dff55, 0 0 16px #00eaff88;
-      animation-delay: 0.4s;
-    }
-    #otherButton:hover {
-      background: linear-gradient(90deg, #00eaff 0%, #009dff 100%);
-    }
-    .content-box {
-      box-shadow: 0 0 0 0.4vw #00eaff33, 0 8px 32px 0 #00eaff22, 0 0 64px 8px #ff00cc33;
-      animation: neonPulse 2.5s infinite alternate, floatBox 6s ease-in-out infinite alternate;
+    button:hover {
+      background: linear-gradient(90deg, #ff00cc 0%, #00eaff 100%);
+      box-shadow: 0 0 24px #ff00cc88, 0 0 8px #00eaff88;
+      transform: scale(1.03);
     }
     #infoButton {
       position: fixed;
-      bottom: 4vw;
-      right: 5vw;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      overflow: hidden;
-      box-shadow: 0 0 24px #00eaff99, 0 2px 8px #ff00cc55, 0 0 32px #ff00cc88;
-      cursor: pointer;
-      border: 2.5px solid #00eaffcc;
-      background: linear-gradient(135deg, #00eaff33 0%, #ff00cc33 100%);
+      bottom: 24px;
+      right: 24px;
       z-index: 10;
-      transition: box-shadow 0.3s, border-color 0.3s;
-      animation: floatLogo 3s ease-in-out infinite alternate, logoGlow 2s infinite alternate, logoSpin 12s linear infinite;
-      will-change: box-shadow, border-color, transform;
+      background: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #00eaff44;
+      transition: box-shadow 0.2s, background 0.2s;
+      width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(18,22,40,0.85);
     }
-    @keyframes floatLogo {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-10px) scale(1.07); }
+    #infoButton:focus-visible {
+      box-shadow: 0 0 24px #ff00cc88, 0 0 0 3px #00eaff88;
+      background: rgba(18,22,40,1);
     }
-    @keyframes logoGlow {
-      0% { box-shadow: 0 0 24px #00eaff99, 0 2px 8px #ff00cc55, 0 0 32px #ff00cc88;}
-      100% { box-shadow: 0 0 48px #ff00ccbb, 0 4px 16px #00eaff99, 0 0 64px #00eaff99;}
-    }
-    @keyframes logoSpin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    #infoButton:hover {
+      box-shadow: 0 0 24px #ff00cc88;
     }
     #infoButton img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      transition: transform 0.2s, box-shadow 0.2s;
-      filter: drop-shadow(0 0 12px #00eaff99) drop-shadow(0 0 24px #ff00cc99);
-      animation: logoImgPulse 2.5s infinite alternate, logoImgWave 5s infinite alternate;
-      will-change: filter, transform;
+      border: 2px solid #00eaff88;
+      background: #fff;
+      object-fit: cover;
+      transition: border 0.2s;
     }
-    @keyframes logoImgPulse {
-      0% { filter: drop-shadow(0 0 12px #00eaff99) drop-shadow(0 0 24px #ff00cc99);}
-      100% { filter: drop-shadow(0 0 24px #ff00cc99) drop-shadow(0 0 32px #00eaffcc);}
+    #infoButton:hover img {
+      border: 2px solid #ff00cc;
     }
-    @keyframes logoImgWave {
-      0% { transform: scale(1) rotate(0deg); }
-      50% { transform: scale(1.08) rotate(8deg); }
-      100% { transform: scale(1) rotate(0deg); }
-    }
-    #infoButton:hover, #infoButton:focus-visible {
-      box-shadow: 0 0 64px #ff00ccbb, 0 4px 16px #00eaff99, 0 0 64px #00eaff99;
-      border-color: #ff00cc;
-    }
-    #infoButton img:hover {
-      transform: scale(1.13) rotate(-3deg);
-      box-shadow: 0 0 32px #ff00cc99;
-    }
-    /* Animated floating particles */
     .particles {
-      pointer-events: none;
       position: fixed;
-      inset: 0;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
       z-index: 0;
-      overflow: hidden;
     }
     .particle {
       position: absolute;
       border-radius: 50%;
+      filter: blur(2px);
       opacity: 0.7;
-      filter: blur(1.5px);
-      animation: particleMove 12s linear infinite;
-      pointer-events: none;
-      mix-blend-mode: lighten;
-      will-change: transform;
-    }
-    @keyframes particleMove {
-      0% { transform: translateY(0) scale(1);}
-      100% { transform: translateY(-120vh) scale(1.2);}
-    }
-    /* EXTREME: Shooting stars */
-    .shooting-star {
-      position: absolute;
-      width: 2px;
-      height: 80px;
-      background: linear-gradient(180deg, #fff 0%, #00eaff 60%, transparent 100%);
-      opacity: 0.7;
-      border-radius: 2px;
-      z-index: 100;
-      pointer-events: none;
-      filter: blur(0.5px);
-      animation: shootingStarMove 1.2s linear forwards;
+      animation: float 16s linear infinite alternate;
       will-change: transform, opacity;
     }
-    @keyframes shootingStarMove {
-      0% { opacity: 0; transform: translateY(-100px) scaleX(0.7) scaleY(0.7) rotate(-15deg); }
-      10% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(120vh) scaleX(1.2) scaleY(1.2) rotate(-15deg); }
+    @keyframes float {
+      0% { transform: translateY(0) scale(1);}
+      100% { transform: translateY(-60px) scale(1.08);}
     }
-    /* EXTREME: Neon border pulse */
-    .content-box::before {
-      content: "";
-      position: absolute;
-      inset: -4px;
-      border-radius: calc(var(--radius) + 8px);
-      border: 3px solid transparent;
-      background: conic-gradient(from 0deg, #00eaff, #ff00cc, #00eaff 100%);
-      filter: blur(6px);
+    .shooting-star {
+      position: fixed;
+      width: 3px;
+      height: 60px;
+      background: linear-gradient(180deg, #fff 0%, #00eaff 80%, transparent 100%);
+      border-radius: 2px;
       opacity: 0.7;
       z-index: 2;
       pointer-events: none;
-      animation: borderSpin 6s linear infinite;
-      will-change: filter;
+      animation: shoot 1.3s linear forwards;
+      filter: blur(1px);
     }
-    @keyframes borderSpin {
-      0% { filter: blur(6px) brightness(1.1); }
-      100% { filter: blur(12px) brightness(1.3); }
+    @keyframes shoot {
+      0% { opacity: 0; transform: translateY(0) scaleY(0.7);}
+      10% { opacity: 1;}
+      100% { opacity: 0; transform: translateY(180px) scaleY(1);}
     }
-    @media (max-width: 768px) {
-      html, body {
-        font-size: 14px;
-      }
+    @keyframes ringFloat0 {
+      0% { transform: scale(1) translateY(0); opacity: 0.18; }
+      100% { transform: scale(1.08) translateY(-24px); opacity: 0.28; }
+    }
+    @keyframes ringFloat1 {
+      0% { transform: scale(1) translateY(0); opacity: 0.25; }
+      100% { transform: scale(1.12) translateY(32px); opacity: 0.32; }
+    }
+    @keyframes ringFloat2 {
+      0% { transform: scale(1) translateY(0); opacity: 0.32; }
+      100% { transform: scale(1.18) translateY(-18px); opacity: 0.38; }
+    }
+    :focus:not(:focus-visible) {
+      outline: none;
+    }
+    @media (max-width: 500px) {
       .content-box {
-        padding: 6vw 2vw 4vw 2vw;
         max-width: 98vw;
-      }
-      .header h1 {
-        font-size: 1.5rem;
-      }
-      .header p {
-        font-size: 0.95rem;
-      }
-      button {
-        font-size: 0.98rem;
-        padding: 0.8em 1em;
-      }
-      #searchBar {
-        font-size: 0.95rem;
-        padding: 0.7em 2em 0.7em 0.7em;
+        padding: 18px 4vw 18px 4vw;
       }
       #infoButton {
+        bottom: 12px;
+        right: 12px;
         width: 44px;
         height: 44px;
-        bottom: 2vw;
-        right: 2vw;
       }
-    }
-    @media (max-width: 480px) {
-      html, body {
-        font-size: 12px;
-      }
-      .content-box {
-        padding: 7vw 1vw 5vw 1vw;
-        max-width: 100vw;
-      }
-      .header h1 {
-        font-size: 1.1rem;
-      }
-      .header p {
-        font-size: 0.85rem;
-      }
-      button {
-        font-size: 0.85rem;
-        padding: 0.7em 0.7em;
-      }
-      #searchBar {
-        font-size: 0.85rem;
-        padding: 0.6em 1.5em 0.6em 0.6em;
-      }
-      #infoButton {
+      #infoButton img {
         width: 36px;
         height: 36px;
-        bottom: 1vw;
-        right: 1vw;
       }
     }
-    ::-webkit-scrollbar {
-      width: 8px;
-      background: #222;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(135deg, #00eaff 0%, #ff00cc 100%);
-      border-radius: 8px;
+    /* Accessibility: prefers-reduced-motion support */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
     }
   </style>
   <script>
-    // Particle generator for extreme GUI
+    // Performance-optimized particle generator
     document.addEventListener('DOMContentLoaded', () => {
       // Neon particles
       const colors = [
@@ -523,27 +239,22 @@
       ];
       const particles = document.createElement('div');
       particles.className = 'particles';
-      // Reduce particle count for low-end devices
-      let particleCount = 32;
-      if (window.deviceMemory && window.deviceMemory <= 2) particleCount = 12;
-      if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) particleCount = 12;
-      if (window.innerWidth < 500 || window.innerHeight < 500) particleCount = 10;
+      let particleCount = window.innerWidth < 600 ? 6 : 12;
       for (let i = 0; i < particleCount; i++) {
         const p = document.createElement('div');
         p.className = 'particle';
-        const size = Math.random() * 24 + 12;
+        const size = Math.random() * 18 + 10;
         p.style.width = p.style.height = size + 'px';
         p.style.left = Math.random() * 100 + 'vw';
         p.style.top = (Math.random() * 100 + 10) + 'vh';
         p.style.background = colors[Math.floor(Math.random() * colors.length)];
-        // Lower animation duration for smoother perf
-        p.style.animationDuration = (10 + Math.random() * 8) + 's';
+        p.style.animationDuration = (12 + Math.random() * 8) + 's';
         p.style.animationDelay = (-Math.random() * 12) + 's';
         particles.appendChild(p);
       }
       document.body.appendChild(particles);
 
-      // EXTREME: Shooting stars
+      // Shooting stars (spawn less frequently)
       function spawnShootingStar() {
         const star = document.createElement('div');
         star.className = 'shooting-star';
@@ -553,20 +264,12 @@
         document.body.appendChild(star);
         setTimeout(() => star.remove(), 1300);
       }
-      // Lower spawn rate for low-end devices
-      let shootingStarInterval = 700;
-      if (window.deviceMemory && window.deviceMemory <= 2) shootingStarInterval = 1200;
-      if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) shootingStarInterval = 1200;
-      if (window.innerWidth < 500 || window.innerHeight < 500) shootingStarInterval = 1500;
       setInterval(() => {
-        if (Math.random() > 0.6) spawnShootingStar();
-      }, shootingStarInterval);
+        if (Math.random() > 0.8) spawnShootingStar();
+      }, 1600);
 
-      // EXTREME: Floating neon rings
-      let ringCount = 3;
-      if (window.deviceMemory && window.deviceMemory <= 2) ringCount = 1;
-      if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) ringCount = 1;
-      if (window.innerWidth < 500 || window.innerHeight < 500) ringCount = 1;
+      // Floating neon rings (reduced count)
+      let ringCount = 1;
       for (let i = 0; i < ringCount; i++) {
         const ring = document.createElement('div');
         ring.style.position = 'fixed';
@@ -581,26 +284,28 @@
         ring.style.opacity = 0.18 + i * 0.07;
         ring.style.filter = 'blur(2px)';
         ring.style.animation = `ringFloat${i} 12s linear infinite alternate`;
-        ring.style.willChange = 'transform, opacity';
         document.body.appendChild(ring);
       }
     });
+    // Accessibility: trap focus inside modal if present (future-proof)
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Tab') {
+        const modal = document.querySelector('.modal[open]');
+        if (modal) {
+          const focusable = modal.querySelectorAll('a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])');
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            last.focus();
+            e.preventDefault();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            first.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    });
   </script>
-  <style>
-    /* EXTREME: Neon ring float keyframes */
-    @keyframes ringFloat0 {
-      0% { transform: scale(1) translateY(0); opacity: 0.18; }
-      100% { transform: scale(1.08) translateY(-24px); opacity: 0.28; }
-    }
-    @keyframes ringFloat1 {
-      0% { transform: scale(1) translateY(0); opacity: 0.25; }
-      100% { transform: scale(1.12) translateY(32px); opacity: 0.32; }
-    }
-    @keyframes ringFloat2 {
-      0% { transform: scale(1) translateY(0); opacity: 0.32; }
-      100% { transform: scale(1.18) translateY(-18px); opacity: 0.38; }
-    }
-  </style>
 </head>
 <body>
   <div class="content-box">
@@ -614,7 +319,7 @@
     </div>
 
     <button id="youtubeButton" onclick="window.location.href='https://www.youtube.com';">DR DRIVING</button>
-    <button id="PANEL" onclick="window.location.href='https://www.mediafire.com/file/gtc951nfsg62200/ELITE_PXTCH.rar/file';">FF PANEL</button>
+    <button id="PANEL" onclick="window.location.href='https://www.mediafire.com/file/gtc951nfsg62200/ELITE_PXTCH.rar/file;">FF PANEL</button>
     <button id="otherButton" onclick="window.location.href='https://www.example.com';">COMING SOON</button>
   </div>
 

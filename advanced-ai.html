@@ -1,15 +1,18 @@
-<!-- Optimized Version -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="ELITE AI - Next-Gen AI assistant for productivity, creativity, and more." />
     <meta name="author" content="ELITE AI Team" />
     <meta name="keywords" content="AI, Artificial Intelligence, Assistant, Productivity, ELITE AI, GPT-4, Next-Gen, Automation" />
     <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#18181b" />
     <title>ELITE AI – Next Level Intelligence</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
     <!-- TailwindCSS v3 CDN with JIT and plugins -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <!-- Font Awesome 6.5.1 (latest) -->
@@ -37,6 +40,7 @@
             opacity: 0.12;
             pointer-events: none;
             animation: bg-stripes-move 12s linear infinite alternate;
+            will-change: background-position;
         }
         @keyframes bg-stripes-move {
             0% { background-position: 0 0, 0 0; }
@@ -51,6 +55,7 @@
             opacity: 0.22;
             pointer-events: none;
             animation: after-glow-move 10s ease-in-out infinite alternate;
+            will-change: filter;
         }
         @keyframes after-glow-move {
             0% { filter: blur(0px); }
@@ -64,6 +69,7 @@
             box-shadow: 0 24px 80px 0 rgba(99, 102, 241, 0.22), 0 4px 16px 0 rgba(0,0,0,0.16);
             border-radius: 2.5rem;
             animation: glass-float 4s cubic-bezier(.4,2,.6,1) infinite alternate;
+            will-change: transform;
         }
         @keyframes glass-float {
             0% { transform: translateY(0) scale(1); }
@@ -75,6 +81,7 @@
             border-radius: 2.5rem;
             box-shadow: 0 0 48px 8px #818cf8cc, 0 0 0 3px #0ea5e9;
             animation: border-glow 2.5s linear infinite alternate, border-rotate 8s linear infinite;
+            will-change: box-shadow, filter;
         }
         @keyframes border-glow {
             0% { box-shadow: 0 0 48px 8px #818cf8cc, 0 0 0 3px #0ea5e9; }
@@ -94,6 +101,7 @@
             font-weight: 900;
             letter-spacing: 0.06em;
             text-shadow: 0 4px 32px #818cf8cc, 0 2px 4px #000a;
+            will-change: background-position, opacity, filter;
         }
         @keyframes gradient-animation {
             0% { background-position: 0% 50%; }
@@ -127,6 +135,7 @@
             overflow: hidden;
             z-index: 1;
             animation: neon-pulse 2.2s infinite alternate;
+            will-change: box-shadow, transform;
         }
         .neon-btn::before {
             content: "";
@@ -138,6 +147,7 @@
             z-index: -1;
             transition: opacity 0.2s;
             animation: neon-glow 2.2s infinite alternate;
+            will-change: opacity;
         }
         @keyframes neon-pulse {
             0% { box-shadow: 0 0 32px 8px #38bdf8cc, 0 4px 16px #0ea5e9; }
@@ -172,6 +182,7 @@
             position: relative;
             overflow: hidden;
             animation: card-float 6s cubic-bezier(.4,2,.6,1) infinite alternate;
+            will-change: transform;
         }
         @keyframes card-float {
             0% { transform: translateY(0) scale(1); }
@@ -186,6 +197,7 @@
             z-index: 0;
             pointer-events: none;
             animation: card-glow 5s infinite alternate;
+            will-change: opacity;
         }
         @keyframes card-glow {
             0% { opacity: 0.09; }
@@ -292,6 +304,7 @@
             z-index: 0;
             filter: blur(24px);
             animation: float-orb 10s ease-in-out infinite alternate;
+            will-change: transform, filter;
         }
         .floating-orb.orb1 {
             width: 400px; height: 400px;
@@ -354,6 +367,7 @@
             opacity: 0.18;
             filter: blur(2px);
             animation: particle-move 8s linear infinite;
+            will-change: transform, opacity;
         }
         @keyframes particle-move {
             0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0.18;}
@@ -383,10 +397,8 @@
             var width = window.innerWidth;
             var meta = document.querySelector('meta[name="viewport"]');
             if (width <= 768) {
-                // Mobile: set width=device-width and scale for high-DPI screens
                 meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
             } else {
-                // Desktop/tablet: allow scaling, keep width=device-width
                 meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=3');
             }
         }
@@ -401,7 +413,12 @@
                 footer.innerHTML += `<p style="font-family:'Orbitron',sans-serif;font-size:1rem;opacity:0.8;">You're using a <span style="color:#38bdf8;font-weight:700;">${deviceType}</span> device.</p>`;
             }
             // --- EXTREME PARTICLE ANIMATION ---
-            for (let i = 0; i < 36; i++) {
+            // Reduce particle count for better performance on low-end devices
+            let particleCount = 36;
+            if (window.innerWidth < 900 || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4)) {
+                particleCount = 16;
+            }
+            for (let i = 0; i < particleCount; i++) {
                 const p = document.createElement('div');
                 p.className = 'particle';
                 const size = Math.random() * 18 + 8;
@@ -416,7 +433,8 @@
                     'rgba(192,132,252,0.7)'
                 ];
                 p.style.background = colors[Math.floor(Math.random() * colors.length)];
-                p.style.animationDuration = (6 + Math.random() * 6) + 's';
+                // Use longer animation durations for less CPU/GPU usage
+                p.style.animationDuration = (8 + Math.random() * 8) + 's';
                 p.style.animationDelay = (Math.random() * 8) + 's';
                 document.body.appendChild(p);
             }

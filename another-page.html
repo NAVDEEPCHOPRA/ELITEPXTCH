@@ -1,422 +1,112 @@
-<!-- Optimized Version -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<h
+ead>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>My Social Links</title>
+    <meta name="description" content="Connect with me on Instagram, Gmail, Discord, Snapchat, and YouTube.">
+    <meta name="theme-color" content="#181c24">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Montserrat:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #0ff1ce;
-            --secondary: #1a1a2e;
-            --accent: #ff00cc;
-            --bg: #0a0a23;
-            --glass: rgba(255,255,255,0.08);
-            --border: rgba(255,255,255,0.18);
-            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            --icon-bg: rgba(15,241,206,0.12);
-            --neon1:  #0ff1ce;
-            --neon2: #1a1a2e;
-            --neon3: #00ffd0;
-            --neon4: #00e0ff;
-            --bg-gradient: linear-gradient(135deg, #181818 0%, #232347 100%);
-            --glass-bg: rgba(30, 30, 60, 0.65);
-            --glass-border: 1.5px solid #0ff1ce55;
-            --neon-shadow: 0 0 16px 4px #0ff1ce, 0 0 32px 8px #ff00cc55;
-        }
         html, body {
-            height: 100%;
             margin: 0;
             padding: 0;
-        }
-        body {
-            min-height: 100vh;
-            background: var(--bg-gradient);
+            min-height: 100%;
+            background: linear-gradient(135deg, #181c24 0%, #232b3a 100%);
             color: #fff;
-            font-family: 'Roboto', Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            overflow-x: hidden;
-            position: relative;
+            font-family: 'Roboto', 'Montserrat', 'Orbitron', Arial, sans-serif;
+            scroll-behavior: smooth;
         }
-        body::before {
-            content: "";
+        .lines-bg {
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            z-index: 0;
-            background: radial-gradient(circle at 80% 20%, var(--primary) 0%, transparent 60%),
-                        radial-gradient(circle at 20% 80%, var(--accent) 0%, transparent 60%);
-            opacity: 0.18;
-            pointer-events: none;
-        }
-        /* EXTREME: Aurora, Nebula, Particles, Cubes, Shooting Stars, Parallax, and NEW: Warp Tunnel, Lightning, Floating Shapes, and Glitch */
-        .aurora, .nebula, .particles, .shooting-stars, .cubes, .warp-tunnel, .lightning, .floating-shapes, .glitch-overlay, .parallax {
-            pointer-events: none;
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0;
-        }
-        .aurora-shape {
-            position: absolute;
-            width: 120vw;
-            height: 120vh;
-            left: -10vw;
-            top: -10vh;
-            background: conic-gradient(from 90deg, var(--primary), var(--accent), var(--neon3), var(--primary));
-            opacity: 0.12;
-            filter: blur(80px) brightness(1.2);
-            animation: auroraMove 18s linear infinite alternate;
-            mix-blend-mode: lighten;
-        }
-        @keyframes auroraMove {
-            0% { transform: scale(1) rotate(0deg) translateY(0);}
-            50% { transform: scale(1.08) rotate(12deg) translateY(-40px);}
-            100% { transform: scale(1) rotate(-8deg) translateY(0);}
-        }
-        .nebula-layer {
-            position: absolute;
-            width: 160vw;
-            height: 160vh;
-            left: -30vw;
-            top: -30vh;
-            background: radial-gradient(circle at 60% 40%, var(--primary) 0%, transparent 80%),
-                        radial-gradient(circle at 30% 70%, var(--accent) 0%, transparent 80%);
-            opacity: 0.10;
-            filter: blur(120px) brightness(1.1);
-            animation: nebulaMove 32s linear infinite alternate;
-        }
-        .nebula-layer:nth-child(2) {
-            background: radial-gradient(circle at 80% 60%, var(--neon3) 0%, transparent 80%),
-                        radial-gradient(circle at 20% 30%, var(--neon4) 0%, transparent 80%);
-            opacity: 0.13;
-            filter: blur(160px) brightness(1.2);
-            animation-duration: 44s;
-            animation-delay: 2s;
-        }
-        @keyframes nebulaMove {
-            0% { transform: scale(1) rotate(0deg);}
-            100% { transform: scale(1.04) rotate(8deg);}
-        }
-        .particles .particle {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.7;
-            animation: floatParticle 12s linear infinite;
-            background: radial-gradient(circle, var(--primary) 0%, var(--accent) 100%);
-            filter: blur(1.5px) brightness(1.3);
-        }
-        @keyframes floatParticle {
-            0% { transform: translateY(0) scale(1);}
-            50% { transform: translateY(-60px) scale(1.2);}
-            100% { transform: translateY(0) scale(1);}
-        }
-        .shooting-star {
-            position: absolute;
-            width: 2px;
-            height: 80px;
-            background: linear-gradient(180deg, #fff 0%, transparent 100%);
-            opacity: 0.7;
-            border-radius: 2px;
-            filter: blur(1.5px);
-            animation: shootingStar 2.2s linear infinite;
-        }
-        @keyframes shootingStar {
-            0% { opacity: 0; transform: translateY(-100px) scaleX(1);}
-            10% { opacity: 1;}
-            80% { opacity: 1;}
-            100% { opacity: 0; transform: translateY(100vh) scaleX(1.2);}
-        }
-        .cube {
-            position: absolute;
-            width: 36px; height: 36px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            opacity: 0.13;
-            border-radius: 8px;
-            box-shadow: 0 0 24px 8px var(--primary);
-            animation: cubeFloat 18s linear infinite;
-            filter: blur(0.5px);
-        }
-        @keyframes cubeFloat {
-            0% { transform: translateY(0) rotateY(0deg) rotateX(0deg);}
-            50% { transform: translateY(-60px) rotateY(180deg) rotateX(180deg);}
-            100% { transform: translateY(0) rotateY(360deg) rotateX(360deg);}
-        }
-        /* NEW: Warp Tunnel Animation */
-        .warp-tunnel {
-            z-index: 1;
-            mix-blend-mode: lighten;
-        }
-        .warp-circle {
-            position: absolute;
-            left: 50%; top: 50%;
-            transform: translate(-50%, -50%);
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            opacity: 0.12;
-            animation: warpExpand 2.5s cubic-bezier(.4,2,.6,1) infinite;
-            pointer-events: none;
-        }
-        .warp-circle:nth-child(2) { animation-delay: 0.5s; border-color: var(--accent);}
-        .warp-circle:nth-child(3) { animation-delay: 1s; border-color: var(--neon3);}
-        .warp-circle:nth-child(4) { animation-delay: 1.5s; border-color: var(--neon4);}
-        @keyframes warpExpand {
-            0% { width: 0px; height: 0px; opacity: 0.25;}
-            60% { opacity: 0.18;}
-            100% { width: 120vw; height: 120vw; opacity: 0;}
-        }
-        /* NEW: Lightning Bolts */
-        .lightning-bolt {
-            position: absolute;
-            width: 2px;
-            height: 120px;
-            background: linear-gradient(180deg, #fff 0%, var(--primary) 60%, transparent 100%);
-            opacity: 0.7;
-            filter: blur(2px) brightness(2);
-            animation: lightningFlash 1.2s cubic-bezier(.4,2,.6,1) infinite;
-            z-index: 100;
-        }
-        .lightning-bolt:nth-child(2) { left: 80vw; animation-delay: 0.6s;}
-        .lightning-bolt:nth-child(3) { left: 40vw; animation-delay: 1.1s;}
-        @keyframes lightningFlash {
-            0%, 100% { opacity: 0;}
-            10% { opacity: 1;}
-            12% { opacity: 0;}
-            20% { opacity: 1;}
-            22% { opacity: 0;}
-            100% { opacity: 0;}
-        }
-        /* NEW: Floating Geometric Shapes */
-        .floating-shape {
-            position: absolute;
-            opacity: 0.18;
-            filter: blur(0.5px);
-            animation: floatShape 10s ease-in-out infinite alternate;
-            z-index: 2;
-        }
-        .floating-shape.triangle {
-            width: 0; height: 0;
-            border-left: 24px solid transparent;
-            border-right: 24px solid transparent;
-            border-bottom: 42px solid var(--accent);
-        }
-        .floating-shape.square {
-            width: 36px; height: 36px;
-            background: var(--neon3);
-            border-radius: 6px;
-        }
-        .floating-shape.circle {
-            width: 38px; height: 38px;
-            background: var(--primary);
-            border-radius: 50%;
-        }
-        @keyframes floatShape {
-            0% { transform: translateY(0) scale(1) rotate(0deg);}
-            100% { transform: translateY(-60px) scale(1.2) rotate(360deg);}
-        }
-        /* NEW: Glitch Overlay */
-        .glitch-overlay {
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: lighten;
-        }
-        .glitch-bar {
-            position: absolute;
-            left: 0;
             width: 100vw;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
-            opacity: 0.12;
-            animation: glitchBarMove 2.5s infinite linear;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
         }
-        .glitch-bar:nth-child(2) { top: 30vh; animation-delay: 0.7s;}
-        .glitch-bar:nth-child(3) { top: 60vh; animation-delay: 1.3s;}
-        @keyframes glitchBarMove {
-            0% { left: -100vw;}
-            100% { left: 100vw;}
-        }
-        /* Parallax */
-        .parallax {
-            z-index: 10;
-        }
-        /* --- Existing styles for header, h1, main, button, footer, etc. --- */
-        header {
-            margin-top: 40px;
-            margin-bottom: 30px;
-            z-index: 4;
-            animation: headerPop 1.2s cubic-bezier(.4,2,.6,1);
-        }
-        @keyframes headerPop {
-            0% { transform: scale(0.7) translateY(-60px); opacity: 0;}
-            80% { transform: scale(1.08) translateY(8px); opacity: 1;}
-            100% { transform: scale(1) translateY(0); opacity: 1;}
-        }
-        h1 {
-            font-family: 'Orbitron', 'Montserrat', sans-serif;
-            font-size: 3.6rem;
-            letter-spacing: 0.18em;
-            color: var(--neon1);
-            text-shadow: 0 0 12px var(--neon1), 0 0 32px var(--accent), var(--neon-shadow);
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 8px var(--primary));
-            margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            text-transform: uppercase;
-            border-bottom: 2.5px solid var(--accent);
-            padding-bottom: 8px;
-            letter-spacing: 0.22em;
-            animation: flicker 2.2s infinite alternate;
-            position: relative;
-        }
-        h1::after {
-            content: "";
-            display: block;
+        .line {
             position: absolute;
-            left: 0; right: 0; bottom: -6px; height: 6px;
-            background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
-            border-radius: 6px;
-            filter: blur(4px) brightness(1.5);
-            opacity: 0.7;
-            animation: underlineGlow 2.5s infinite alternate;
+            top: 0;
+            width: 2px;
+            height: 100vh;
+            background: linear-gradient(180deg, #00ffe7 0%, #181c24 100%);
+            opacity: 0.15;
+            animation: lineMove 6s linear infinite;
         }
-        @keyframes underlineGlow {
-            0% { filter: blur(4px) brightness(1.2);}
-            100% { filter: blur(8px) brightness(2);}
-        }
-        @keyframes flicker {
-            0%, 100% { opacity: 1; text-shadow: 0 0 12px var(--neon1), 0 0 32px var(--accent), var(--neon-shadow);}
-            45% { opacity: 0.92; text-shadow: 0 0 16px var(--neon1), 0 0 40px var(--accent);}
-            50% { opacity: 0.8; text-shadow: 0 0 24px var(--neon1), 0 0 48px var(--accent);}
-            55% { opacity: 0.92; text-shadow: 0 0 16px var(--neon1), 0 0 40px var(--accent);}
-        }
-        h1::before {
-            content: "";
-            display: inline-block;
-            width: 38px;
-            height: 38px;
-            background: url('https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/share.svg') no-repeat center/contain;
-            filter: drop-shadow(0 0 12px var(--primary));
-            margin-right: 10px;
-            animation: iconSpin 3.5s linear infinite;
-        }
-        @keyframes iconSpin {
-            0% { transform: rotate(0deg);}
-            100% { transform: rotate(360deg);}
-        }
-        main {
-            z-index: 4;
-            width: 100%;
-            display: flex;
-            justify-content: center;
+        @keyframes lineMove {
+            0% { transform: translateY(-10vh);}
+            100% { transform: translateY(110vh);}
         }
         .button-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 26px;
-            width: 100%;
-            max-width: 420px;
-            background: var(--glass-bg);
-            border-radius: 22px;
-            box-shadow: var(--shadow);
-            border: var(--glass-border);
-            padding: 36px 24px 28px 24px;
-            margin-top: 12px;
-            backdrop-filter: blur(10px);
-            position: relative;
-            animation: glassFadeIn 1.2s cubic-bezier(.4,2,.6,1);
-            overflow: visible;
-        }
-        @keyframes glassFadeIn {
-            0% { opacity: 0; transform: translateY(60px) scale(0.95);}
-            100% { opacity: 1; transform: translateY(0) scale(1);}
-        }
-        .button-container::before {
-            content: "";
-            position: absolute;
-            inset: -8px;
-            border-radius: 30px;
-            pointer-events: none;
             z-index: 2;
-            background: conic-gradient(from 0deg, var(--primary), var(--accent), var(--primary));
-            opacity: 0.22;
-            filter: blur(16px) brightness(1.5);
-            animation: neonBorder 2.5s linear infinite;
-        }
-        @keyframes neonBorder {
-            0% { filter: blur(8px) brightness(1);}
-            50% { filter: blur(16px) brightness(1.5);}
-            100% { filter: blur(8px) brightness(1);}
+            background: rgba(24,28,36,0.85);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 #00ffe733, 0 1.5px 0 #0051ff33;
+            padding: 32px 24px;
+            margin: 0 auto;
+            max-width: 350px;
+            backdrop-filter: blur(8px);
         }
         .button {
-            width: 100%;
-            max-width: 340px;
-            padding: 18px 0 18px 0;
-            font-size: 1.22rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
+            background: linear-gradient(90deg, #00ffe7 0%, #0051ff 100%);
             color: #fff;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
             border: none;
             border-radius: 16px;
-            box-shadow: 0 4px 32px 0 rgba(0,255,255,0.18), 0 1.5px 8px 0 var(--accent);
+            padding: 18px 40px 18px 56px;
+            font-size: 1.25em;
+            font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            box-shadow: 0 6px 32px 0 #00ffe744;
             cursor: pointer;
-            transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s;
-            backdrop-filter: blur(8px);
-            outline: 2px solid var(--border);
-            outline-offset: -4px;
             position: relative;
             overflow: hidden;
+            transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+            outline: none;
             display: flex;
             align-items: center;
-            gap: 18px;
-            justify-content: flex-start;
-            padding-left: 22px;
-            animation: buttonPop 1.1s cubic-bezier(.4,2,.6,1);
+            gap: 14px;
+            margin-bottom: 4px;
         }
-        @keyframes buttonPop {
-            0% { opacity: 0; transform: scale(0.7) translateY(40px);}
-            100% { opacity: 1; transform: scale(1) translateY(0);}
-        }
-        .button::before {
-            content: "";
-            position: absolute;
-            top: 0; left: -75%; width: 50%; height: 100%;
-            background: linear-gradient(120deg, rgba(255,255,255,0.18) 0%, transparent 100%);
-            transform: skewX(-24deg);
-            transition: left 0.4s cubic-bezier(.4,2,.6,1);
-            z-index: 0;
-        }
-        .button:hover, .button:focus {
-            transform: scale(1.08) translateY(-4px) rotate(-1deg);
-            box-shadow: 0 8px 48px 0 var(--primary), 0 2px 16px 0 var(--accent), 0 0 32px 8px var(--primary);
-            filter: brightness(1.12) saturate(1.3);
-        }
-        .button:hover::before, .button:focus::before {
-            left: 120%;
+        .button:last-child {
+            margin-bottom: 0;
         }
         .button:active {
-            transform: scale(0.98);
+            transform: scale(0.97);
+            box-shadow: 0 2px 8px 0 #00ffe755;
         }
-        .button span {
-            position: relative;
-            z-index: 1;
+        .button:hover, .button:focus {
+            background: linear-gradient(90deg, #00ffe7 0%, #00bfff 100%);
+            box-shadow: 0 8px 40px 0 #00ffe799, 0 2px 0 #0051ff55;
         }
-        .button .ripple {
+        .button .icon {
+            display: flex;
+            align-items: center;
+            margin-right: 12px;
+            width: 1.7em;
+            height: 1.7em;
+            background: rgba(0,255,231,0.08);
+            border-radius: 50%;
+            justify-content: center;
+            box-shadow: 0 2px 8px #00ffe722;
+        }
+        .button .icon svg {
+            width: 80%;
+            height: 80%;
+            display: block;
+        }
+        .ripple {
             position: absolute;
             border-radius: 50%;
+            background: rgba(255,255,255,0.25);
             transform: scale(0);
             animation: ripple 0.6s linear;
-            background: rgba(255,255,255,0.25);
             pointer-events: none;
-            z-index: 2;
+            z-index: 1;
         }
         @keyframes ripple {
             to {
@@ -424,111 +114,221 @@
                 opacity: 0;
             }
         }
-        .button .icon {
-            width: 28px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--icon-bg);
-            border-radius: 50%;
-            margin-right: 10px;
-            box-shadow: 0 2px 8px 0 var(--primary);
-            flex-shrink: 0;
-            animation: iconPulse 2.5s infinite alternate;
+        header h1 {
+            font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+            font-size: 2.7em;
+            letter-spacing: 2.5px;
+            text-align: center;
+            margin: 0;
+            color: #00ffe7;
+            text-shadow: 0 2px 32px #00ffe799, 0 1px 0 #0051ff;
+            user-select: none;
+            background: linear-gradient(90deg, #00ffe7 0%, #0051ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 12px #00ffe799);
+            padding-top: 24px;
         }
-        @keyframes iconPulse {
-            0% { box-shadow: 0 2px 8px 0 var(--primary);}
-            100% { box-shadow: 0 4px 24px 0 var(--accent);}
-        }
-        .button svg {
-            width: 20px;
-            height: 20px;
-            display: block;
-        }
-        .button .icon svg {
-            animation: iconWobble 2.2s infinite alternate;
-        }
-        @keyframes iconWobble {
-            0% { transform: scale(1) rotate(0deg);}
-            50% { transform: scale(1.15) rotate(-10deg);}
-            100% { transform: scale(1) rotate(0deg);}
+        main {
+            z-index: 2;
+            position: relative;
         }
         footer {
-            margin-top: 40px;
-            font-size: 1.05em;
-            color: #b3b3b3;
-            font-family: 'Roboto', sans-serif;
-            width: 100%;
             text-align: center;
-            z-index: 4;
-            background: var(--glass);
-            border-top: 1.5px solid var(--border);
-            box-shadow: var(--shadow);
-            padding: 24px 0 12px 0;
-            backdrop-filter: blur(6px);
-            border-radius: 18px 18px 0 0;
-            animation: glassFadeIn 1.2s cubic-bezier(.4,2,.6,1) 0.3s backwards;
+            margin-top: 36px;
+            font-size: 1em;
+            color: #b3b3b3;
+            font-family: 'Roboto', Arial, sans-serif;
+            z-index: 2;
             position: relative;
+            background: rgba(24,28,36,0.7);
+            border-radius: 0 0 18px 18px;
+            padding: 18px 0 8px 0;
+            box-shadow: 0 2px 16px #00ffe722;
         }
-        footer::before {
-            content: "";
-            position: absolute;
-            left: 50%; top: 0; transform: translateX(-50%);
-            width: 80vw; height: 12px;
-            background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
-            filter: blur(8px) brightness(1.3);
-            opacity: 0.25;
-            border-radius: 8px;
-            z-index: 0;
+        /* Accessibility: focus styles */
+        .button:focus {
+            outline: 2.5px solid #00ffe7;
+            outline-offset: 2px;
         }
-        footer p {
-            margin: 6px 0;
-            letter-spacing: 0.04em;
-            position: relative;
-            z-index: 1;
+        /* Hide scrollbars for background effects */
+        ::-webkit-scrollbar {
+            width: 8px;
+            background: #181c24;
         }
+        ::-webkit-scrollbar-thumb {
+            background: #222b36;
+            border-radius: 4px;
+        }
+        /* Responsive */
         @media (max-width: 600px) {
-            h1 {
-                font-size: 2.1rem;
+            .button-container {
+                padding: 18px 6px;
+                max-width: 98vw;
             }
             .button {
-                font-size: 1.05rem;
-                padding: 14px 0 14px 0;
-                max-width: 95vw;
-                padding-left: 16px;
+                font-size: 1em;
+                padding: 14px 18px 14px 38px;
             }
-            .button-container {
-                max-width: 97vw;
-                padding: 18px 6px 14px 6px;
+            header h1 {
+                font-size: 1.5em;
+                padding-top: 12px;
             }
             footer {
-                font-size: 0.98em;
-                padding: 16px 0 8px 0;
+                font-size: 0.95em;
+                padding: 10px 0 6px 0;
             }
         }
-        .lines-bg {
+        /* Aurora, nebula, particles, etc. (minimal for performance) */
+        .aurora, .nebula, .particles, .shooting-stars, .cubes, .warp-tunnel, .lightning, .floating-shapes, .glitch-overlay {
+            pointer-events: none;
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
+            z-index: 1;
         }
-        .line {
+        .aurora-shape {
+            width: 60vw; height: 60vh;
+            background: radial-gradient(ellipse at 50% 50%, #00ffe7aa 0%, #0051ff00 80%);
+            filter: blur(60px);
+            opacity: 0.18;
+            position: absolute; left: 20vw; top: 10vh;
+            animation: auroraMove 12s ease-in-out infinite alternate;
+        }
+        @keyframes auroraMove {
+            0% { transform: translateY(0) scale(1);}
+            100% { transform: translateY(40px) scale(1.08);}
+        }
+        .nebula-layer {
+            width: 80vw; height: 80vh;
+            background: radial-gradient(ellipse at 60% 40%, #0051ff55 0%, #181c2400 80%);
+            filter: blur(80px);
+            opacity: 0.10;
+            position: absolute; left: 10vw; top: 10vh;
+            animation: nebulaMove 16s ease-in-out infinite alternate;
+        }
+        @keyframes nebulaMove {
+            0% { transform: scale(1);}
+            100% { transform: scale(1.04);}
+        }
+        .particle {
             position: absolute;
-            width: 2px;
-            height: 100vh;
-            background: linear-gradient(180deg, transparent 0%, var(--primary) 60%, transparent 100%);
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00ffe7 0%, #0051ff 100%);
+            filter: blur(2px);
             opacity: 0.22;
-            animation: moveLine 6s linear infinite;
+            animation: particleMove linear infinite;
         }
-        @keyframes moveLine {
-            0% { transform: translateY(-100vh);}
-            100% { transform: translateY(100vh);}
+        @keyframes particleMove {
+            0% { transform: translateY(0);}
+            100% { transform: translateY(-60vh);}
+        }
+        .shooting-star {
+            position: absolute;
+            width: 80px; height: 2px;
+            background: linear-gradient(90deg, #fff 0%, #00ffe7 100%);
+            opacity: 0.18;
+            border-radius: 2px;
+            animation: shootingStar 2.5s linear infinite;
+        }
+        @keyframes shootingStar {
+            0% { opacity: 0; transform: translateX(0);}
+            10% { opacity: 1;}
+            90% { opacity: 1;}
+            100% { opacity: 0; transform: translateX(200px);}
+        }
+        .cube {
+            position: absolute;
+            width: 32px; height: 32px;
+            background: linear-gradient(135deg, #00ffe7 0%, #0051ff 100%);
+            opacity: 0.10;
+            border-radius: 8px;
+            animation: cubeFloat 8s ease-in-out infinite alternate;
+        }
+        @keyframes cubeFloat {
+            0% { transform: translateY(0);}
+            100% { transform: translateY(-30px);}
+        }
+        .warp-circle {
+            position: absolute;
+            left: 50%; top: 50%;
+            width: 200px; height: 200px;
+            border: 2px solid #00ffe7;
+            border-radius: 50%;
+            opacity: 0.08;
+            transform: translate(-50%, -50%);
+            animation: warpSpin 10s linear infinite;
+        }
+        @keyframes warpSpin {
+            0% { transform: translate(-50%, -50%) rotate(0);}
+            100% { transform: translate(-50%, -50%) rotate(360deg);}
+        }
+        .lightning-bolt {
+            position: absolute;
+            width: 2px; height: 60px;
+            background: linear-gradient(180deg, #fff 0%, #00ffe7 100%);
+            opacity: 0.12;
+            border-radius: 2px;
+            animation: lightningFlash 1.2s linear infinite;
+        }
+        @keyframes lightningFlash {
+            0%, 100% { opacity: 0.12;}
+            50% { opacity: 0.35;}
+        }
+        .floating-shape {
+            position: absolute;
+            opacity: 0.10;
+            animation: floatShape 10s ease-in-out infinite alternate;
+        }
+        .floating-shape.triangle {
+            width: 0; height: 0;
+            border-left: 18px solid transparent;
+            border-right: 18px solid transparent;
+            border-bottom: 32px solid #00ffe7;
+        }
+        .floating-shape.square {
+            width: 28px; height: 28px;
+            background: #0051ff;
+            border-radius: 6px;
+        }
+        .floating-shape.circle {
+            width: 28px; height: 28px;
+            background: #00ffe7;
+            border-radius: 50%;
+        }
+        @keyframes floatShape {
+            0% { transform: translateY(0);}
+            100% { transform: translateY(-24px);}
+        }
+        .glitch-overlay {
+            pointer-events: none;
+        }
+        .glitch-bar {
+            position: absolute;
+            left: 0;
+            width: 100vw;
+            height: 4px;
+            background: linear-gradient(90deg, #00ffe7 0%, #0051ff 100%);
+            opacity: 0.08;
+            animation: glitchBar 1.2s linear infinite;
+        }
+        @keyframes glitchBar {
+            0%, 100% { opacity: 0.08;}
+            50% { opacity: 0.22;}
+        }
+        /* Flicker effect for header */
+        @keyframes flicker {
+            0% { opacity: 1;}
+            50% { opacity: 0.7;}
+            100% { opacity: 1;}
+        }
+        @keyframes headerPop {
+            0% { transform: scale(1);}
+            30% { transform: scale(1.08);}
+            100% { transform: scale(1);}
         }
     </style>
     <script>
-        // EXTREME LEVEL ANIMATIONS: Aurora, Nebula, Particles, Shooting Stars, Cubes, Parallax, Warp Tunnel, Lightning, Floating Shapes, Glitch
+        // EXTREME LEVEL ANIMATIONS for better performance
         document.addEventListener("DOMContentLoaded", function() {
             // Aurora
             const aurora = document.createElement('div');
@@ -548,10 +348,10 @@
             }
             document.body.appendChild(nebula);
 
-            // Particles
+            // Particles (reduced count for performance)
             const particles = document.createElement('div');
             particles.className = 'particles';
-            for(let i=0; i<22; i++) {
+            for(let i=0; i<10; i++) {
                 const p = document.createElement('div');
                 p.className = 'particle';
                 const size = Math.random() * 18 + 12;
@@ -564,10 +364,10 @@
             }
             document.body.appendChild(particles);
 
-            // Shooting Stars
+            // Shooting Stars (reduced count)
             const shootingStars = document.createElement('div');
             shootingStars.className = 'shooting-stars';
-            for(let i=0; i<8; i++) {
+            for(let i=0; i<3; i++) {
                 const star = document.createElement('div');
                 star.className = 'shooting-star';
                 star.style.left = (Math.random() * 100) + 'vw';
@@ -577,10 +377,10 @@
             }
             document.body.appendChild(shootingStars);
 
-            // Floating Cubes
+            // Floating Cubes (reduced count)
             const cubes = document.createElement('div');
             cubes.className = 'cubes';
-            for(let i=0; i<7; i++) {
+            for(let i=0; i<3; i++) {
                 const cube = document.createElement('div');
                 cube.className = 'cube';
                 cube.style.left = (Math.random() * 100) + 'vw';
@@ -590,10 +390,10 @@
             }
             document.body.appendChild(cubes);
 
-            // NEW: Warp Tunnel
+            // Warp Tunnel
             const warpTunnel = document.createElement('div');
             warpTunnel.className = 'warp-tunnel';
-            for(let i=1; i<=4; i++) {
+            for(let i=1; i<=2; i++) { // reduced circles
                 const circle = document.createElement('div');
                 circle.className = 'warp-circle';
                 circle.style.zIndex = 1;
@@ -601,10 +401,10 @@
             }
             document.body.appendChild(warpTunnel);
 
-            // NEW: Lightning Bolts
+            // Lightning Bolts (reduced count)
             const lightning = document.createElement('div');
             lightning.className = 'lightning';
-            for(let i=0; i<3; i++) {
+            for(let i=0; i<1; i++) {
                 const bolt = document.createElement('div');
                 bolt.className = 'lightning-bolt';
                 bolt.style.left = (10 + Math.random() * 80) + 'vw';
@@ -614,11 +414,11 @@
             }
             document.body.appendChild(lightning);
 
-            // NEW: Floating Geometric Shapes
+            // Floating Geometric Shapes (reduced count)
             const floatingShapes = document.createElement('div');
             floatingShapes.className = 'floating-shapes';
             const shapeTypes = ['triangle', 'square', 'circle'];
-            for(let i=0; i<8; i++) {
+            for(let i=0; i<3; i++) {
                 const shape = document.createElement('div');
                 const type = shapeTypes[Math.floor(Math.random()*shapeTypes.length)];
                 shape.className = 'floating-shape ' + type;
@@ -630,10 +430,10 @@
             }
             document.body.appendChild(floatingShapes);
 
-            // NEW: Glitch Overlay
+            // Glitch Overlay (reduced bars)
             const glitch = document.createElement('div');
             glitch.className = 'glitch-overlay';
-            for(let i=0; i<3; i++) {
+            for(let i=0; i<1; i++) {
                 const bar = document.createElement('div');
                 bar.className = 'glitch-bar';
                 bar.style.top = (Math.random()*100) + 'vh';
@@ -671,11 +471,12 @@
                 btn.insertBefore(icon, btn.firstChild);
             });
 
-            // Mouse Parallax
-            const parallax = document.createElement('div');
-            parallax.className = 'parallax';
-            document.body.appendChild(parallax);
+            // Mouse Parallax (throttled for performance)
+            let lastParallax = 0;
             document.addEventListener('mousemove', function(e) {
+                const now = performance.now();
+                if (now - lastParallax < 40) return; // ~25fps
+                lastParallax = now;
                 const x = (e.clientX / window.innerWidth - 0.5) * 2;
                 const y = (e.clientY / window.innerHeight - 0.5) * 2;
                 document.querySelectorAll('.aurora-shape, .nebula-layer, .cube, .floating-shape').forEach((el, idx) => {
@@ -683,7 +484,7 @@
                 });
             });
 
-            // NEW: Glitch effect on header on hover
+            // Glitch effect on header on hover
             const h1 = document.querySelector('h1');
             if (h1) {
                 h1.addEventListener('mouseenter', () => {
