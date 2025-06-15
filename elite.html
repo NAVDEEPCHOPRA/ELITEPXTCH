@@ -226,7 +226,87 @@
         scroll-behavior: auto !important;
       }
     }
+    /* Sign-in button styles */
+    .signin-btn {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: linear-gradient(90deg, #fff 0%, #00eaff 60%, #ff00cc 100%);
+      color: #181818;
+      border: none;
+      border-radius: 50%;
+      padding: 0;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      font-size: 0.95em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 12px #00eaff33, 0 1px 4px #0006;
+      transition: all 0.18s cubic-bezier(.4,2,.6,1);
+      letter-spacing: 1px;
+      outline: none;
+      min-width: 0;
+      height: 40px;
+      width: 40px;
+      line-height: 40px;
+      overflow: hidden;
+      border: 2px solid #00eaff44;
+      justify-content: center;
+    }
+    .signin-btn:active {
+      transform: scale(0.97);
+      box-shadow: 0 0 6px #ff00ea, 0 2px 8px #0008;
+    }
+    .signin-btn:focus-visible {
+      outline: 2px solid #00eaff;
+      outline-offset: 2px;
+    }
+    .signin-btn:hover {
+      background: linear-gradient(90deg, #00eaff 0%, #ff00cc 100%);
+      color: #fff;
+      box-shadow: 0 0 16px #ff00cc88, 0 0 4px #00eaff88;
+      transform: scale(1.04);
+      border-color: #ff00cc88;
+    }
+    .signin-btn .google-icon {
+      width: 24px;
+      height: 24px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 4px #0002;
+      margin: 0;
+      border: 1.5px solid #00eaff44;
+      transition: border 0.2s;
+    }
+    .signin-btn:hover .google-icon {
+      border: 1.5px solid #ff00cc;
+    }
+    .signin-btn span:last-child {
+      display: none;
+    }
+    @media (max-width: 600px) {
+      .signin-btn {
+        top: 8px;
+        right: 8px;
+        font-size: 0.92em;
+        height: 32px;
+        width: 32px;
+      }
+      .signin-btn .google-icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
   </style>
+  <!-- Firebase App (core) and Firebase Auth -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
   <script>
     // Performance-optimized particle generator
     document.addEventListener('DOMContentLoaded', () => {
@@ -305,6 +385,52 @@
         }
       }
     });
+
+    // Firebase Auth config and sign-in logic
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add sign-in button to body
+      const btn = document.createElement('button');
+      btn.className = 'signin-btn';
+      btn.id = 'google-signin-btn';
+      btn.innerHTML = `<span class="google-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20">
+          <g>
+            <path fill="#4285F4" d="M19.6 10.23c0-.68-.06-1.36-.18-2H10v3.79h5.48a4.68 4.68 0 0 1-2.03 3.07v2.55h3.28c1.92-1.77 3.03-4.38 3.03-7.41z"/>
+            <path fill="#34A853" d="M10 20c2.7 0 4.97-.89 6.63-2.41l-3.28-2.55c-.91.61-2.07.97-3.35.97-2.57 0-4.75-1.74-5.53-4.07H1.09v2.56A10 10 0 0 0 10 20z"/>
+            <path fill="#FBBC05" d="M4.47 11.94A5.99 5.99 0 0 1 4.1 10c0-.67.12-1.32.34-1.94V5.5H1.09A10 10 0 0 0 0 10c0 1.64.39 3.19 1.09 4.5l3.38-2.56z"/>
+            <path fill="#EA4335" d="M10 3.96c1.47 0 2.78.51 3.81 1.51l2.86-2.86C14.97.89 12.7 0 10 0A10 10 0 0 0 1.09 5.5l3.38 2.56C5.25 5.7 7.43 3.96 10 3.96z"/>
+          </g>
+        </svg>
+      </span><span>Sign in with Google</span>`;
+      document.body.appendChild(btn);
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCTlEFfOb9LfDNw2EYHnnrme0AOKcCCNMI",
+        authDomain: "login-30b72.firebaseapp.com",
+        projectId: "login-30b72",
+      };
+
+      // Initialize Firebase
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+      }
+      const auth = firebase.auth();
+
+      // Google Auth Provider
+      const provider = new firebase.auth.GoogleAuthProvider();
+
+      // Handle button click
+      btn.addEventListener('click', () => {
+        auth.signInWithPopup(provider)
+          .then(result => {
+            const user = result.user;
+            alert("Signed in: " + user.displayName);
+          })
+          .catch(error => {
+            alert("Sign-in failed: " + error.message);
+          });
+      });
+    });
   </script>
 </head>
 <body>
@@ -318,8 +444,8 @@
       <input type="text" id="searchBar" placeholder="Search for buttons..." oninput="filterButtons()" />
     </div>
 
-    <button id="youtubeButton" onclick="window.location.href='https://www.mediafire.com/file/gtc951nfsg62200/ELITE_PXTCH.rar/file';">DR DRIVING</button>
-    <button id="PANEL" onclick="window.location.href='https://www.mediafire.com/file/gtc951nfsg62200/ELITE_PXTCH.rar/file';">FF PANEL</button>
+    <button id="youtubeButton" onclick="window.location.href='https://www.youtube.com';">DR DRIVING</button>
+    <button id="PANEL" onclick="window.location.href='https://www.mediafire.com/file/gtc951nfsg62200/ELITE_PXTCH.rar/file;">FF PANEL</button>
     <button id="otherButton" onclick="window.location.href='https://www.example.com';">COMING SOON</button>
   </div>
 

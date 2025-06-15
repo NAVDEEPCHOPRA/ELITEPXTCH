@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Secure Login Portal</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      padding: 1rem;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    #login-btn { background: #4285f4; color: #fff; }
+    #signup-btn { background: #00b894; color: #fff; }
+    #logout-btn { background: #d63031; color: #fff; display: none; }
+    #user-info {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .hidden { display: none; }
+
+    .form-popup {
+      background: rgba(0, 0, 0, 0.8);
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .form-box {
+      background: white;
+      color: black;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 350px;
+      text-align: left;
+    }
+    .form-box h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .form-box input {
+      width: 100%;
+      padding: 0.6rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .form-box button {
+      background: #00b894;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Account Login</h1>
+    <button id="login-btn">Login with Google</button>
+    <button id="signup-btn">Sign Up (Email)</button>
+    <button id="logout-btn">Log Out</button>
+    <div id="user-info"></div>
+  </div>
+
+  <!-- Sign Up Popup -->
+  <div id="signup-form" class="form-popup hidden">
+    <div class="form-box">
+      <h2>Sign Up with Email</h2>
+      <input type="email" id="signup-email" placeholder="Email" required />
+      <input type="password" id="signup-password" placeholder="Password" required />
+      <button id="submit-signup">Create Account</button>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+
+  <script>
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyCTlEFfOb9LfDNw2EYHnnrme0AOKcCCNMI",
+      authDomain: "login-30b72.firebaseapp.com",
+      projectId: "login-30b72",
+      storageBucket: "login-30b72.appspot.com",
+      messagingSenderId: "877845104240",
+      appId: "1:877845104240:web:YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // UI elements
+    const loginBtn = document.getElementById('login-btn');
+    const signupBtn = document.getElementById('signup-btn');
+    const logoutBtn = document.getElementById('logout-btn');
+    const userInfo = document.getElementById('user-info');
+    const signupForm = document.getElementById('signup-form');
+    const signupEmail = document.getElementById('signup-email');
+    const signupPassword = document.getElementById('signup-password');
+    const submitSignup = document.getElementById('submit-signup');
+
+    // Auth state changes
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        userInfo.textContent = `Hello, ${user.email}`;
+        loginBtn.style.display = 'none';
+        signupBtn.style.display = 'none';
+        logoutBtn.style.display = 'block';
+      } else {
+        userInfo.textContent = '';
+        loginBtn.style.display = 'block';
+        signupBtn.style.display = 'block';
+        logoutBtn.style.display = 'none';
+      }
+    });
+
+    // Google Login
+    loginBtn.onclick = () => {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider).catch(err => alert(err.message));
+    };
+
+    // Logout
+    logoutBtn.onclick = () => auth.signOut();
+
+    // Open Sign Up form
+    signupBtn.onclick = () => {
+      signupForm.classList.remove('hidden');
+    };
+
+    // Handle Sign Up
+    submitSignup.onclick = () => {
+      const email = signupEmail.value.trim();
+      const password = signupPassword.value.trim();
+      if (!email || !password) return alert("Enter email and password");
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          signupForm.classList.add('hidden');
+          signupEmail.value = '';
+          signupPassword.value = '';
+        })
+        .catch(err => alert("Signup failed: " + err.message));
+    };
+  </script>
+</body>
+</html>

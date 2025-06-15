@@ -1,6 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        .signin-btn {
+            position: absolute;
+            top: 18px;
+            right: 32px;
+            z-index: 10;
+            background: linear-gradient(90deg, #0ff1ce 0%, #ff00ea 100%);
+            color: #181818;
+            border: none;
+            border-radius: 10px;
+            padding: 8px 22px;
+            font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 10px #0ff1ce88, 0 2px 8px #0006;
+            transition: all 0.18s cubic-bezier(.4,2,.6,1);
+            letter-spacing: 1px;
+        }
+        .signin-btn:active {
+            transform: scale(0.97);
+            box-shadow: 0 0 6px #ff00ea, 0 2px 8px #0008;
+        }
+        @media (max-width: 600px) {
+            .signin-btn {
+                top: 10px;
+                right: 10px;
+                padding: 7px 14px;
+                font-size: 0.95em;
+            }
+        }
+    </style>
+    <!-- Firebase App (core) and Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    <button class="signin-btn" id="google-signin-btn">SIGN IN</button>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyCTlEFfOb9LfDNw2EYHnnrme0AOKcCCNMI",
+        authDomain: "login-30b72.firebaseapp.com",
+        projectId: "login-30b72",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+
+      // Google Auth Provider
+      const provider = new firebase.auth.GoogleAuthProvider();
+
+      // Handle button click
+      document.getElementById('google-signin-btn').addEventListener('click', () => {
+        auth.signInWithPopup(provider)
+          .then(result => {
+            const user = result.user;
+            alert("Signed in: " + user.displayName);
+          })
+          .catch(error => {
+            alert("Sign-in failed: " + error.message);
+          });
+      });
+    </script>
+</head>
+<body>
 <script>
     // Request photo (image library) access if available
     
@@ -398,7 +462,7 @@
         window.open('another-page.html', '_blank');
     }
     function AI() {
-        captureAndDetectGender();
+        window.open('advanced-ai.html', '_blank');
     }
     function ELITE() {
         window.open('elite.html', '_blank');

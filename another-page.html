@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<h
-ead>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
@@ -326,7 +325,147 @@ ead>
             30% { transform: scale(1.08);}
             100% { transform: scale(1);}
         }
+        /* --- Sign In Button Styles --- */
+        .signin-btn {
+            position: fixed;
+            top: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(90deg, #fff 0%, #0ff1ce 60%, #ff00ea 100%);
+            color: #181818;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 26px 10px 16px;
+            font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+            font-size: 1.08em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 14px #0ff1ce88, 0 2px 8px #0006;
+            transition: all 0.18s cubic-bezier(.4,2,.6,1);
+            letter-spacing: 1px;
+            min-width: 0;
+            min-height: 0;
+            outline: none;
+            border: 2px solid #fff;
+            opacity: 0.98;
+        }
+        .signin-btn:active {
+            transform: translateX(-50%) scale(0.97);
+            box-shadow: 0 0 6px #ff00ea, 0 2px 8px #0008;
+        }
+        .signin-btn .google-icon {
+            width: 1.7em;
+            height: 1.7em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px #0ff1ce33;
+            margin-right: 6px;
+        }
+        .signin-btn .google-icon svg {
+            width: 1.1em;
+            height: 1.1em;
+            display: block;
+        }
+        .signin-btn span {
+            font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+            font-weight: 700;
+            color: #181818;
+            letter-spacing: 1.2px;
+        }
+        .signin-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(90deg, #fff 0%, #0ff1ce 60%, #ff00ea 100%);
+            color: #181818;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 26px 10px 16px;
+            font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+            font-size: 1.08em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 14px #0ff1ce88, 0 2px 8px #0006;
+            transition: all 0.18s cubic-bezier(.4,2,.6,1);
+            letter-spacing: 1px;
+            min-width: 0;
+            min-height: 0;
+            outline: none;
+            border: 2px solid #fff;
+            opacity: 0.98;
+            margin: 32px auto 0 auto;
+            z-index: 10;
+            width: max-content;
+        }
+        .signin-btn:hover, .signin-btn:focus {
+            background: linear-gradient(90deg, #fff 0%, #0ff1ce 40%, #ff00ea 100%);
+            box-shadow: 0 0 24px #ff00ea99, 0 2px 8px #0ff1ce55;
+            border-color: #0ff1ce;
+            transform: translateY(-2px) scale(1.03);
+        }
+        @media (max-width: 600px) {
+            .signin-btn {
+                top: 10px;
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                padding: 7px 14px 7px 10px;
+                font-size: 0.95em;
+            }
+        }
     </style>
+    <!-- Firebase App (core) and Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    <body>
+        <button class="signin-btn" id="google-signin-btn" title="Sign in with Google">
+            <span class="google-icon">
+                <svg viewBox="0 0 48 48">
+                    <g>
+                        <path fill="#4285F4" d="M44.5 20H24v8.5h11.7C34.7 33.1 30.1 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.5 6.5 29.6 4.5 24 4.5 12.7 4.5 3.5 13.7 3.5 25S12.7 45.5 24 45.5c11.3 0 20.5-9.2 20.5-20.5 0-1.4-.1-2.7-.3-4z"/>
+                        <path fill="#34A853" d="M6.3 14.7l7 5.1C15.5 16.1 19.4 13.5 24 13.5c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.5 6.5 29.6 4.5 24 4.5c-7.1 0-13.2 4.1-16.2 10.2z"/>
+                        <path fill="#FBBC05" d="M24 45.5c5.6 0 10.5-1.9 14.3-5.2l-6.6-5.4c-2 1.4-4.6 2.1-7.7 2.1-6.1 0-11.2-4.1-13-9.6l-7 5.4C6.8 41.1 14.7 45.5 24 45.5z"/>
+                        <path fill="#EA4335" d="M44.5 20H24v8.5h11.7c-1.1 3.1-4.1 5.5-7.7 5.5-2.2 0-4.2-.7-5.7-2.1l-7 5.4C17.5 43.9 20.6 45.5 24 45.5c6.1 0 11.2-4.1 13-9.6l7-5.4c-1.1-3.1-4.1-5.5-7.7-5.5z"/>
+                    </g>
+                </svg>
+            </span>
+            <span>Sign in with Google</span>
+        </button>
+    </body>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyCTlEFfOb9LfDNw2EYHnnrme0AOKcCCNMI",
+        authDomain: "login-30b72.firebaseapp.com",
+        projectId: "login-30b72",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+
+      // Google Auth Provider
+      const provider = new firebase.auth.GoogleAuthProvider();
+
+      // Handle button click
+      document.getElementById('google-signin-btn').addEventListener('click', () => {
+        auth.signInWithPopup(provider)
+          .then(result => {
+            const user = result.user;
+            alert("Signed in: " + user.displayName);
+          })
+          .catch(error => {
+            alert("Sign-in failed: " + error.message);
+          });
+      });
+    </script>
     <script>
         // EXTREME LEVEL ANIMATIONS for better performance
         document.addEventListener("DOMContentLoaded", function() {
