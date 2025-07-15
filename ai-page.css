@@ -1,0 +1,181 @@
+/* Root and Fonts */
+:root {
+  --neon1: #0ff1ce;
+  --neon2: #a78bfa;
+  --neon3: #f472b6;
+  --neon4: #2dd4bf;
+  --glass-bg: rgba(24, 28, 47, 0.85);
+  --text: #e2e8f0;
+  --bg: #181c2f;
+  --shadow: rgba(56, 189, 248, 0.13);
+  --font-main: 'Inter', 'Orbitron', 'JetBrains Mono', Arial, sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background: var(--bg);
+  overflow-x: hidden;
+  color: var(--text);
+  height: 100%;
+}
+
+/* Glass UI Box */
+.glass {
+  background: var(--glass-bg);
+  border: 1.5px solid var(--shadow);
+  box-shadow: 0 8px 32px 0 var(--shadow);
+  backdrop-filter: blur(8px);
+}
+
+/* Gradient Text Heading */
+.gradient-text {
+  background: linear-gradient(90deg, var(--neon1), var(--neon2), var(--neon3), var(--neon4));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-move 4s linear infinite;
+}
+
+@keyframes gradient-move {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Gradient Border Container */
+.gradient-border {
+  border: 2px solid;
+  border-image: linear-gradient(90deg, var(--neon1), var(--neon2), var(--neon3), var(--neon4)) 1;
+  border-radius: 1rem;
+  padding: 2px;
+  background: transparent;
+}
+
+/* Input Glow */
+.glow-input:focus {
+  box-shadow: 0 0 0 2px var(--neon1), 0 0 8px var(--neon2);
+  outline: none;
+}
+
+/* Background Grid */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: linear-gradient(rgba(56,189,248,0.06) 1px, transparent 1px), 
+                    linear-gradient(90deg, rgba(56,189,248,0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-move 20s linear infinite;
+}
+
+@keyframes grid-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+/* Floating Dots */
+.bg-dots {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bg-dot {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.18;
+  filter: blur(2px);
+  animation: float-dot 8s ease-in-out infinite alternate;
+}
+
+.bg-dot1 { width: 120px; height: 120px; left: 10vw; top: 12vh; background: var(--neon1); animation-delay: 0s; }
+.bg-dot2 { width: 90px; height: 90px; right: 14vw; top: 18vh; background: var(--neon2); animation-delay: 2s; }
+.bg-dot3 { width: 70px; height: 70px; left: 18vw; bottom: 10vh; background: var(--neon3); animation-delay: 4s; }
+.bg-dot4 { width: 100px; height: 100px; right: 8vw; bottom: 8vh; background: var(--neon4); animation-delay: 6s; }
+
+@keyframes float-dot {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-30px) scale(1.08); }
+}
+
+/* Matrix Rain */
+.matrix-rain,
+.starfield {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.2;
+  mix-blend-mode: lighten;
+}
+
+/* Particles */
+.particles {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.12;
+  animation: particle-move 7s linear infinite;
+}
+
+@keyframes particle-move {
+  0% { transform: translateY(0) scale(1); opacity: 0.12; }
+  50% { transform: translateY(-40px) scale(1.2); opacity: 0.18; }
+  100% { transform: translateY(0) scale(1); opacity: 0.12; }
+}
+
+/* AI Avatar Icon */
+.ai-avatar {
+  position: fixed;
+  right: 2vw;
+  bottom: 2vh;
+  z-index: 10;
+  font-size: 3.5rem;
+  color: var(--neon1);
+  background: rgba(24,28,47,0.7);
+  border-radius: 50%;
+  box-shadow: 0 0 24px var(--neon1), 0 0 8px var(--neon2);
+  padding: 0.6em 0.7em;
+  border: 2px solid var(--neon2);
+  pointer-events: none;
+}
+
+.neon-flicker {
+  animation: avatar-flicker 2.5s infinite alternate;
+}
+
+@keyframes avatar-flicker {
+  0% { filter: drop-shadow(0 0 8px var(--neon1)); opacity: 1; }
+  80% { filter: drop-shadow(0 0 16px var(--neon2)); opacity: 0.92; }
+  100% { filter: drop-shadow(0 0 4px var(--neon3)); opacity: 1; }
+}
+
+/* Output Area */
+#aiOutput {
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.6;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Responsive Enhancements */
+@media (max-width: 700px) {
+  .glass {
+    padding: 1.5rem;
+  }
+  .ai-avatar {
+    font-size: 2.2rem;
+    padding: 0.4em 0.45em;
+  }
+}

@@ -1,0 +1,306 @@
+:root {
+  --neon1: #0ff1ce;
+  --neon2: #ff00ea;
+  --neon3: #fffb00;
+  --bg: #0a0a1a;
+  --font-main: 'Orbitron', 'Montserrat', 'Roboto', sans-serif;
+  --text-light: #ffffff;
+  --accent-muted: #b3b3b3;
+  --bg-gradient: radial-gradient(ellipse at top left, #0ff1ce33 0%, #232347 100%);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background: var(--bg-gradient);
+  color: var(--text-light);
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Glowing Header */
+header h1 {
+  text-align: center;
+  font-size: 2.8em;
+  letter-spacing: 0.1em;
+  background: linear-gradient(90deg, var(--neon1) 30%, var(--neon2) 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 2em;
+  animation: neonPulse 2s infinite alternate;
+  user-select: none;
+}
+
+@keyframes neonPulse {
+  0% { text-shadow: 0 0 18px var(--neon1), 0 0 2px #fff; }
+  100% { text-shadow: 0 0 32px var(--neon2), 0 0 8px #fff; }
+}
+
+/* Google Sign-In Button */
+.signin-btn {
+  position: absolute;
+  top: 18px;
+  right: 32px;
+  padding: 10px 26px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #fff 0%, var(--neon1) 60%, var(--neon2) 100%);
+  color: #181818;
+  font-family: var(--font-main);
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 0 14px var(--neon1), 0 2px 8px #0006;
+  transition: all 0.2s ease;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.signin-btn:hover {
+  background: linear-gradient(90deg, #fff 0%, var(--neon1) 40%, var(--neon2) 100%);
+  transform: scale(1.03);
+  box-shadow: 0 0 24px var(--neon2), 0 2px 8px var(--neon1);
+  border-color: var(--neon1);
+}
+
+.signin-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 0 6px var(--neon2), 0 2px 8px #0008;
+}
+
+.google-icon {
+  width: 1.7em;
+  height: 1.7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 50%;
+}
+
+/* Social Buttons */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+  gap: 20px;
+  padding: 32px;
+  backdrop-filter: blur(10px);
+  z-index: 2;
+}
+
+.button {
+  background: linear-gradient(90deg, var(--neon1) 0%, var(--neon2) 100%);
+  color: #181818;
+  border: none;
+  border-radius: 16px;
+  padding: 2.5vw 6vw;
+  font-size: clamp(1em, 2.5vw, 1.2em);
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  box-shadow: 0 4px 16px var(--neon1), 0 0 8px var(--neon2);
+  letter-spacing: 1.2px;
+  width: 60vw;
+  max-width: 320px;
+  min-width: 140px;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 24px var(--neon2), 0 0 12px var(--neon1);
+}
+
+.button:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 10px var(--neon2);
+}
+
+/* Background Particles */
+.particles {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--neon1);
+  opacity: 0.12;
+  filter: blur(2px);
+  animation: float 8s ease-in-out infinite alternate;
+}
+
+.particle1 { top: 20vh; left: 10vw; animation-delay: 0s; }
+.particle2 { top: 40vh; left: 30vw; animation-delay: 1s; }
+.particle3 { top: 60vh; left: 50vw; animation-delay: 2s; }
+.particle4 { top: 30vh; left: 70vw; animation-delay: 3s; }
+.particle5 { top: 10vh; left: 90vw; animation-delay: 4s; }
+
+@keyframes float {
+  0% { transform: translateY(0); opacity: 0.15; }
+  100% { transform: translateY(-20px); opacity: 0.3; }
+}
+
+/* Cyber Glow */
+.cyber-glow {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #0ff1ce22 0%, #000000 80%);
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* Cyber Lines */
+.cyber-lines {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cyber-lines svg {
+  width: 100%;
+  height: 100%;
+  opacity: 0.12;
+}
+
+/* Vertical Lines */
+.lines-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.line {
+  position: absolute;
+  width: 2px;
+  height: 100vh;
+  background: linear-gradient(to bottom, var(--neon1), transparent);
+  opacity: 0.12;
+  animation: moveLines 6s linear infinite;
+}
+
+@keyframes moveLines {
+  0%   { transform: translateY(-10vh); }
+  100% { transform: translateY(110vh); }
+}
+
+/* Footer */
+footer {
+  margin-top: 4rem;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9em;
+  color: var(--accent-muted);
+  z-index: 1;
+  position: relative;
+}
+@media (max-width: 600px) {
+  .content-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  #searchBar {
+    width: 100%;
+  }
+
+  .button {
+    width: 95vw;
+    max-width: 98vw;
+    min-width: 90px;
+    font-size: clamp(0.95em, 4vw, 1.1em);
+    padding: 12px 0;
+  }
+
+  .signin-btn {
+    top: 10px;
+    right: 10px;
+    padding: 7px 14px;
+    font-size: 0.95em;
+  }
+
+  .button-container {
+    padding: 0 1rem;
+  }
+}
+
+
+
+.signin-btn {
+    top: 10px;
+    right: 10px;
+    padding: 7px 14px;
+    font-size: 0.95em;
+  }
+
+  .button {
+    width: 90%;
+    font-size: 1em;
+    padding: 14px 24px;
+  }
+
+  .button-container {
+    padding: 0 1rem;
+  }
+
+.content-box {
+  margin-top: 3rem;
+  padding: 2rem;
+  border-radius: 20px;
+  background: rgba(10, 10, 30, 0.7);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 30px var(--neon2);
+  z-index: 1;
+  position: relative;
+}
+
+.header p {
+  font-size: 1.2em;
+  color: var(--accent-muted);
+  margin-top: -1rem;
+}
+
+.search-container {
+  margin: 2rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#searchBar {
+  padding: 12px 24px;
+  font-size: 1em;
+  border-radius: 12px;
+  border: 2px solid var(--neon1);
+  background: #0a0a1a;
+  color: var(--text-light);
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 0 12px var(--neon1);
+}
+

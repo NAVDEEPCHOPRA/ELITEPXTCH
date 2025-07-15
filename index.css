@@ -1,0 +1,167 @@
+.signin-btn {
+    position: absolute;              /* keep it top-right as in the 1st version */
+    top: 18px;
+    right: 32px;
+    z-index: 10;
+
+    padding: 10px 26px;              /* size from 2nd version */
+    border: 2px solid #fff;          /* border from 2nd theme */
+    border-radius: 10px;             /* shape from 1st version */
+    background: linear-gradient(90deg, #fff 0%, #0ff1ce 60%, #ff00ea 100%);  /* 2nd version theme */
+    color: #181818;
+    font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+    box-shadow: 0 0 14px #0ff1ce88, 0 2px 8px #0006; /* 2nd version shadow */
+    transition: all 0.2s ease;
+}
+
+.signin-btn:hover {
+    background: linear-gradient(90deg, #fff 0%, #0ff1ce 40%, #ff00ea 100%);
+    transform: scale(1.03);
+    box-shadow: 0 0 24px #ff00ea99, 0 2px 8px #0ff1ce55;
+    border-color: #0ff1ce;
+}
+
+.signin-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 0 6px #ff00ea, 0 2px 8px #0008;
+}
+
+        @media (max-width: 600px) {
+            .signin-btn {
+                top: 10px;
+                right: 10px;
+                padding: 7px 14px;
+                font-size: 0.95em;
+            }
+        }
+            :root {
+        --neon1:  #0ff1ce;
+        --neon2: #1a1a2e;
+        --neon3: #00ffd0;
+        --neon4: #00e0ff;
+        --neon5: #ff00ea;
+        --neon6: #fffb00;
+        --bg-gradient: linear-gradient(135deg, #181818 0%, #232347 100%);
+        --glass-bg: rgba(30, 30, 60, 0.65);
+        --glass-border: 1.5px solid #0ff1ce55;
+        --shadow: 0 8px 32px 0 #0ff1ce33;
+        --card-bg: rgba(20, 24, 40, 0.88);
+        --card-border: 2px solid #0ff1ce33;
+        --card-radius: 22px;
+    }
+    body {
+        min-height: 100vh;
+        background: var(--bg-gradient);
+        font-family: 'Montserrat', 'Orbitron', Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 0;
+        padding: 0;
+    }
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+        z-index: 2;
+    }
+    .button {
+        background: var(--neon1, #0ff1ce);
+        color: #181818;
+        border: none;
+        border-radius: 12px;
+        padding: 14px 36px;
+        font-family: 'Montserrat', 'Orbitron', Arial, sans-serif;
+        font-size: 1.1em;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 6px 0;
+        box-shadow: 0 0 12px var(--neon1, #0ff1ce), 0 2px 8px #0008;
+        transition: all 0.2s;
+        outline: none;
+        letter-spacing: 1px;
+        z-index: 1;
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+    }
+    .button:active {
+        transform: scale(0.97);
+        box-shadow: 0 0 6px var(--neon1, #0ff1ce);
+    }
+    body {
+    background: radial-gradient(ellipse at top left, #0ff1ce33 0%, #232347 100%);
+    overflow-x: hidden;
+    font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+header h1 {
+    text-align: center;
+    font-size: 2.8em;
+    letter-spacing: 0.1em;
+    background: linear-gradient(90deg, #0ff1ce 30%, #ff00ea 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 2em;
+    animation: neonPulse 2s infinite alternate;
+}
+
+@keyframes neonPulse {
+    0% { text-shadow: 0 0 18px #0ff1ce, 0 0 2px #fff; }
+    100% { text-shadow: 0 0 32px #ff00ea, 0 0 8px #fff; }
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2em;
+    padding: 32px;
+    backdrop-filter: blur(10px);
+}
+
+.button {
+    background: linear-gradient(90deg, #0ff1ce 0%, #ff00ea 100%);
+    border: none;
+    color: #181818;
+    padding: 16px 36px;
+    margin: 10px 0;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    text-align: center;
+    color: #b3b3b3;
+    margin-top: 40px;
+    padding: 16px;
+    font-size: 0.9em;
+}
+
+.particles, .cyber-glow, .cyber-lines {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+}

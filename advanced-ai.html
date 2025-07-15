@@ -6,48 +6,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ELITE AI – Next Level Intelligence</title>
 
-  <!-- TailwindCSS -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-  <!-- Font Awesome -->
+  <link rel="icon" type="image/png" href="LOGO.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="advanced-ai.css" />
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+            orbitron: ['Orbitron', 'sans-serif'],
+          },
+          colors: {
+            primary: '#6366f1',
+            accent: '#a5b4fc',
+            dark: '#0f172a',
+            card: '#18181b',
+            glass: 'rgba(30,41,59,0.7)'
+          },
+          boxShadow: {
+            'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.18)',
+          }
+        }
+      }
+    }
+  </script>
 
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
-
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      background: radial-gradient(ellipse at 60% 40%, #18181b 0%, #0f172a 100%);
-      color: #e2e8f0;
-    }
-  </style>
 </head>
 
 <body class="min-h-screen flex flex-col">
-
-  <!-- Header -->
-  <header class="w-full py-6 bg-slate-900 shadow-lg z-10">
-    <div class="container mx-auto px-6 flex items-center justify-between">
-      <div class="flex items-center gap-4">
-        <img src="logo.png" alt="ELITE AI Logo" class="h-10" loading="lazy">
-        <h1 class="text-2xl font-bold text-white tracking-tight">ELITE <span class="text-indigo-400">AI</span></h1>
-      </div>
-      <nav class="hidden md:flex items-center gap-6 text-slate-300">
-        <a href="#" class="hover:text-indigo-300 transition">Features</a>
-        <a href="#" class="hover:text-indigo-300 transition">Pricing</a>
-        <a href="#" class="hover:text-indigo-300 transition">About</a>
-        <!-- ✅ Sign-In Button -->
-        <button id="google-signin-btn" class="bg-indigo-500 hover:bg-indigo-400 text-white font-semibold px-4 py-2 rounded-md shadow transition duration-200">
-          <i class="fab fa-google mr-2"></i> Sign In with Google
-        </button>
-      </nav>
-    </div>
-  </header>
 
   <!-- Hero Section -->
   <section class="bg-gradient-to-br from-slate-800 to-slate-900 py-20 md:py-32">
@@ -55,54 +48,13 @@
       <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6">Unlock the Power of Intelligent Assistance</h1>
       <p class="text-lg text-slate-300 mb-10">Experience the future of AI with ELITE AI. Get instant answers, generate creative content, and streamline your workflow.</p>
       <div class="flex justify-center">
-        <button onclick="redirectToAIPage()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-8 py-3 rounded-full shadow-md transition duration-200">
+        <button onclick="redirectToAIPage()" class="bg-primary hover:bg-indigo-500 text-white font-semibold px-8 py-3 rounded-full shadow-md transition duration-200">
           Get Started for Free
         </button>
       </div>
     </div>
   </section>
 
-  <!-- Firebase Login Script -->
-  <script>
-    // Firebase config
-    const firebaseConfig = {
-      apiKey: "AIzaSyCTlEFfOb9LfDNw2EYHnnrme0AOKcCCNMI",
-      authDomain: "login-30b72.firebaseapp.com",
-      projectId: "login-30b72"
-    };
-
-    // Initialize Firebase only once
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    }
-
-    const auth = firebase.auth();
-    const provider = new firebase.auth.GoogleAuthProvider();
-
-    // Handle sign-in button click
-    document.addEventListener('DOMContentLoaded', () => {
-      const btn = document.getElementById('google-signin-btn');
-      btn.addEventListener('click', () => {
-        auth.signInWithPopup(provider)
-          .then((result) => {
-            const user = result.user;
-            alert(`Welcome, ${user.displayName}!`);
-            // You can redirect to dashboard or another page here
-          })
-          .catch((error) => {
-            if (error.code === 'auth/popup-blocked') {
-              alert("Popup was blocked. Please allow popups and try again.");
-            } else {
-              alert("Sign-in failed: " + error.message);
-            }
-          });
-      });
-    });
-
-    // Optional: Redirect handler
-    function redirectToAIPage() {
-      window.location.href = "ai-page.html"; // Change to your actual destination
-    }
-  </script>
+  <script src="advanced-ai.js"></script>
 </body>
 </html>

@@ -4,317 +4,36 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ELITE AI Assistant Gen6 Ultra</title>
-  <!-- TailwindCSS with JIT and extra plugins -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Orbitron:wght@700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Orbitron:wght@700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', 'JetBrains Mono', 'Orbitron', Arial, sans-serif;
-      background: #181c2f;
-      overflow-x: hidden;
-    }
-    body {
-      position: relative;
-      min-height: 100vh;
-      z-index: 1;
-    }
-    .glass {
-      background: rgba(24,28,47,0.85);
-      border: 1.5px solid rgba(56,189,248,0.13);
-      box-shadow: 0 8px 32px 0 rgba(56,189,248,0.13);
-      backdrop-filter: blur(8px);
-    }
-    .gradient-text {
-      background: linear-gradient(90deg, #38bdf8, #a78bfa, #f472b6, #2dd4bf);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-      animation: gradient-move 4s linear infinite;
-      background-size: 200% 200%;
-    }
-    @keyframes gradient-move {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
-    .gradient-border {
-      border: 2px solid;
-      border-image: linear-gradient(90deg, #38bdf8, #a78bfa, #f472b6, #2dd4bf) 1;
-      border-radius: 1rem;
-      padding: 2px;
-      background: transparent;
-    }
-    .glow-input:focus {
-      box-shadow: 0 0 0 2px #38bdf8, 0 0 8px #a78bfa;
-      outline: none;
-    }
-    /* Animated grid background */
-    .bg-grid {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background-image: linear-gradient(rgba(56,189,248,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.06) 1px, transparent 1px);
-      background-size: 40px 40px;
-      animation: grid-move 20s linear infinite;
-    }
-    @keyframes grid-move {
-      0% { background-position: 0 0, 0 0; }
-      100% { background-position: 40px 40px, 40px 40px; }
-    }
-    /* Animated floating dots */
-    .bg-dots {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-    }
-    .bg-dot {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.18;
-      filter: blur(2px);
-      animation: float-dot 8s ease-in-out infinite alternate;
-    }
-    .bg-dot1 { width: 120px; height: 120px; left: 10vw; top: 12vh; background: #38bdf8; animation-delay: 0s; }
-    .bg-dot2 { width: 90px; height: 90px; right: 14vw; top: 18vh; background: #a78bfa; animation-delay: 2s; }
-    .bg-dot3 { width: 70px; height: 70px; left: 18vw; bottom: 10vh; background: #f472b6; animation-delay: 4s; }
-    .bg-dot4 { width: 100px; height: 100px; right: 8vw; bottom: 8vh; background: #2dd4bf; animation-delay: 6s; }
-    @keyframes float-dot {
-      0% { transform: translateY(0) scale(1); }
-      100% { transform: translateY(-30px) scale(1.08); }
-    }
-    /* Animated particles */
-    .particles {
-      position: fixed;
-      inset: 0;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .particle {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #fff;
-      opacity: 0.12;
-      animation: particle-move 7s linear infinite;
-    }
-    .particle:nth-child(1) { left: 20vw; top: 30vh; animation-delay: 0s; }
-    .particle:nth-child(2) { left: 60vw; top: 70vh; animation-delay: 1.5s; }
-    .particle:nth-child(3) { left: 80vw; top: 20vh; animation-delay: 3s; }
-    .particle:nth-child(4) { left: 40vw; top: 80vh; animation-delay: 4.5s; }
-    .particle:nth-child(5) { left: 70vw; top: 50vh; animation-delay: 6s; }
-    .particle:nth-child(6) { left: 10vw; top: 60vh; animation-delay: 2.5s; }
-    @keyframes particle-move {
-      0% { transform: translateY(0) scale(1); opacity: 0.12; }
-      50% { transform: translateY(-40px) scale(1.2); opacity: 0.18; }
-      100% { transform: translateY(0) scale(1); opacity: 0.12; }
-    }
-    /* Aurora Ribbon Animation */
-    .aurora-ribbon {
-      position: fixed;
-      left: 0;
-      right: 0;
-      top: 0;
-      z-index: 3;
-      width: 100vw;
-      height: 220px;
-      pointer-events: none;
-      opacity: 0.85;
-    }
-    .aurora-ribbon svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    /* Matrix Rain Animation */
-    .matrix-rain {
-      position: fixed;
-      inset: 0;
-      z-index: 4;
-      pointer-events: none;
-      width: 100vw;
-      height: 100vh;
-      opacity: 0.18;
-      mix-blend-mode: lighten;
-    }
-    /* Starfield Animation */
-    .starfield {
-      position: fixed;
-      inset: 0;
-      z-index: 5;
-      pointer-events: none;
-      width: 100vw;
-      height: 100vh;
-      opacity: 0.22;
-      mix-blend-mode: lighten;
-    }
-    /* AI Avatar */
-    .ai-avatar {
-      position: fixed;
-      right: 2vw;
-      bottom: 2vh;
-      z-index: 10;
-      font-size: 3.5rem;
-      color: #38bdf8;
-      background: rgba(24,28,47,0.7);
-      border-radius: 50%;
-      box-shadow: 0 0 24px #38bdf8, 0 0 8px #a78bfa;
-      padding: 0.6em 0.7em;
-      border: 2px solid #a78bfa;
-      animation: avatar-flicker 2.5s infinite alternate;
-      pointer-events: none;
-    }
-    @keyframes avatar-flicker {
-      0% { filter: drop-shadow(0 0 8px #38bdf8); opacity: 1; }
-      80% { filter: drop-shadow(0 0 16px #a78bfa); opacity: 0.92; }
-      100% { filter: drop-shadow(0 0 4px #f472b6); opacity: 1; }
-    }
-    .neon-flicker {
-      animation: avatar-flicker 2.5s infinite alternate;
-    }
-    /* Responsive tweaks */
-    @media (max-width: 700px) {
-      .glass { padding: 1.5rem; }
-      .ai-avatar { font-size: 2.2rem; padding: 0.4em 0.45em; }
-      .aurora-ribbon { height: 120px; }
-    }
-  </style>
-  <script>
-    // Device type and ratio detection
-    function updateDeviceInfo() {
-      const deviceType = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ? "Mobile" : "PC";
-      const screenWidth = window.innerWidth;
-      const screenHeight = window.innerHeight;
-      const ratio = (screenWidth / screenHeight).toFixed(2);
-      document.documentElement.setAttribute('data-device-type', deviceType);
-      document.documentElement.setAttribute('data-ratio', ratio);
-      if (deviceType === "Mobile" || screenWidth < 700) {
-        document.documentElement.style.fontSize = "15px";
-      } else if (ratio < 1) {
-        document.documentElement.style.fontSize = "16px";
-      } else {
-        document.documentElement.style.fontSize = "17px";
-      }
-      const footer = document.querySelector("footer");
-      if (footer) {
-        footer.innerHTML += `<p>You're using a ${deviceType} device (${screenWidth}x${screenHeight}, ratio: ${ratio}).</p>`;
-      }
-    }
-    window.addEventListener('DOMContentLoaded', updateDeviceInfo);
-    window.addEventListener('resize', updateDeviceInfo);
-
-    // --- Matrix Rain Animation (Optimized) ---
-    (() => {
-      const canvas = document.querySelector('.matrix-rain');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      let width = window.innerWidth;
-      let height = window.innerHeight;
-      let fontSize = 18;
-      let columns = Math.floor(width / fontSize);
-      let drops = [];
-      const chars = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-      let lastDraw = 0;
-      let fps = 40; // Limit to 40 FPS for smoothness and less CPU
-      function resize() {
-        width = window.innerWidth;
-        height = window.innerHeight;
-        canvas.width = width;
-        canvas.height = height;
-        columns = Math.floor(width / fontSize);
-        drops = Array.from({length: columns}, () => Math.random() * height / fontSize | 0);
-      }
-      function draw(now) {
-        if (now - lastDraw < 1000 / fps) {
-          requestAnimationFrame(draw);
-          return;
-        }
-        lastDraw = now;
-        ctx.fillStyle = "rgba(24,28,47,0.18)";
-        ctx.fillRect(0, 0, width, height);
-        ctx.font = fontSize + "px monospace";
-        ctx.fillStyle = "#38bdf8";
-        for (let i = 0; i < drops.length; i++) {
-          const text = chars[Math.floor(Math.random() * chars.length)];
-          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-          if (Math.random() > 0.975) drops[i] = 0;
-          else drops[i]++;
-        }
-        requestAnimationFrame(draw);
-      }
-      window.addEventListener('resize', resize);
-      resize();
-      requestAnimationFrame(draw);
-    })();
-
-    // --- Starfield Animation (Optimized) ---
-    (() => {
-      const canvas = document.querySelector('.starfield');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      let width = window.innerWidth;
-      let height = window.innerHeight;
-      let stars = [];
-      const STAR_COUNT = 80; // Lowered for performance, visually similar
-      let lastDraw = 0;
-      let fps = 40;
-      function resize() {
-        width = window.innerWidth;
-        height = window.innerHeight;
-        canvas.width = width;
-        canvas.height = height;
-        stars = Array.from({length: STAR_COUNT}, () => ({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          r: Math.random() * 1.2 + 0.3,
-          dx: (Math.random() - 0.5) * 0.12,
-          dy: (Math.random() - 0.5) * 0.12,
-          alpha: Math.random() * 0.7 + 0.3
-        }));
-      }
-      function draw(now) {
-        if (now - lastDraw < 1000 / fps) {
-          requestAnimationFrame(draw);
-          return;
-        }
-        lastDraw = now;
-        ctx.clearRect(0, 0, width, height);
-        for (const s of stars) {
-          ctx.save();
-          ctx.globalAlpha = s.alpha;
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, s.r, 0, 2 * Math.PI);
-          ctx.fillStyle = `hsl(${180 + Math.random()*120}, 80%, 80%)`;
-          ctx.shadowColor = "#a78bfa";
-          ctx.shadowBlur = 8;
-          ctx.fill();
-          ctx.restore();
-          s.x += s.dx;
-          s.y += s.dy;
-          if (s.x < 0) s.x = width;
-          if (s.x > width) s.x = 0;
-          if (s.y < 0) s.y = height;
-          if (s.y > height) s.y = 0;
-        }
-        requestAnimationFrame(draw);
-      }
-      window.addEventListener('resize', resize);
-      resize();
-      requestAnimationFrame(draw);
-    })();
-  </script>
+  <link rel="stylesheet" href="ai-page.css" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 </head>
 <body class="min-h-screen flex items-center justify-center px-4 py-16">
+  <!-- Background + Animated Elements -->
+  <div class="bg-grid"></div>
+  <div class="bg-dots">
+    <div class="bg-dot bg-dot1"></div>
+    <div class="bg-dot bg-dot2"></div>
+    <div class="bg-dot bg-dot3"></div>
+    <div class="bg-dot bg-dot4"></div>
+  </div>
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+  <canvas class="matrix-rain"></canvas>
+  <canvas class="starfield"></canvas>
+  <div class="ai-avatar neon-flicker"><i class="fas fa-robot"></i></div>
 
-  <div class="glass p-10 rounded-3xl shadow-2xl max-w-2xl w-full text-center">
-    <h2 class="text-3xl font-bold mb-8 gradient-text">Your AI Assistant is Ready</h2>
-
+  <!-- Main Assistant UI -->
+  <div class="glass px-8 py-12 sm:px-10 md:px-16 lg:px-20 rounded-3xl shadow-2xl max-w-7xl w-full text-center">
+    <h2 class="text-[clamp(2.8rem,6vw,4.5rem)] font-bold leading-tight mb-10 gradient-text">Your AI Assistant is Ready</h2>
     <div class="gradient-border mb-6">
       <div class="bg-slate-800 rounded-xl p-5 flex flex-col sm:flex-row gap-4">
         <input id="userInput" type="text" placeholder="Ask me anything..." class="flex-grow bg-slate-700 text-slate-100 border border-slate-600 rounded-md px-5 py-3 text-lg glow-input" />
@@ -323,56 +42,53 @@
         </button>
       </div>
     </div>
-
-    <div id="aiOutput" class="mt-6 bg-slate-700 text-slate-100 rounded-xl p-6 border border-slate-600 min-h-[100px] whitespace-pre-wrap font-mono text-base shadow-inner">
+    <div id="aiOutput" class="mt-6 bg-slate-700 text-slate-100 rounded-xl p-6 border border-slate-600 min-h-[100px] whitespace-pre-wrap font-mono text-lg shadow-inner">
       <p class="text-slate-400 italic">Awaiting your command...</p>
     </div>
   </div>
+<SCRipt>
+  const API_KEY = "AIzaSyAPBJw9ounCWvozO_NLeIDDsZLanZ8iXNg";
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
-  <script>
-    const API_KEY = "AIzaSyCt2c-Zb7SyIqUQwj6a87AjuLYWXktFAqA";
-    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+async function callGeminiAI() {
+  const inputEl = document.getElementById("userInput");
+  const outputEl = document.getElementById("aiOutput");
+  const prompt = inputEl.value.trim();
 
-    async function callGeminiAI() {
-      const inputEl = document.getElementById("userInput");
-      const outputEl = document.getElementById("aiOutput");
-      const prompt = inputEl.value.trim();
+  if (!prompt) {
+    outputEl.innerHTML = '<p class="text-yellow-300 italic">Please enter a question!</p>';
+    return;
+  }
 
-      if (!prompt) {
-        outputEl.innerHTML = '<p class="text-yellow-300 italic">Please enter a question!</p>';
-        return;
-      }
+  outputEl.innerHTML = '<p class="text-blue-300 italic">Thinking... <i class="fas fa-spinner fa-spin"></i></p>';
+  inputEl.value = "";
 
-      outputEl.innerHTML = '<p class="text-blue-300 italic">Thinking... <i class="fas fa-spinner fa-spin"></i></p>';
-      inputEl.value = "";
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }]
+      })
+    });
 
-      try {
-        const response = await fetch(API_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [{
-              parts: [{ text: prompt }]
-            }]
-          })
-        });
+    const data = await response.json();
+    const result = data.candidates?.[0]?.content?.parts?.[0]?.text || "⚠️ No response from AI.";
+    outputEl.innerHTML = `<p><strong>You asked:</strong> ${prompt}<br><br>${result}</p>`;
+  } catch (err) {
+    outputEl.innerHTML = `<p class="text-red-400">Error: ${err.message}</p>`;
+  }
+}
 
-        const data = await response.json();
-        const result = data.candidates?.[0]?.content?.parts?.[0]?.text || "⚠️ No response from AI.";
-        outputEl.innerHTML = `<p><strong>You asked:</strong> ${prompt}<br><br>${result}</p>`;
-      } catch (err) {
-        outputEl.innerHTML = `<p class="text-red-400">Error: ${err.message}</p>`;
-      }
+window.onload = () => {
+  document.getElementById("userInput").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      callGeminiAI();
     }
-
-    window.onload = () => {
-      document.getElementById("userInput").addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          callGeminiAI();
-        }
-      });
-    };
-  </script>
+  });
+};
+</SCRipt>
+  <script src="ai-page.js"></script>
 </body>
 </html>

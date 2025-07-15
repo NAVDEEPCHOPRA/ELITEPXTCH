@@ -1,0 +1,115 @@
+:root {
+  --neon1: #0ff1ce;
+  --neon2: #1a1a2e;
+  --neon3: #00ffd0;
+  --neon4: #00e0ff;
+  --neon5: #ff00ea;
+  --bg-gradient: radial-gradient(ellipse at top left, #0ff1ce33 0%, #232347 100%);
+  --glass-bg: rgba(30, 30, 60, 0.65);
+  --glass-border: 1.5px solid var(--neon1);
+  --card-bg: rgba(20, 24, 40, 0.88);
+  --card-border: 2px solid var(--neon1);
+  --card-radius: 22px;
+  --font-main: 'Orbitron', 'Inter', 'Montserrat', sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: var(--font-main);
+  background: var(--bg-gradient);
+  color: #e2e8f0;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  backdrop-filter: blur(4px) saturate(140%);
+  -webkit-backdrop-filter: blur(4px) saturate(140%);
+  opacity: 0;
+  animation: fadeInBody 0.8s ease-in forwards;
+}
+
+@keyframes fadeInBody {
+  to { opacity: 1; }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-main);
+  letter-spacing: 0.05em;
+  background: linear-gradient(90deg, var(--neon1), var(--neon5));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* Hero Text Animation */
+h1 {
+  animation: neonPulse 2.5s infinite alternate;
+}
+
+@keyframes neonPulse {
+  0% { text-shadow: 0 0 14px var(--neon1), 0 0 2px #fff; }
+  100% { text-shadow: 0 0 28px var(--neon5), 0 0 6px #fff; }
+}
+
+/* Buttons */
+button, .btn {
+  font-family: var(--font-main);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 0.75rem 2rem;
+  background: linear-gradient(90deg, var(--neon1) 0%, var(--neon5) 100%);
+  color: #181818;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 14px var(--neon1), 0 2px 8px #0006;
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #fff 0%, var(--neon1) 40%, var(--neon5) 100%);
+  transform: scale(1.05);
+  box-shadow: 0 0 24px var(--neon5), 0 2px 8px var(--neon1);
+}
+
+button:active {
+  transform: scale(0.97);
+  box-shadow: 0 0 6px var(--neon5), 0 2px 8px #0008;
+}
+
+/* Get Started Button Specific Styling (optional override) */
+.bg-primary {
+  background: linear-gradient(90deg, var(--neon1) 0%, var(--neon5) 100%) !important;
+}
+
+/* Utility Styles */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 2rem; }
+  button { font-size: 0.95rem; padding: 0.6rem 1.5rem; }
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 8px;
+  background: #18181b;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--neon1);
+  border-radius: 4px;
+}
